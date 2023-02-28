@@ -1,0 +1,32 @@
+@startuml
+|User|
+start
+:logged in user clicks on "Post Info";
+|System|
+:show list of available categories;
+|User|
+:logged in user selects a category;
+|System|
+switch (selected category)
+  case (Post about Badminton-Related Info)
+    :user enters post details;
+    :user clicks on "submit";
+    :show success message;
+  case (Find a Courtmate)
+    :User clicks on "Create a Rally";
+    :Display "Create a Rally" form;
+    :User fills out the form;
+    if (Form is valid) then (yes)
+        :Create new rally;
+        :Display success message;
+    else (no)
+        :Display error message;
+        :Display "Create a Rally" form again;
+    endif
+  case (Sport Equipment)
+    :user enters sport equipment details;
+    :user clicks on "submit";
+    :show success message;
+endswitch
+stop
+@enduml

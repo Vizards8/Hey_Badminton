@@ -1,0 +1,16 @@
+@startuml
+start
+:User clicks on "Courts Nearby";
+if (User allows location access) then (yes)
+    :Get user's location;
+    :Search for nearby courts;
+    if (Nearby courts are found) then (yes)
+        :Display list of nearby courts;
+    else (no)
+        :Display "No courts found" message;
+    endif
+else (no)
+    :Display "Location access denied" message;
+endif
+stop
+@enduml

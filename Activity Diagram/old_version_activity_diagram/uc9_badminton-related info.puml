@@ -1,0 +1,9 @@
+@startuml
+start
+:user selects badminton-related info;
+:show list of available articles;
+while (User selects an article) is (true)
+    :show selected article;
+endwhile
+stop
+@enduml

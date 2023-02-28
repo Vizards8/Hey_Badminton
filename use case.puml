@@ -1,0 +1,58 @@
+@startuml
+left to right direction
+
+actor Guest as g
+
+package MainUser {
+    actor User as u
+    actor Admin as a
+}
+
+package HeyBadminton {
+    usecase "view info" as uc1
+    usecase "register" as uc2
+    usecase "login" as uc3
+    usecase "post info" as uc4
+    usecase "comment" as uc5
+    usecase "join a rally" as uc6
+    usecase "manage user" as uc7
+    usecase "manage post" as uc8
+    usecase "badminton-related info" as uc9
+    usecase "find a courtmate" as uc10
+    usecase "sport equipment" as uc11
+    usecase "find nearby courts" as uc12
+    usecase "profile" as uc13
+    usecase "create a rally" as uc14
+    usecase "edit post" as uc15
+    usecase "delete post" as uc16
+}
+
+g --> uc1
+g --> uc2
+
+u --> uc1
+u --> uc3
+u --> uc4
+u --> uc5
+u --> uc13
+
+a --> uc3
+a --> uc7
+a --> uc8
+uc8 <.. uc15 : <<extend>>
+uc8 <.. uc16 : <<extend>>
+
+uc1 <.. uc9 : <<extend>>
+uc1 <.. uc10 : <<extend>>
+uc1 <.. uc11 : <<extend>>
+uc1 <.. uc12 : <<extend>>
+uc10 ..> uc6 : <<include>>
+uc10 ..> uc14 : <<include>>
+
+uc4 <.. uc9 : <<extend>>
+uc4 <.. uc10 : <<extend>>
+uc4 <.. uc11 : <<extend>>
+
+
+
+@enduml

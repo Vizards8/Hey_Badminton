@@ -1,0 +1,28 @@
+@startuml
+|User|
+start
+:guest clicks on "register or login";
+|System|
+if (new user) then (yes)
+  :show registration form;
+  |User|
+  :user enters registration information;
+  |System|
+  :create new user account;
+  :show success message;
+else (no)
+  endif
+|System|
+:show login form;
+|User|
+:user enters login information;
+|System|
+if (valid login) then (yes)
+:log user in;
+:redirect to home page;
+else (no)
+:show error message;
+:allow user to retry login;
+  endif
+stop
+@enduml

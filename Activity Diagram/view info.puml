@@ -1,0 +1,33 @@
+@startuml
+|User|
+start
+:user clicks on "view info";
+|System|
+:show list of available options;
+|User|
+:user selects an option;
+|System|
+switch (selected option)
+  case (Find Nearby Courts)
+    :show list of nearby courts;
+    :user selects a court;
+    :show details for selected court;
+  case (Badminton-Related Info)
+    :show list of available articles;
+    :user selects an article;
+    :show selected article;
+  case (Find a Courtmate)
+    :user clicks on "join a rally";
+    if (rally not full) then (yes)
+      :add the user to the rally;
+      :show success message;
+    else (no)
+      :show error message;
+    endif
+  case (Sport Equipment)
+    :show list of available sports equipments;
+    :logged in user selects an item;
+    :Display details of the selected item;
+endswitch
+stop
+@enduml

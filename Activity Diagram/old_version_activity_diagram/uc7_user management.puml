@@ -1,0 +1,21 @@
+@startuml
+start
+:Admin clicks on "User Management";
+while (Admin has not logged out) is (true)
+    :Display list of users;
+    :Select a user;
+    switch (Display options to view, edit or delete user)
+    case (View user)
+        :Display user profile page;
+    case (Edit user)
+        :Display user edit form;
+        :Admin edits user information;
+        :Update user with new information;
+    case (Delete user)
+        :Confirm user deletion;
+        :Delete user and all associated data;
+    endswitch
+endwhile
+stop
+@enduml
+

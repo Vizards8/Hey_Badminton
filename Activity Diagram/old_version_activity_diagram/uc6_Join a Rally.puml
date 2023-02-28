@@ -1,0 +1,12 @@
+@startuml
+start
+:user clicks join rally button;
+:user selects a rally to join;
+if (rally not full) then (yes)
+  :add the user to the rally;
+  :show success message;
+else (no)
+  :show error message;
+endif
+stop
+@enduml

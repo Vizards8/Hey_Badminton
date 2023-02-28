@@ -1,0 +1,12 @@
+@startuml
+start
+:guest clicks on "register button";
+:guest enters personal information;
+if (valid information) then (yes)
+  :create a new user account;
+  :show success message;
+else (no)
+  :show error message;
+endif
+stop
+@enduml

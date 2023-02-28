@@ -1,0 +1,18 @@
+@startuml
+start
+:User clicks on "Find Courtmate";
+    :Display "Find Courtmate" form;
+    :User enters search criteria;
+    if (Search criteria is valid) then (yes)
+        :Search for matching courtmates;
+        if (Matching courtmates are found) then (yes)
+            :Display list of matching courtmates;
+        else (no)
+            :Display "No courtmates found" message;
+        endif
+    else (no)
+        :Display error message;
+        :Display "Find Courtmate" form again;
+    endif
+stop
+@enduml

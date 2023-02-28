@@ -1,0 +1,9 @@
+@startuml
+start
+:User clicks on "Sport Equipment";
+:Display list of available sports equipment;
+while (User selects a sports equipment item) is (true)
+    :Display details of the selected item;
+endwhile
+stop
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+start
+:User clicks on "View Info";
+:Display list of info categories;
+repeat
+    :User selects a category;
+    :Show information related to the selected topic;
+repeat while (User has not finished browsing info)
+stop
+@enduml

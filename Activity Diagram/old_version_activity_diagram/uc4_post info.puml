@@ -1,0 +1,16 @@
+@startuml
+start
+:user clicks on "post button";
+if (is guest) then (yes)
+    : redirect to login page;
+else (no)
+    :user enters post content;
+    if (valid content) then (yes)
+      :create a new post;
+      :show success message;
+    else (no)
+      :show error message;
+    endif
+endif
+stop
+@enduml

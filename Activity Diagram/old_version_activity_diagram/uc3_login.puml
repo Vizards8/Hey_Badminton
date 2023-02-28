@@ -1,0 +1,16 @@
+@startuml
+start
+:guest clicks on "login";
+:guest enters username and password;
+if (valid credentials) then (yes)
+  :log in to the website;
+  if (user) then (yes)
+    :redirect to user dashboard;
+  else (no)
+    :redirect to admin dashboard;
+  endif
+else (no)
+  :show error message;
+endif
+stop
+@enduml

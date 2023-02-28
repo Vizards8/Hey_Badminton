@@ -1,0 +1,24 @@
+@startuml
+start
+:User clicks on "Profile";
+if (User is not logged in) then (yes)
+    :Redirect to login page;
+else (no)
+    :Display user's profile page;
+    switch (User selects an action)
+    case (Edit Profile)
+        :Display "Edit Profile" form;
+        :User makes changes to profile;
+        :Update user's profile;
+    case (Change Password)
+        :Display "Change Password" form;
+        :User enters new password and confirms;
+        :Update user's password;
+    case (Logout)
+        :Log user out;
+        :Display "Logged out" message;
+        :Redirect to Homepage;
+    endswitch
+endif
+stop
+@enduml

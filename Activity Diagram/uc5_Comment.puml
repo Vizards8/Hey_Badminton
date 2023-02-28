@@ -1,0 +1,18 @@
+@startuml
+start
+:user opens a post;
+:show the post and its comments;
+:user clicks comment button;
+if (is guest) then (yes)
+    : redirect to login page;
+else (no)
+    :user enters comment content;
+    if (valid content) then (yes)
+      :create a new comment for the post;
+      :show success message;
+    else (no)
+      :show error message;
+    endif
+endif
+stop
+@enduml

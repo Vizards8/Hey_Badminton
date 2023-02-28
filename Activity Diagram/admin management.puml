@@ -1,0 +1,37 @@
+@startuml
+|User|
+start
+:admin clicks on "Management dashboard";
+|System|
+:system displays list of options;
+|User|
+:admin selects an option;
+|System|
+switch (selected option)
+case (manage users)
+    :Display list of users;
+    :Select a user;
+    switch (Display options to edit or delete user)
+    case (Edit user)
+        :Display user edit form;
+        :Admin edits user information;
+        :Update user with new information;
+    case (Delete user)
+        :Confirm user deletion;
+        :Delete user and all associated data;
+    endswitch
+case (manage posts)
+    :Display list of user's posts;
+    :Select a post;
+    switch (Display options to edit or delete post)
+    case (Edit post)
+        :Display post edit form;
+        :Admin modifies post content;
+        :Update post with new content;
+    case (Delete post)
+        :Admin confirms post deletion;
+        :Delete post;
+    endswitch
+endswitch
+stop
+@enduml

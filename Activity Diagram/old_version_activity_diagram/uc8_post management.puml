@@ -1,0 +1,25 @@
+@startuml
+start
+:Admin clicks on "Post Management";
+while (Admin has not logged out) is (true)
+    :Display list of user's posts;
+    :Select a post;
+    switch (Display options to edit or delete post)
+    case (Edit post)
+      :Admin modifies post content;
+      if (content is valid) then (yes)
+        :Update post;
+        :Display success message;
+      else (no)
+        :Display error message;
+        :Display post content;
+      endif
+    case (Delete post)
+        :Display confirmation message;
+        :Admin confirms deletion;
+        :Delete post;
+        :Display success message;
+    endswitch
+endwhile
+stop
+@enduml
