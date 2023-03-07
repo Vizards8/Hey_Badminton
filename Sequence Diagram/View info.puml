@@ -1,7 +1,7 @@
 @startuml
 
 Actor User
-participant "View page" as System
+participant "View Infomation Page" as System
 User -> System: user clicks on "view info"
 System -> User: show list of available options
 User -> System: user selects an option
