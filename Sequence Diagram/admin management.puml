@@ -1,0 +1,48 @@
+@startuml
+title Sequence Diagram of Admin Management
+
+actor Admin
+
+participant "Admin Management Page" as System
+
+activate System
+activate Database
+
+Admin -> System: click "Management dashboard"
+System -> Admin: displayOptions()
+Admin -> System: select an option
+
+alt select "manage users"
+
+    System -> Database: getUsers()
+    Database -> System: provideUsers()
+
+    System -> Admin: showUsers()
+    Admin -> System: edit user information
+
+    System -> Database: editUsers()
+    Database -> System: displaySuccessMessage()
+
+else select "manage posts"
+
+    System -> Database: getPosts()
+    Database -> System: providePosts()
+
+    System -> Admin: showPosts()
+    Admin -> System: edit post content
+
+    System -> Database: editPost()
+    Database -> System: displaySuccessMessage()
+
+else selected option is not recognized
+
+    System -> Admin: displayErrorMessage()
+
+end
+
+deactivate Database
+deactivate System
+
+Admin -> System: log out
+
+@enduml
