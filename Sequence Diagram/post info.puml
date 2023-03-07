@@ -1,0 +1,71 @@
+@startuml
+title Sequence Diagram of Post info
+
+actor User
+
+participant "Post Infomation Page" as System
+
+activate System
+
+User -> System : click "Post Info"
+
+activate Database
+System -> Database : getCategories()
+Database -> System : provideCategories()
+deactivate Database
+
+System -> User : showCategories()
+
+User -> System : selectCategory()
+
+
+alt Post about Badminton-Related Info
+
+  System -> User : enter post details
+  User -> System : click "submit"
+
+  activate Database
+  System -> Database : createPost()
+  Database -> System : displaySuccessMessage()
+  deactivate Database
+
+  System -> User : displaySuccessMessage()
+
+else Post about Find a Courtmate
+
+  User -> System : click "Create a Rally"
+  System -> User : showForm()
+  User -> System : fill out the form
+
+  alt Form is valid
+
+      activate Database
+      System -> Database : createPost()
+      Database -> System : displaySuccessMessage()
+      deactivate Database
+
+    System -> User : displaySuccessMessage()
+  else Form is not valid
+    System -> User : displayErrorMessage()
+    System -> User : showForm()
+  end
+
+else Post about Sport Equipment
+
+  System -> User : enter sport equipment details
+  User -> System : click "submit"
+
+      activate Database
+      System -> Database : createPost()
+      Database -> System : displaySuccessMessage()
+      deactivate Database
+
+  System -> User : displaySuccessMessage()
+
+end
+
+deactivate System
+
+User -> System : logout()
+
+@enduml
