@@ -44,7 +44,7 @@ else Post about Find a Courtmate
       Database -> System : displaySuccessMessage()
       deactivate Database
 
-    System -> User : displaySuccessMessage()
+      System -> User : displaySuccessMessage()
   else Form is not valid
     System -> User : displayErrorMessage()
     System -> User : showForm()
