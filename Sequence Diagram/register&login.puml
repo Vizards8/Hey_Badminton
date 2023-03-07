@@ -1,0 +1,33 @@
+@startuml
+title Login/Register Sequence Diagram
+participant "register & login" as System
+actor User
+participant System
+participant Database
+
+activate Database
+alt guest clicks on "register or login";
+System -> Database: select username
+Database -> System: exist or not
+else if it is new user
+activate System
+System -> User: show registration form;
+User -> System: user enters registration information;
+System -> Database: create new user account;
+Database -> System: return true or false;
+System -> User: show success message;
+'deactivate System
+end
+'activate System
+System -> User: show login form;
+User -> System: user enters login information;
+System -> Database: whether exist user
+Database -> System: yes or no
+System -> System: log user in;
+System -> User: redirect to home page;
+System -> User: show error message;
+System -> User: allow user to retry login;
+deactivate System
+
+
+@enduml
