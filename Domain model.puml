@@ -87,7 +87,7 @@ package controller {
 User "1" -- "*" Post: can post >
 User "1" -- "*" Comment: can comment >
 Post -[hidden]> User
-User "*" -- "1" Rally: contains <
+User "1..*" -- "1" Rally: contains <
 Post "1" -- "*" Comment: has >
 Admin "1" -- "*" User: manage >
 Admin "1" -- "*" Post: manage >
