@@ -2,10 +2,8 @@
 title Sequence Diagram of Login/Register
 
 actor User
-participant "register & login" as System
-participant Database
+participant "UserInterface" as System
 
-activate Database
 activate System
 
 User -> System: click "login"
@@ -13,23 +11,27 @@ User -> System: click "login"
 alt if it is new user
     User -> System: register()
     System -> User: showRegistrationForm()
-    User -> System: username & password
+    User -> System: submitForm()
 
-    System -> Database: createUser()
-    Database -> System: displaySuccessMessage()
+    activate UserController
+    System -> UserController: createUser()
+    UserController -> System: displaySuccessMessage()
+    deactivate UserController
+
     System -> User: displaySuccessMessage()
 else if it is not new user
     User -> System: login()
     System -> User: showLoginForm()
-    User -> System: username & password
+    User -> System: submitForm()
 
-    System -> Database: checkUser()
-    Database -> System: yes or no
+    activate UserController
+    System -> UserController: checkUser()
+    UserController -> System: yes or no
+    deactivate UserController
 
     System -> User: redirect()
 end
 
-deactivate Database
 deactivate System
 
 @enduml

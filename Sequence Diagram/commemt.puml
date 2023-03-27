@@ -2,23 +2,20 @@
 title Sequence Diagram of Comment
 
 actor User
-participant "Comment Page" as System
 
-activate System
-activate Database
+activate CommentController
 
-User -> System: open a post
+User -> CommentController: getPost()
 
-System -> Database: getPost()
-Database -> System: providePost()
-System -> User: showPost()
+activate PostController
+CommentController -> PostController: getPost()
+PostController -> CommentController: providePost()
+deactivate PostController
 
-User -> System: comment on the post
-System -> Database: postComment()
-Database -> System: displaySuccessMessage()
-System -> User:displaySuccessMessage()
+CommentController -> User: showPost()
 
-deactivate Database
-deactivate System
+User -> CommentController: postComment()
+CommentController -> User:displaySuccessMessage()
+
 
 @enduml

@@ -1,50 +1,65 @@
 @startuml
-title Sequence Diagram of View info
+title Sequence Diagram of View Info
 
-Actor User
-participant "View Infomation Page" as System
-User -> System: user clicks on "view info"
-System -> User: show list of available options
-User -> System: user selects an option
+actor User
 
-activate System
-activate Database
+activate PostController
+User -> PostController : getCategories()
+PostController -> User : provideCategories()
 
-alt selected option is "Find Nearby Courts"
-    System -> Database: select list of nearby courts
-    Database -> System: output list of nearby courts
-    System -> User: show list of nearby courts
-    User -> System: user selects a court
-    System -> Database: select details for selected court
-    Database -> System: output details for selected court
-    System -> User: show details for selected court
-else if selected option is "Badminton-Related Info"
-    System -> Database: select list of available articles
-    Database -> System: output list of available articles
-    System -> User: show list of available articles
-    User -> System: user selects an article
-    System -> Database: select selected article
-    Database -> System: output list of available articles
-    System -> User: show selected article
-else if selected option is "Find a Courtmate"
-    User -> System: user clicks on "join a rally"
-    System -> Database: check if rally is full
-    Database -> System: output full or not
+alt selected Category is "Find Nearby Courts"
+
+    User -> PostController: findNearbyCourts()
+
+    activate CourtController
+    PostController -> CourtController: findNearbyCourts()
+    CourtController -> PostController: provideCourts()
+
+    PostController -> User: provideCourts()
+    User -> PostController: selectCourt(court)
+
+    PostController -> CourtController: selectCourtDetails(court)
+    CourtController -> PostController: provideCourtDetails()
+
+    PostController -> User: provideCourtDetails()
+    deactivate CourtController
+
+else if selected Category is "Badminton-Related Info"
+
+    User -> PostController: getPosts()
+    PostController -> User: providePosts()
+
+    User -> PostController: selectPost(post)
+    PostController -> User: providePostDetails()
+
+else if selected Category is "Find a Courtmate"
+
+    User -> PostController: joinRally()
+
+    activate RallyController
+    PostController -> RallyController: joinRally(user)
+    RallyController -> PostController: outputFullOrNot(status)
+
     alt rally is not full
-        System -> Database: insert user to the rally
-        Database -> System: output user to the rally
-        System -> User: show success message
+        PostController -> RallyController: insertUserToRally()
+        RallyController -> PostController: displaySuccessMessage()
+        PostController -> User: displaySuccessMessage()
     else
-        System -> User: show error message
+        RallyController -> PostController: displayErrorMessage()
+        PostController -> User: displayErrorMessage()
     end
-else if selected option is "Sport Equipment"
-    System -> Database: select list of available sports equipment
-    Database -> System: output list of available sports equipment
-    System -> User: show list of available sports equipment
-    User -> System: logged in user selects an item
-    System -> Database: select details of the selected item
-    Database -> System: output details of the selected item
-    System -> User: display details of the selected item
+
+    deactivate RallyController
+
+else if selected Category is "Sport Equipment"
+
+    User -> PostController: getPosts()
+    PostController -> User: providePosts()
+
+    User -> PostController: selectPost(post)
+    PostController -> User: providePostDetails()
 end
-deactivate System
+
+deactivate PostController
+
 @enduml

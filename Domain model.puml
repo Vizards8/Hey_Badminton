@@ -1,10 +1,17 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class User {
+class User{
     +id: string
     +username: string
+    +password: string
     +email: string
+    +phoneNumber: string
+}
+
+class Admin{
+    +id: string
+    +username: string
     +password: string
     +isAdmin: boolean
 }
@@ -33,16 +40,56 @@ class Rally {
     +creator: User
 }
 
-class Courtmate {
-    +id: int
-    +name: string
-    +contact: string
+package controller {
+    class UserController {
+        +addUser(userData)
+        +getUser(userId)
+        +putUser(userId, userData)
+        +deleteUser(userId)
+    }
+
+    class PostController {
+        +addPost(postData)
+        +getPost(postId)
+        +putPost(postId, postData)
+        +deletePost(postId)
+    }
+
+    class CommentController {
+        +addComment(commentData)
+        +getComment(commentId)
+        +putComment(commentId, commentData)
+        +deleteComment(commentId)
+    }
+
+    class RallyController {
+        +addRally(rallyData)
+        +getRally(rallyId)
+        +putRally(rallyId, rallyData)
+        +deleteRally(rallyId)
+    }
+
+    class CourtController {
+        +addCourt(courtData)
+        +getCourt(courtId)
+        +putCourt(courtId, courtData)
+        +deleteCourt(courtId)
+    }
+
+    class AdminController {
+        +addAdmin(adminData)
+        +getAdmin(adminId)
+        +putAdmin(adminId, adminData)
+        +deleteAdmin(adminId)
+    }
 }
 
-User "1" -- "many" Post
-User "1" -- "many" Comment
-User "1" -- "many" Rally
-Post "1" -- "many" Comment
-Rally "many" -- "many" Courtmate
+User "1" -- "*" Post: can post >
+User "1" -- "*" Comment: can comment >
+Post -[hidden]> User
+User "*" -- "1" Rally: contains <
+Post "1" -- "*" Comment: has >
+Admin "1" -- "*" User: manage >
+Admin "1" -- "*" Post: manage >
 
 @enduml
