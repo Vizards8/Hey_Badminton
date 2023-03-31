@@ -2,39 +2,46 @@
 title Sequence Diagram of View Info
 
 actor User
-
+activate PostInterface
 activate PostController
-User -> PostController : getCategories()
-PostController -> User : provideCategories()
+
+User -> PostInterface : click "View Posts"
+PostInterface -> PostController : getCategories()
+PostController -> PostInterface : provideCategories()
 
 alt selected Category is "Find Nearby Courts"
 
-    User -> PostController: findNearbyCourts()
+    User -> PostInterface: findNearbyCourts()
+    PostInterface -> PostController: findNearbyCourts()
 
     activate CourtController
     PostController -> CourtController: findNearbyCourts()
     CourtController -> PostController: provideCourts()
+    PostController -> PostInterface: provideCourts()
 
-    PostController -> User: provideCourts()
-    User -> PostController: selectCourt(court)
+    User -> PostInterface: selectCourt(court)
+    PostInterface -> PostController: selectCourt(court)
 
     PostController -> CourtController: selectCourtDetails(court)
     CourtController -> PostController: provideCourtDetails()
 
-    PostController -> User: provideCourtDetails()
+    PostController -> PostInterface: provideCourtDetails()
     deactivate CourtController
 
 else if selected Category is "Badminton-Related Info"
 
-    User -> PostController: getPosts()
-    PostController -> User: providePosts()
+    User -> PostInterface: getPosts()
+    PostInterface -> PostController: getPosts()
+    PostController -> PostInterface: providePosts()
 
-    User -> PostController: selectPost(post)
-    PostController -> User: providePostDetails()
+    User -> PostInterface: selectPost(post)
+    PostInterface -> PostController: selectPost(post)
+    PostController -> PostInterface: providePostDetails()
 
 else if selected Category is "Find a Courtmate"
 
-    User -> PostController: joinRally()
+    User -> PostInterface: joinRally()
+    PostInterface -> PostController: joinRally()
 
     activate RallyController
     PostController -> RallyController: joinRally(user)
@@ -43,23 +50,26 @@ else if selected Category is "Find a Courtmate"
     alt rally is not full
         PostController -> RallyController: insertUserToRally()
         RallyController -> PostController: displaySuccessMessage()
-        PostController -> User: displaySuccessMessage()
+        PostController -> PostInterface: displaySuccessMessage()
     else
         RallyController -> PostController: displayErrorMessage()
-        PostController -> User: displayErrorMessage()
+        PostController -> PostInterface: displayErrorMessage()
     end
 
     deactivate RallyController
 
 else if selected Category is "Sport Equipment"
 
-    User -> PostController: getPosts()
-    PostController -> User: providePosts()
+    User -> PostInterface: getPosts()
+    PostInterface -> PostController: getPosts()
+    PostController -> PostInterface: providePosts()
 
-    User -> PostController: selectPost(post)
-    PostController -> User: providePostDetails()
+    User -> PostInterface: selectPost(post)
+    PostInterface -> PostController: selectPost(post)
+    PostController -> PostInterface: providePostDetails()
 end
 
+deactivate PostInterface
 deactivate PostController
 
 @enduml

@@ -2,58 +2,62 @@
 title Sequence Diagram of Post info
 
 actor User
-
+activate PostInterface
 activate PostController
-User -> PostController : getCategories()
-PostController -> User : provideCategories()
+
+User -> PostInterface: click "Add New Post"
+PostInterface -> PostController : getCategories()
+PostController -> PostInterface : provideCategories()
 
 alt Post about Badminton-Related Info
 
-    User -[hidden]>
-    User -> PostController : addPost()
-    PostController -> User : displaySuccessMessage()
+    User -> PostInterface : addPost()
+    PostInterface -> PostController : addPost()
+    PostController -> PostInterface : displaySuccessMessage()
 
 else Post about Find a Courtmate
 
-    User -> PostController : createRally()
+    User -> PostInterface : createRally()
+    PostInterface -> PostController : createRally()
 
     activate RallyController
     PostController -> RallyController : createRally()
     RallyController -> PostController : showForm()
-    User -> PostController : submitForm()
+    PostController -> PostInterface : showForm()
+    User -> PostInterface : submitForm()
+    PostInterface -> PostController : submitForm()
     PostController -> RallyController : submitForm()
-    deactivate RallyController
 
     alt Form is not valid
 
-        User -[hidden]>
-        activate RallyController
         RallyController -> PostController : displayErrorMessage()
-        PostController -> User : displayErrorMessage()
+        PostController -> PostInterface : displayErrorMessage()
         RallyController -> PostController : showForm()
-        PostController -> User : showForm()
+        PostController -> PostInterface : showForm()
 
     else Form is valid
 
         RallyController -> PostController : displaySuccessMessage()
-        PostController -> User : displaySuccessMessage()
+        PostController -> PostInterface : displaySuccessMessage()
         deactivate RallyController
 
+        User -> PostInterface : addPost()
+        PostInterface -> PostController : addPost()
+        PostController -> PostInterface : displaySuccessMessage()
         User -[hidden]> PostController
-        User -> PostController : addPost()
-        PostController -> User : displaySuccessMessage()
 
     end
 
 else Post about Sport Equipment
 
-    User -[hidden]>
-    activate PostController
-    User -> PostController : addPost()
-    PostController -> User : displaySuccessMessage()
+    User -> PostInterface : addPost()
+    PostInterface -> PostController : addPost()
+    PostController -> PostInterface : displaySuccessMessage()
+        User -[hidden]> PostController
 
 end
 
+deactivate PostInterface
 deactivate PostController
 
 @enduml

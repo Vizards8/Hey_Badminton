@@ -3,19 +3,24 @@ title Sequence Diagram of Comment
 
 actor User
 
+activate CommentInterface
 activate CommentController
 
-User -> CommentController: getPost()
+User -> CommentInterface: click "Comment"
+CommentInterface -> CommentController: getPost()
 
 activate PostController
 CommentController -> PostController: getPost()
 PostController -> CommentController: providePost()
 deactivate PostController
 
-CommentController -> User: showPost()
+CommentController -> CommentInterface: showPost()
 
-User -> CommentController: postComment()
-CommentController -> User:displaySuccessMessage()
+User -> CommentInterface: addComment()
+CommentInterface -> CommentController: addComment()
+CommentController -> CommentInterface: displaySuccessMessage()
 
+deactivate CommentInterface
+deactivate CommentController
 
 @enduml

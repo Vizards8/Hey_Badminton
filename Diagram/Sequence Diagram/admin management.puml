@@ -3,7 +3,7 @@ title Sequence Diagram of Admin Management
 
 actor Admin
 
-participant "AdminController" as System
+participant "AdminInterface" as System
 participant "UserController" as UC
 participant "PostController" as PC
 
@@ -19,10 +19,9 @@ alt select "manage users"
     System -> UC: getUsers()
     UC -> System: provideUsers()
 
-    System -> Admin: showUsers()
     Admin -> System: edit user information
 
-    System -> UC: editUsers()
+    System -> UC: updateUsers()
     UC -> System: displaySuccessMessage()
     deactivate UC
 
@@ -32,21 +31,14 @@ else select "manage posts"
     System -> PC: getPosts()
     PC -> System: providePosts()
 
-    System -> Admin: showPosts()
     Admin -> System: edit post content
 
-    System -> PC: editPost()
+    System -> PC: updatePost()
     PC -> System: displaySuccessMessage()
     deactivate PC
-
-else selected option is not recognized
-
-    System -> Admin: displayErrorMessage()
 
 end
 
 deactivate System
-
-Admin -> System: log out
 
 @enduml

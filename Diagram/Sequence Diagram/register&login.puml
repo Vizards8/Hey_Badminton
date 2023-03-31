@@ -18,7 +18,6 @@ alt if it is new user
     UserController -> System: displaySuccessMessage()
     deactivate UserController
 
-    System -> User: displaySuccessMessage()
 else if it is not new user
     User -> System: login()
     System -> User: showLoginForm()
