@@ -1,0 +1,44 @@
+@startuml
+title Sequence Diagram of Admin Management
+
+actor Admin
+
+participant "AdminInterface" as System
+participant "UserController" as UC
+participant "PostController" as PC
+
+activate System
+
+Admin -> System: click "Management dashboard"
+System -> Admin: displayOptions()
+Admin -> System: select an option
+
+alt select "manage users"
+
+    activate UC
+    System -> UC: getUsers()
+    UC -> System: provideUsers()
+
+    Admin -> System: edit user information
+
+    System -> UC: updateUsers()
+    UC -> System: displaySuccessMessage()
+    deactivate UC
+
+else select "manage posts"
+
+    activate PC
+    System -> PC: getPosts()
+    PC -> System: providePosts()
+
+    Admin -> System: edit post content
+
+    System -> PC: updatePost()
+    PC -> System: displaySuccessMessage()
+    deactivate PC
+
+end
+
+deactivate System
+
+@enduml

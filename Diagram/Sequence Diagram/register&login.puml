@@ -1,0 +1,36 @@
+@startuml
+title Sequence Diagram of Login/Register
+
+actor User
+participant "UserInterface" as System
+
+activate System
+
+User -> System: click "login"
+
+alt if it is new user
+    User -> System: register()
+    System -> User: showRegistrationForm()
+    User -> System: submitForm()
+
+    activate UserController
+    System -> UserController: createUser()
+    UserController -> System: displaySuccessMessage()
+    deactivate UserController
+
+else if it is not new user
+    User -> System: login()
+    System -> User: showLoginForm()
+    User -> System: submitForm()
+
+    activate UserController
+    System -> UserController: checkUser()
+    UserController -> System: yes or no
+    deactivate UserController
+
+    System -> User: redirect()
+end
+
+deactivate System
+
+@enduml
