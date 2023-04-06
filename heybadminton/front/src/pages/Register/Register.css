@@ -1,26 +1,29 @@
 .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom right, #43cea2, #185a9d);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #43cea2, #185a9d);
+}
   
-  .ant-form {
-    width: 400px;
-  }
-  
-  .ant-form-item-label {
-    font-size: 16px;
-  }
-  
-  .ant-input {
-    font-size: 16px;
-  }
-  
-  .ant-btn {
-    font-size: 18px;
-    height: 50px;
-    padding: 0 30px;
-  }
-  
+.ant-form {
+  width: 400px;
+}
+
+.ant-form-item-label {
+  font-size: 16px;
+}
+
+.ant-input {
+  font-size: 16px;
+}
+
+.ant-btn {
+  font-size: 18px;
+  height: 50px;
+  padding: 0 30px;
+}
+
+.register-form-button {
+  width: 100%;
+}
