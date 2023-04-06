@@ -9,6 +9,7 @@ const Register = () => {
   return (
     <div className="register-container">
       <Form
+        className='register-form'
         name="register"
         onFinish={onFinish}
         scrollToFirstError
