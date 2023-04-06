@@ -54,7 +54,10 @@ const Login = () => {
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-          Or <a href="/" style={{ color: '#ffffff' }}>register now!</a>
+        </Form.Item>
+
+        <Form.Item>
+          Don't have an account? <a href="/register" style={{ color: '#ffffff' }}>register now!</a>
         </Form.Item>
       </Form>
     </div>
