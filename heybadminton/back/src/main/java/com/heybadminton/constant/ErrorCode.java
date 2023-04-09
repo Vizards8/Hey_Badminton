@@ -1,4 +1,4 @@
-package com.heybadminton.pojo;
+package com.heybadminton.constant;
 
 public enum ErrorCode {
 
