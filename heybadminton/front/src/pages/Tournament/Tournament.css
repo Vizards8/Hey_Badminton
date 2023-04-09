@@ -1,0 +1,23 @@
+.tournament-wrapper {
+  background-color: #f0f2f5;
+  padding: 24px;
+}
+
+.tournament-list-item {
+  display: flex;
+  justify-content: center;
+}
+
+.tournament-card {
+  height: 250px;
+  overflow-y: auto;
+}
+
+.tournament-card-head-title {
+  font-weight: bold;
+}
+
+.tournament-card-description {
+  margin-bottom: 0;
+}
+

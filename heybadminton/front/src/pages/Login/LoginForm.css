@@ -1,0 +1,15 @@
+.login-form-container {
+  display: flex; /* Set display to flex */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Set height to full viewport height */
+  background: linear-gradient(to bottom right, #43cea2, #185a9d);
+}
+
+.login-form {
+  max-width: 400px; /* Set max-width to limit the form's width */
+}
+
+.login-form-button {
+  width: 100%;
+}
