@@ -21,10 +21,53 @@ const { Option } = Select;
 const { Title } = Typography;
 
 const Locations = () => {
-  const [mapCenter, setMapCenter] = useState({ lat: 37.7749, lng: -122.4194 }); // Default position set to San Francisco, CA
+  const defaultBadmintonCourts = [
+    {
+      lat: 38.91895,
+      lng: -77.04162,
+      name: "18th Street Tennis Courts",
+      address: "2179 18th St NW #2159, Washington, DC 20009, United States",
+      rating: 4.3,
+    },
+    {
+      lat: 39.01762,
+      lng: -77.42307,
+      name: "Royal Badminton Academy",
+      address:
+        "21598 Atlantic Blvd Suite # 100, Sterling, VA 20166, United States",
+      rating: 4.9,
+    },
+    {
+      lat: 39.23165,
+      lng: -76.82446,
+      name: "Capital Badminton Academy - Columbia",
+      address:
+        "9188 Red Branch Rd Suite 430, Columbia, MD 21045, United States",
+      rating: 4.7,
+    },
+    {
+      lat: 40.57269,
+      lng: -74.38618,
+      name: "International Badminton Center",
+      address: "3775 Park Ave UNIT 8A, Edison, NJ 08820, United States",
+      rating: 3.5,
+    },
+    {
+      lat: 38.95267,
+      lng: -77.03113,
+      name: "Multi-purpose Court",
+      address:
+        "Hamilton Street Playground, 1340 Hamilton St NW, Washington, DC 20011, United States",
+      rating: 0,
+    },
+  ];
+
+  const [mapCenter, setMapCenter] = useState(defaultBadmintonCourts[0]);
   const [zipcode, setZipcode] = useState("");
   const [radius, setRadius] = useState("1609");
-  const [badmintonCourts, setBadmintonCourts] = useState([]);
+  const [badmintonCourts, setBadmintonCourts] = useState(
+    defaultBadmintonCourts
+  );
   const mapRef = useRef(null);
 
   const handleDropdownChange = (value) => {
@@ -72,10 +115,12 @@ const Locations = () => {
             setBadmintonCourts(locations);
             setMapCenter(locations[0]);
           } else {
+            message.error("Invalid zipcode.");
             console.error(`Failed to get badminton courts: ${status}`);
           }
         });
       } else {
+        message.error("Invalid zipcode.");
         console.error(`Failed to get location for ${zipcode}: ${status}`);
       }
     });
