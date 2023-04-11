@@ -12,13 +12,13 @@
 }
 
 .map-container {
-  height: 500px;
+  height: 600px;
   width: 85%;
   margin: auto;
 }
 
 .list-container {
-  height: 500px;
+  height: 600px;
   width: 85%;
   margin: auto;
   overflow: auto;
