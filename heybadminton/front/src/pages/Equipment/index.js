@@ -1,4 +1,6 @@
-import { Layout, Breadcrumb, List, Avatar } from "antd";
+import { Layout, Breadcrumb, List, Avatar} from "antd";
+import { HomeOutlined } from "@ant-design/icons";
+
 import "./Equipment.css";
 
 import maomao from "@/assets/images/profile.png";
@@ -53,31 +55,34 @@ const data = [
 function Equipment() {
   return (
     <div className="equipment-wrapper">
+      
       <Layout className="layout">
-      <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>Tournament</Breadcrumb.Item>
-        </Breadcrumb>
-      </Content>
-    </Layout> 
-      <div className="site-layout-content">
-        <List
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={<Avatar src={item.image} />}
-                title={<a href={`/posts/${item.id}`}>{item.title}</a>}
-                description={item.description}
-              />
-            </List.Item>
-          )}
-        />
-      </div>
+        <Content style={{ padding: '0 50px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <HomeOutlined style={{height : '30px'}}/>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>Tournament</Breadcrumb.Item>
+          </Breadcrumb>
+        </Content>
+      </Layout> 
+
+      <List
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src={item.image} />}
+              title={<a href={`/post/${item.id}`}>{item.title}</a>}
+              description={item.description}
+            />
+          </List.Item>
+        )}
+      />
+
     </div>
   );
 }
+
 
 export default Equipment;
