@@ -68,7 +68,9 @@ function Equipment() {
             <Breadcrumb.Item>
             <a href={'/'}>Home</a>
             </Breadcrumb.Item>
-            <Breadcrumb.Item>Tournament</Breadcrumb.Item>
+            <Breadcrumb.Item>
+            <a href={'/equip'}>Equipment</a>
+            </Breadcrumb.Item>
           </Breadcrumb>
         </Content>
       </Layout>
