@@ -58,8 +58,10 @@ function Equipment() {
       
       <Layout className="layout">
         <Content style={{ padding: '0 50px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <HomeOutlined style={{height : '30px'}}/>
+          <Breadcrumb style={{ margin: '16px 0', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2px' }}>
+              <HomeOutlined />
+            </div>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>Tournament</Breadcrumb.Item>
           </Breadcrumb>
