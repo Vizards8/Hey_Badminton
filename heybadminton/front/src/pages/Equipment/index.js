@@ -1,10 +1,10 @@
-import { Layout, Menu, Breadcrumb, List, Avatar } from 'antd';
+import { Layout, Breadcrumb, List, Avatar } from 'antd';
 
 import maomao from "@/assets/images/profile.png"
 
 // import logo from "./logo.png"
 
-const { Header, Content, Footer } = Layout;
+const {Content} = Layout;
 
 const data = [
   {
