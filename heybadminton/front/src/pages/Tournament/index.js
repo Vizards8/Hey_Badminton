@@ -4,29 +4,26 @@ import "./Tournament.css";
 
 const data = [
   {
-    title: "Tournament 1",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia, felis eu cursus hendrerit, nulla nulla congue quam, eget tristique est dui vitae eros.",
-    date: "April 12, 2023",
-    location: "New York, NY",
-    registrationLink: "https://www.example.com/register/tournament-1",
-  },
-  {
-    title: "Tournament 2",
-    description:
-      "Sed quis ligula euismod, sodales massa et, consequat nulla. Nulla facilisi. Proin nec nunc euismod, ullamcorper risus eu, faucibus nibh.",
-    date: "May 2, 2023",
-    location: "Los Angeles, CA",
-    registrationLink: "https://www.example.com/register/tournament-2",
-  },
-  {
-    title: "Tournament 3",
-    description:
-      "Donec non elit non elit tincidunt convallis. Ut dignissim mi sit amet diam tincidunt varius. Vestibulum blandit, sapien eget varius tincidunt, elit elit ultrices metus, et placerat lorem tellus ut eros.",
-    date: "June 15, 2023",
-    location: "Chicago, IL",
-    registrationLink: "https://www.example.com/register/tournament-3",
-  },
+    title: "BWF World Championships",
+    description: "The BWF World Championships is the most prestigious tournament in badminton, featuring the world's best players competing for the title of world champion in five disciplines.",
+    date: "August 21-27, 2023",
+    location: "Tokyo, Japan",
+    registrationLink: "https://development.bwfbadminton.com/register-official",
+    },
+    {
+    title: "YONEX All England Open",
+    description: "The YONEX All England Open is one of the oldest and most prestigious badminton tournaments in the world, part of the BWF World Tour, and considered one of the five most prestigious events in the tour.",
+    date: "March 7-12, 2023",
+    location: "Birmingham, England",
+    registrationLink: "https://www.allenglandbadminton.com/",
+    },
+    {
+    title: "TOTAL BWF Sudirman Cup",
+    description: "The TOTAL BWF Sudirman Cup is a mixed team badminton championship held every two years. It features teams from different countries competing in a knockout format tournament, named after Dick Sudirman, a former Indonesian badminton player and coach.",
+    date: "May 22-29, 2023",
+    location: "Mumbai, India",
+    registrationLink: "https://bwfsudirmancup.bwfbadminton.com/",
+    },
 ];
 
 const Tournament = () => {
