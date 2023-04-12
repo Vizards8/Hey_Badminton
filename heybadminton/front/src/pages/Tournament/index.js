@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout, Breadcrumb, Card, List} from "antd";
+import { HomeOutlined } from "@ant-design/icons";
 import "./Tournament.css";
 
 const {Content} = Layout;
@@ -40,7 +41,12 @@ const Tournament = () => {
       <Layout className="layout">
       <Content style={{ padding: '0 50px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2px' }}>
+              <HomeOutlined />
+          </div>
+          <Breadcrumb.Item>
+            <a href={'/'}>Home</a>
+            </Breadcrumb.Item>
           <Breadcrumb.Item>Tournament</Breadcrumb.Item>
         </Breadcrumb>
       </Content>
