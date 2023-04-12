@@ -65,7 +65,9 @@ function Equipment() {
             >
               <HomeOutlined />
             </div>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>
+            <a href={'/'}>Home</a>
+            </Breadcrumb.Item>
             <Breadcrumb.Item>Tournament</Breadcrumb.Item>
           </Breadcrumb>
         </Content>
