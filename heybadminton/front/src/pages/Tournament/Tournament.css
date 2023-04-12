@@ -3,21 +3,18 @@
   padding: 24px;
 }
 
-.tournament-list-item {
+.tournament-card {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 70%;
 }
 
-.tournament-card {
-  height: 250px;
-  overflow-y: auto;
+.tournament-card .tournament-pic {
+  margin-left: 24px;
+  width: 200px;
 }
 
 .tournament-card-head-title {
   font-weight: bold;
 }
-
-.tournament-card-description {
-  margin-bottom: 0;
-}
-

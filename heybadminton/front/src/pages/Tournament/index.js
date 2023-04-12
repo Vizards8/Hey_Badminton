@@ -1,31 +1,34 @@
 import React from "react";
-import { Card, List } from "antd";
+import { Card, List, Row } from "antd";
 import "./Tournament.css";
 
 const data = [
   {
-    title: "Tournament 1",
+    title: "BWF World Championships",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia, felis eu cursus hendrerit, nulla nulla congue quam, eget tristique est dui vitae eros.",
-    date: "April 12, 2023",
-    location: "New York, NY",
-    registrationLink: "https://www.example.com/register/tournament-1",
+      "The BWF World Championships is the most prestigious tournament in badminton, featuring the world's best players competing for the title of world champion in five disciplines.",
+    date: "August 21-27, 2023",
+    location: "Tokyo, Japan",
+    registrationLink: "https://development.bwfbadminton.com/register-official",
+    pic: "https://bwfworldchampionships.bwfbadminton.com/wp-content/plugins/bwf-menu-system/images/logo-wch-mobile-09.png",
   },
   {
-    title: "Tournament 2",
+    title: "YONEX All England Open",
     description:
-      "Sed quis ligula euismod, sodales massa et, consequat nulla. Nulla facilisi. Proin nec nunc euismod, ullamcorper risus eu, faucibus nibh.",
-    date: "May 2, 2023",
-    location: "Los Angeles, CA",
-    registrationLink: "https://www.example.com/register/tournament-2",
+      "The YONEX All England Open is one of the oldest and most prestigious badminton tournaments in the world, part of the BWF World Tour, and considered one of the five most prestigious events in the tour.",
+    date: "March 7-12, 2023",
+    location: "Birmingham, England",
+    registrationLink: "https://www.allenglandbadminton.com/",
+    pic: "https://www.allenglandbadminton.com/wp-content/uploads/2021/09/All-England-Badminton.png",
   },
   {
-    title: "Tournament 3",
+    title: "TOTAL BWF Sudirman Cup",
     description:
-      "Donec non elit non elit tincidunt convallis. Ut dignissim mi sit amet diam tincidunt varius. Vestibulum blandit, sapien eget varius tincidunt, elit elit ultrices metus, et placerat lorem tellus ut eros.",
-    date: "June 15, 2023",
-    location: "Chicago, IL",
-    registrationLink: "https://www.example.com/register/tournament-3",
+      "The TOTAL BWF Sudirman Cup is a mixed team badminton championship held every two years. It features teams from different countries competing in a knockout format tournament, named after Dick Sudirman, a former Indonesian badminton player and coach.",
+    date: "May 22-29, 2023",
+    location: "Mumbai, India",
+    registrationLink: "https://bwfsudirmancup.bwfbadminton.com/",
+    pic: "https://extranet.bwf.sport/docs/events/4708/logo-colour/TotalEnergies_BWF_Sudirman%20Cup_2023.svg",
   },
 ];
 
@@ -33,26 +36,33 @@ const Tournament = () => {
   return (
     <div className="tournament-wrapper">
       <List
-        grid={{ gutter: 16, column: 3 }}
+        grid={{ gutter: 16, column: 1 }}
         dataSource={data}
         renderItem={(item) => (
-          <List.Item className="tournament-list-item">
+          <List.Item>
             <Card
+              hoverable
               className="tournament-card"
-              title={item.title}
-              extra={
-                <a
-                  href={item.registrationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Register
-                </a>
+              cover={
+                <img alt="Tournament Logo" src={item.pic} className="tournament-pic" />
               }
             >
-              <p>{item.description}</p>
-              <p>Date: {item.date}</p>
-              <p>Location: {item.location}</p>
+              <Card
+                title={item.title}
+                extra={
+                  <a
+                    href={item.registrationLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Learn more
+                  </a>
+                }
+              >
+                <p>{item.description}</p>
+                <p>Date: {item.date}</p>
+                <p>Location: {item.location}</p>
+              </Card>
             </Card>
           </List.Item>
         )}
