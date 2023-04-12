@@ -3,6 +3,8 @@ import "./Equipment.css";
 
 import maomao from "@/assets/images/profile.png";
 
+const {Content} = Layout;
+
 const data = [
   {
     id: 1,
@@ -51,10 +53,14 @@ const data = [
 function Equipment() {
   return (
     <div className="equipment-wrapper">
-      <Breadcrumb style={{ margin: "16px 0" }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>Equipment</Breadcrumb.Item>
-      </Breadcrumb>
+      <Layout className="layout">
+      <Content style={{ padding: '0 50px' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>Tournament</Breadcrumb.Item>
+        </Breadcrumb>
+      </Content>
+    </Layout> 
       <div className="site-layout-content">
         <List
           itemLayout="horizontal"

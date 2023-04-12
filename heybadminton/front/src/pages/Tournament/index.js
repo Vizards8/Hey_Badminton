@@ -1,6 +1,8 @@
 import React from "react";
-import { Card, List, Row } from "antd";
+import { Layout, Breadcrumb, Card, List} from "antd";
 import "./Tournament.css";
+
+const {Content} = Layout;
 
 const data = [
   {
@@ -35,6 +37,14 @@ const data = [
 const Tournament = () => {
   return (
     <div className="tournament-wrapper">
+      <Layout className="layout">
+      <Content style={{ padding: '0 50px' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>Tournament</Breadcrumb.Item>
+        </Breadcrumb>
+      </Content>
+    </Layout> 
       <List
         grid={{ gutter: 16, column: 1 }}
         dataSource={data}
