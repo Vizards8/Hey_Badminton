@@ -1,5 +1,6 @@
 .tournament-wrapper {
-  background-color: #f0f2f5;
+  width: 1200px;
+  margin: auto;
   padding: 24px;
 }
 
@@ -7,7 +8,6 @@
   display: flex;
   align-items: center;
   margin: auto;
-  width: 70%;
 }
 
 .tournament-card .tournament-pic {
