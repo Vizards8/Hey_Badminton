@@ -48,7 +48,7 @@ const Tournament = () => {
             <a href={'/'}>Home</a>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a href={'/game'}>Tournament</a>
+            Tournament
           </Breadcrumb.Item>
         </Breadcrumb>
       </Content>

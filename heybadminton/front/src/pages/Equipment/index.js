@@ -69,7 +69,7 @@ function Equipment() {
             <a href={'/'}>Home</a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-            <a href={'/equip'}>Equipment</a>
+              Equipment
             </Breadcrumb.Item>
           </Breadcrumb>
         </Content>
