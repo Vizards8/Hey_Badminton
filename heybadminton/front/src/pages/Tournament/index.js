@@ -44,7 +44,11 @@ const Tournament = () => {
               hoverable
               className="tournament-card"
               cover={
-                <img alt="Tournament Logo" src={item.pic} className="tournament-pic" />
+                <img
+                  alt="Tournament Logo"
+                  src={item.pic}
+                  className="tournament-pic"
+                />
               }
             >
               <Card

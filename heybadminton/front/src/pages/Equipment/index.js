@@ -1,50 +1,112 @@
-import { useState } from 'react';
-import EquipmentItem from './EquipmentItem';
+import { Layout, Menu, Breadcrumb, List, Avatar } from 'antd';
 
-import myImage from "./logo.png";
+import maomao from "@/assets/images/profile.png"
 
-const Equip = () => {
-  const equipment = [
-    {
-      name: 'Badminton Racket',
-      description: 'A lightweight racket used to hit the shuttlecock across the net.',
-      image: myImage,
-      price: 50.00
-    },
-    {
-      name: 'Shuttlecock',
-      description: 'A feather or plastic projectile hit back and forth over the net by players.',
-      image: myImage,
-      price: 10.00
-    },
-    {
-      name: 'Badminton Shoes',
-      description: 'Specialized shoes with good grip to help players move quickly and change direction.',
-      image: myImage,
-      price: 75.00
-    }
-  ];
+// import logo from "./logo.png"
 
-  const [selectedItem, setSelectedItem] = useState(null);
+const { Header, Content, Footer } = Layout;
 
-  const handleSelectItem = (item) => {
-    setSelectedItem(item);
-  }
+const data = [
+  {
+    title: 'Topic 1',
+    description: 'This is the first topic',
+    author: 'John Doe',
+    image: maomao,
+  },
+  {
+    title: 'Topic 2',
+    description: 'This is the second topic',
+    author: 'Jane Smith',
+    image: maomao,
+  },
+  {
+    title: 'Topic 3',
+    description: 'This is the third topic',
+    author: 'Bob Johnson',
+    image: maomao,
+  },
+  {
+    title: 'Topic 1',
+    description: 'This is the first topic',
+    author: 'John Doe',
+    image: maomao,
+  },
+  {
+    title: 'Topic 2',
+    description: 'This is the second topic',
+    author: 'Jane Smith',
+    image: maomao,
+  },
+  {
+    title: 'Topic 3',
+    description: 'This is the third topic',
+    author: 'Bob Johnson',
+    image: maomao,
+  },
+  {
+    title: 'Topic 1',
+    description: 'This is the first topic',
+    author: 'John Doe',
+    image: maomao,
+  },
+  {
+    title: 'Topic 2',
+    description: 'This is the second topic',
+    author: 'Jane Smith',
+    image: maomao,
+  },
+  {
+    title: 'Topic 3',
+    description: 'This is the third topic',
+    author: 'Bob Johnson',
+    image: maomao,
+  },
+  {
+    title: 'Topic 1',
+    description: 'This is the first topic',
+    author: 'John Doe',
+    image: maomao,
+  },
+  {
+    title: 'Topic 2',
+    description: 'This is the second topic',
+    author: 'Jane Smith',
+    image: maomao,
+  },
+  {
+    title: 'Topic 3',
+    description: 'This is the third topic',
+    author: 'Bob Johnson',
+    image: maomao,
+  },
+];
 
+function Equipment() {
   return (
-    <div>
-      <h2>Badminton Equipment</h2>
-      <p>Here is a list of the equipment available for use:</p>
-      <div className="equipment-list">
-        {equipment.map(item => (
-          <EquipmentItem key={item.name} item={item} onSelect={handleSelectItem} />
-        ))}
-      </div>
-      {selectedItem && (
-        <p>You have selected: {selectedItem.name}</p>
-      )}
-    </div>
-  )
+    <Layout className="layout">
+      <Content style={{ padding: '0 50px' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>Equipment</Breadcrumb.Item>
+        </Breadcrumb>
+        <div className="site-layout-content">
+          <List
+            itemLayout="horizontal"
+            dataSource={data}
+            renderItem={(item) => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={<Avatar src={item.image} />}
+                  title={<a href="#">{item.title}</a>}
+                  description={item.description}
+                />
+              </List.Item>
+            )}
+          />
+        </div>
+      </Content>
+    </Layout>
+  );
 }
 
-export default Equip;
+export default Equipment;
