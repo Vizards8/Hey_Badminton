@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Breadcrumb, Carousel, Button, Card, Avatar, Divider } from 'antd';
+import { Layout, Breadcrumb, Carousel, Card, Avatar, Divider } from 'antd';
 
 import "./Home.css";
 
@@ -14,9 +14,9 @@ const HomePage = () => {
   ];
 
   const CourtmateList = ({ courtmates }) => (
-    <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
       {courtmates.map((courtmate) => (
-        <Card style={{ width: '25%', margin: '0 3rem' }} key={courtmate.title}>
+        <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={courtmate.title}>
           <Meta
             avatar={<Avatar src={courtmate.image} />}
             title={courtmate.title}
@@ -70,40 +70,108 @@ const HomePage = () => {
       maxParticipants: "4",
       closed: false,
     },
+    {
+      id: 1,
+      avatar: "https://picsum.photos/50?random=1",
+      title: "Friendly Match 1",
+      time: "9:00am",
+      date: "NA",
+      location: "Location 1",
+      participants: "6",
+      maxParticipants: "8",
+      closed: false,
+    },
+    {
+      id: 2,
+      avatar: "https://picsum.photos/50?random=2",
+      title: "Friendly Match 2",
+      time: "10:00am",
+      date: "NA",
+      location: "Location 2",
+      participants: "4",
+      maxParticipants: "6",
+      closed: false,
+    },
+    {
+      id: 3,
+      avatar: "https://picsum.photos/50?random=3",
+      title: "Friendly Match 3",
+      time: "11:00am",
+      date: "NA",
+      location: "Location 3",
+      participants: "2",
+      maxParticipants: "4",
+      closed: false,
+    },
+    {
+      id: 1,
+      avatar: "https://picsum.photos/50?random=1",
+      title: "Friendly Match 1",
+      time: "9:00am",
+      date: "NA",
+      location: "Location 1",
+      participants: "6",
+      maxParticipants: "8",
+      closed: false,
+    },
+    {
+      id: 2,
+      avatar: "https://picsum.photos/50?random=2",
+      title: "Friendly Match 2",
+      time: "10:00am",
+      date: "NA",
+      location: "Location 2",
+      participants: "4",
+      maxParticipants: "6",
+      closed: false,
+    },
+    {
+      id: 3,
+      avatar: "https://picsum.photos/50?random=3",
+      title: "Friendly Match 3",
+      time: "11:00am",
+      date: "NA",
+      location: "Location 3",
+      participants: "2",
+      maxParticipants: "4",
+      closed: false,
+    },
   ];
 
   return (
     <div className="equipment-wrapper">
-      <Layout className="layout">
-        <Content style={{ padding: '0 50px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-          </Breadcrumb>
-          <div className="site-layout-content">
-            <h1>Welcome to our website!</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque gravida velit, quis tincidunt quam placerat sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-            <Carousel autoplay>
-              {carouselImages.map((image) => (
-                <div key={image.id}>
-                  <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '312.5px', margin: 'auto' }} />
-                </div>
-              ))}
-            </Carousel>
 
-            <Divider orientation="left"><h2>Equipment Products</h2></Divider>
-            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-              <CourtmateList courtmates={Courtmates} />
-            </div>
+      <Content style={{}}>
+        <div className="site-layout-content">
+          {/* <h1>Welcome to our website!</h1> */}
+          <Divider style={{ borderColor: 'black' }}><h2>Smash your way to greatness - Play Badminton!</h2></Divider>
+          {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque gravida velit, quis tincidunt quam placerat sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p> */}
+          <Carousel autoplay>
+            {carouselImages.map((image) => (
+              <div key={image.id}>
+                <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '350.5px', margin: 'auto' }} />
+              </div>
+            ))}
+          </Carousel>
 
-            <Divider orientation="left"><h2>Courtmate</h2></Divider>
-            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-              <CourtmateList courtmates={Courtmates} />
 
-            </div>
+          <Divider orientation="left" style={{ borderColor: 'black' }}>
+            <h2>Equipment Products</h2>
+          </Divider>
+
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <CourtmateList courtmates={Courtmates} />
           </div>
 
-        </Content>
-      </Layout>
+          <Divider orientation="left" style={{ borderColor: 'black' }}><h2>Courtmate</h2></Divider>
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <CourtmateList courtmates={Courtmates} />
+
+          </div>
+        </div>
+
+      </Content>
+
     </div>
   );
 };
