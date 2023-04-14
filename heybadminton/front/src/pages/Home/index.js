@@ -1,8 +1,11 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb, Carousel, Button, Card, Avatar, Divider } from 'antd';
+import { Layout, Breadcrumb, Carousel, Button, Card, Avatar, Divider } from 'antd';
 import { StarOutlined } from '@ant-design/icons';
 
-const { Header, Content, Footer } = Layout;
+import "./Home.css";
+
+const {Meta} = Card
+const { Content } = Layout;
 
 const HomePage = () => {
   const carouselImages = [
@@ -10,6 +13,29 @@ const HomePage = () => {
     { id: 2, src: 'https://bwfworldtour.bwfbadminton.com/wp-content/uploads/sites/11/2019/11/wt_banner_oct2019.jpg' },
     { id: 3, src: 'https://via.placeholder.com/800x300?text=Image+3' },
   ];
+
+  const CourtmateList = ({ courtmates }) => (
+    <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+    {courtmates.map((courtmate) => (  
+      <Card style={{ width: '25%', margin: '0 3rem' }} key={courtmate.title}>
+        <Meta
+          avatar={<Avatar src={courtmate.image} />}
+          title={courtmate.title}
+          description={
+            <div>
+              <p>Location: {courtmate.location}</p>
+              <p>Date: {courtmate.date}</p>
+              <p>Time: {courtmate.time}</p>
+              <p>
+                Participants: {courtmate.participants}/{courtmate.maxParticipants}
+              </p>
+            </div>
+          }
+        />
+      </Card>
+    ))}
+  </div>
+  );
 
   const products = [
     {
@@ -35,82 +61,76 @@ const HomePage = () => {
     },
   ];
 
-  const testimonials = [
+  const Courtmates = [
     {
       id: 1,
-      name: 'John Doe',
-      avatar: 'https://via.placeholder.com/64x64?text=JD',
-      rating: 4,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque gravida velit, quis tincidunt quam placerat sed.',
+      avatar: "https://picsum.photos/50?random=1",
+      title: "Friendly Match 1",
+      time: "9:00am",
+      date: "NA",
+      location: "Location 1",
+      participants: "6",
+      maxParticipants: "8",
+      closed: false,
     },
     {
       id: 2,
-      name: 'Jane Smith',
-      avatar: 'https://via.placeholder.com/64x64?text=JS',
-      rating: 5,
-      text: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      avatar: "https://picsum.photos/50?random=2",
+      title: "Friendly Match 2",
+      time: "10:00am",
+      date: "NA",
+      location: "Location 2",
+      participants: "4",
+      maxParticipants: "6",
+      closed: false,
     },
     {
       id: 3,
-      name: 'Bob Johnson',
-      avatar: 'https://via.placeholder.com/64x64?text=BJ',
-      rating: 3,
-      text: 'Fusce eget risus nec quam posuere dignissim a a libero. Suspendisse bibendum nisi ut tellus laoreet, ac eleifend metus suscipit.',
+      avatar: "https://picsum.photos/50?random=3",
+      title: "Friendly Match 3",
+      time: "11:00am",
+      date: "NA",
+      location: "Location 3",
+      participants: "2",
+      maxParticipants: "4",
+      closed: false,
     },
   ];
 
   return (
+    <div className="equipment-wrapper">
     <Layout className="layout">
       <Content style={{ padding: '0 50px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>About</Breadcrumb.Item>
         </Breadcrumb>
         <div className="site-layout-content">
-      <h1>Welcome to our website!</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque gravida velit, quis tincidunt quam placerat sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-      <Carousel autoplay>
-        {carouselImages.map((image) => (
-          <div key={image.id}>
-            <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '312.5px', margin : 'auto' }} />
+          <h1>Welcome to our website!</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque gravida velit, quis tincidunt quam placerat sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+          <Carousel autoplay>
+            {carouselImages.map((image) => (
+              <div key={image.id}>
+                <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '312.5px', margin: 'auto' }} />
+              </div>
+            ))}
+          </Carousel>
+
+          <Divider orientation="left"><h2>Equipment Products</h2></Divider>
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <CourtmateList courtmates={Courtmates} />
           </div>
-        ))}
-      </Carousel>
-      <Divider orientation="left"><h2>Equipment Products</h2></Divider>
-      <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-        {products.map((product) => (
-          <Card key={product.id} style={{ width: 300, margin: '16px' }}>
-            <img src={product.image} alt={product.name} style={{ height: 200 }} />
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '8px 0' }}>
-              <h3>{product.name}</h3>
-              <span>${product.price}</span>
-            </div>
-            <p>{product.description}</p>
-            <Button type="primary">Add to Cart</Button>
-          </Card>
-        ))}
-      </div>
-      <Divider orientation="left"><h2>Courtmate</h2></Divider>
-      <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-        {testimonials.map((testimonial) => (
-          <div key={testimonial.id} style={{ width: 300, margin: '16px', padding: '16px', border: '1px solid #f0f0f0' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Avatar src={testimonial.avatar} />
-              <span>{testimonial.name}</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', margin: '8px 0' }}>
-              <StarOutlined style={{ color: '#ffc107', marginRight: '8px' }} />
-              <span>{testimonial.rating} stars</span>
-            </div>
-            <p>{testimonial.text}</p>
+
+          <Divider orientation="left"><h2>Courtmate</h2></Divider>
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <CourtmateList courtmates={Courtmates} />
+
           </div>
-        ))}
-      </div>
+        </div>
+
+      </Content>
+    </Layout>
     </div>
-  </Content>
-  <Footer style={{ textAlign: 'center' }}>Ant Design ©2021 Created by Ant UED</Footer>
-</Layout>
-);
+  );
 };
 
 export default HomePage;
