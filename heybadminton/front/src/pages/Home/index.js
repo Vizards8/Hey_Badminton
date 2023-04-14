@@ -4,7 +4,7 @@ import { StarOutlined } from '@ant-design/icons';
 
 import "./Home.css";
 
-const {Meta} = Card
+const { Meta } = Card
 const { Content } = Layout;
 
 const HomePage = () => {
@@ -16,25 +16,25 @@ const HomePage = () => {
 
   const CourtmateList = ({ courtmates }) => (
     <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-    {courtmates.map((courtmate) => (  
-      <Card style={{ width: '25%', margin: '0 3rem' }} key={courtmate.title}>
-        <Meta
-          avatar={<Avatar src={courtmate.image} />}
-          title={courtmate.title}
-          description={
-            <div>
-              <p>Location: {courtmate.location}</p>
-              <p>Date: {courtmate.date}</p>
-              <p>Time: {courtmate.time}</p>
-              <p>
-                Participants: {courtmate.participants}/{courtmate.maxParticipants}
-              </p>
-            </div>
-          }
-        />
-      </Card>
-    ))}
-  </div>
+      {courtmates.map((courtmate) => (
+        <Card style={{ width: '25%', margin: '0 3rem' }} key={courtmate.title}>
+          <Meta
+            avatar={<Avatar src={courtmate.image} />}
+            title={courtmate.title}
+            description={
+              <div>
+                <p>Location: {courtmate.location}</p>
+                <p>Date: {courtmate.date}</p>
+                <p>Time: {courtmate.time}</p>
+                <p>
+                  Participants: {courtmate.participants}/{courtmate.maxParticipants}
+                </p>
+              </div>
+            }
+          />
+        </Card>
+      ))}
+    </div>
   );
 
   const products = [
@@ -99,36 +99,36 @@ const HomePage = () => {
 
   return (
     <div className="equipment-wrapper">
-    <Layout className="layout">
-      <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="site-layout-content">
-          <h1>Welcome to our website!</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque gravida velit, quis tincidunt quam placerat sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-          <Carousel autoplay>
-            {carouselImages.map((image) => (
-              <div key={image.id}>
-                <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '312.5px', margin: 'auto' }} />
-              </div>
-            ))}
-          </Carousel>
+      <Layout className="layout">
+        <Content style={{ padding: '0 50px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+          </Breadcrumb>
+          <div className="site-layout-content">
+            <h1>Welcome to our website!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque gravida velit, quis tincidunt quam placerat sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+            <Carousel autoplay>
+              {carouselImages.map((image) => (
+                <div key={image.id}>
+                  <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '312.5px', margin: 'auto' }} />
+                </div>
+              ))}
+            </Carousel>
 
-          <Divider orientation="left"><h2>Equipment Products</h2></Divider>
-          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-            <CourtmateList courtmates={Courtmates} />
+            <Divider orientation="left"><h2>Equipment Products</h2></Divider>
+            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+              <CourtmateList courtmates={Courtmates} />
+            </div>
+
+            <Divider orientation="left"><h2>Courtmate</h2></Divider>
+            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+              <CourtmateList courtmates={Courtmates} />
+
+            </div>
           </div>
 
-          <Divider orientation="left"><h2>Courtmate</h2></Divider>
-          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-            <CourtmateList courtmates={Courtmates} />
-
-          </div>
-        </div>
-
-      </Content>
-    </Layout>
+        </Content>
+      </Layout>
     </div>
   );
 };
