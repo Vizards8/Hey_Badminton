@@ -11,7 +11,7 @@ const MyBreadcrumb = (props) => {
           marginBottom: "2px",
         }}
       >
-        <HomeOutlined style={{ marginRight: "10px", marginLeft: "20px" }} />
+        <HomeOutlined style={{ margin: "0 10px" }} />
       </div>
       <Breadcrumb.Item>
         <a href={"/"}>Home</a>
