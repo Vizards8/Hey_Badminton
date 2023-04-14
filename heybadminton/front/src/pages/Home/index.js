@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layout, Breadcrumb, Carousel, Button, Card, Avatar, Divider } from 'antd';
-import { StarOutlined } from '@ant-design/icons';
 
 import "./Home.css";
 
@@ -36,30 +35,6 @@ const HomePage = () => {
       ))}
     </div>
   );
-
-  const products = [
-    {
-      id: 1,
-      name: 'Product 1',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      image: 'https://via.placeholder.com/200x200?text=Product+1',
-      price: 19.99,
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      description: 'Sed scelerisque gravida velit, quis tincidunt quam placerat sed.',
-      image: 'https://via.placeholder.com/200x200?text=Product+2',
-      price: 29.99,
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-      image: 'https://via.placeholder.com/200x200?text=Product+3',
-      price: 39.99,
-    },
-  ];
 
   const Courtmates = [
     {
