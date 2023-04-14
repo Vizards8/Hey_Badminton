@@ -54,7 +54,7 @@ function Equipment() {
   return (
     <div className="equipment-wrapper">
       <Layout className="layout">
-        <Content style={{ padding: "0 50px" }}>
+        <Content >
           <Breadcrumb style={{ margin: "16px 0", alignItems: "center" }}>
             <div
               style={{
@@ -63,7 +63,7 @@ function Equipment() {
                 marginBottom: "2px",
               }}
             >
-              <HomeOutlined />
+              <HomeOutlined style={{ marginRight: "10px", marginLeft: "20px" }}/>
             </div>
             <Breadcrumb.Item>
             <a href={'/'}>Home</a>
