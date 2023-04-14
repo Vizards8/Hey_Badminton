@@ -6,8 +6,8 @@ const { Header, Content, Footer } = Layout;
 
 const HomePage = () => {
   const carouselImages = [
-    { id: 1, src: 'https://via.placeholder.com/800x300?text=Image+1' },
-    { id: 2, src: 'https://via.placeholder.com/800x300?text=Image+2' },
+    { id: 1, src: 'https://bwfworldchampionships.bwfbadminton.com/wp-content/uploads/sites/8/2022/09/WC2023_Digital_WC-Site_1024x481_3.jpg' },
+    { id: 2, src: 'https://bwfworldtour.bwfbadminton.com/wp-content/uploads/sites/11/2019/11/wt_banner_oct2019.jpg' },
     { id: 3, src: 'https://via.placeholder.com/800x300?text=Image+3' },
   ];
 
@@ -61,14 +61,6 @@ const HomePage = () => {
 
   return (
     <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">Home</Menu.Item>
-          <Menu.Item key="2">About</Menu.Item>
-          <Menu.Item key="3">Contact</Menu.Item>
-        </Menu>
-      </Header>
       <Content style={{ padding: '0 50px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -80,11 +72,11 @@ const HomePage = () => {
       <Carousel autoplay>
         {carouselImages.map((image) => (
           <div key={image.id}>
-            <img src={image.src} alt={`Image ${image.id}`} style={{ width: '100%', height: '300px' }} />
+            <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '312.5px', margin : 'auto' }} />
           </div>
         ))}
       </Carousel>
-      <Divider orientation="left"><h2>Featured Products</h2></Divider>
+      <Divider orientation="left"><h2>Equipment Products</h2></Divider>
       <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
         {products.map((product) => (
           <Card key={product.id} style={{ width: 300, margin: '16px' }}>
@@ -98,7 +90,7 @@ const HomePage = () => {
           </Card>
         ))}
       </div>
-      <Divider orientation="left"><h2>Testimonials</h2></Divider>
+      <Divider orientation="left"><h2>Courtmate</h2></Divider>
       <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
         {testimonials.map((testimonial) => (
           <div key={testimonial.id} style={{ width: 300, margin: '16px', padding: '16px', border: '1px solid #f0f0f0' }}>
