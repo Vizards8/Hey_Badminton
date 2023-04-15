@@ -13,6 +13,7 @@ import {
   Col,
   Typography,
 } from "antd";
+import MyBreadcrumb from "@/common/MyBreadcrumb";
 import "./location.css";
 
 const { Option } = Select;
@@ -126,7 +127,8 @@ const Locations = () => {
   };
 
   return (
-    <Fragment>
+    <div className="location-wrapper">
+      <MyBreadcrumb paths={["Location"]} />
       <Title level={2} className="title">
         Find Nearby Badminton Courts
       </Title>
@@ -208,7 +210,7 @@ const Locations = () => {
           />
         </Col>
       </Row>
-    </Fragment>
+    </div>
   );
 };
 
