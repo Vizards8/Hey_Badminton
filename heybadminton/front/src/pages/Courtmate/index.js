@@ -8,6 +8,7 @@ import {
   Button,
   Modal,
   Typography,
+  message,
 } from "antd";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import CreateMatchForm from "./CreateMatchForm";
@@ -102,8 +103,31 @@ const Courtmate = () => {
     setIsCreate(false);
   };
 
-  const handleJoin = (values) => {
-    // TODO: Submit form data to server-side API
+  const handleJoin = async (values) => {
+    console.log(values);
+
+    try {
+      const response = await fetch("/your-backend-url", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        message.success("Join successful!");
+        setVisible(false);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        message.error("Join failed!");
+      }
+    } catch (error) {
+      message.error("Join failed!");
+    }
+
     setVisible(false);
   };
 
@@ -231,10 +255,16 @@ const Courtmate = () => {
       <Modal
         title="Join Match"
         open={visible}
-        onCancel={() => setVisible(false)}
-        onOk={handleJoin}
+        footer={[
+          <Button key="cancel" onClick={() => setVisible(false)}>
+            Cancel
+          </Button>,
+          <Button key="join" type="primary" htmlType="submit" form="join-form">
+            Join
+          </Button>,
+        ]}
       >
-        <Form layout="vertical">
+        <Form id="join-form" layout="vertical" onFinish={handleJoin}>
           <Form.Item
             label="Name"
             name="name"
