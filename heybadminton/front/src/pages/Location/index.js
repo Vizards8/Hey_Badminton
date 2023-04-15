@@ -1,4 +1,4 @@
-import { Fragment, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import GoogleMapReact from "google-map-react";
 import { EnvironmentFilled, SearchOutlined } from "@ant-design/icons";
 import {
