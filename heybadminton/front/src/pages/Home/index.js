@@ -39,7 +39,7 @@ const HomePage = () => {
   const EquipmentList = ({ Equipments }) => (
     <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
       {Equipments.map((Equipment) => (
-        <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={Equipment.title}>
+        <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={Equipment.id}>
           <Meta
             avatar={<Avatar src={Equipment.image} />}
             title={Equipment.title}
