@@ -20,7 +20,10 @@ CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9.
 - [x] add POST button on Equipment
 - [x] add POST button on Courtmate
 - [x] add example picture on Post
-- [ ] add equipment link on home page(In progress)
+- [ ] add Home/Equipment post button callback function
+- [ ] add Home/Courtmate join button callback function
 - [ ] a very simple admin page
 - [ ] show picture on Home/post
+- [ ] generate some MEANINGFUL data
+- [ ] add equipment link on home page
 - [ ] bug: click "Create a post" on Home/Equipment, can see "copyright" in the back

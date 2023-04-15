@@ -2,6 +2,7 @@ package com.heybadminton.dao;
 
 import com.heybadminton.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface UserMapper {
 
     User searchUserByUserNameAndPassword(String username, String password);
 
+    User getUserByUserName(@Param("username") String username);
 }
 

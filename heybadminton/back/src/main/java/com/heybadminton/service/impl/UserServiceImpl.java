@@ -49,4 +49,24 @@ public class UserServiceImpl implements UserService {
         }
         return token;
     }
+
+    @Override
+    public User findUserExist(String username) {
+        return userMapper.getUserByUserName(username);
+    }
+
+    @Override
+    public String generateToken(User user, int isRemembered) {
+        String token = "";
+        if(isRemembered == 0) {
+            // 30分钟就可
+            token = JWTUtils.createToeknWithTimespan(user.getId(), user.getUsername(), 30 * 60 * 1000);
+        } else {
+            // 7天
+            token = JWTUtils.createToeknWithTimespan(user.getId(), user.getUsername(), 7 * 24 * 60 * 60 * 1000);
+        }
+
+        //todo: 把token放到redis中，以后取的时候，先从redis中取。
+        return token;
+    }
 }
