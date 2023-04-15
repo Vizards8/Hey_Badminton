@@ -1,4 +1,4 @@
-import { List, Avatar, Pagination, Collapse, Input, Button, Upload } from "antd";
+import { List, Avatar, Pagination, Collapse, Input, Button, Upload, Space } from "antd";
 import React, { useState } from "react";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import { PictureOutlined } from "@ant-design/icons";
@@ -10,25 +10,13 @@ const { Panel } = Collapse;
 const { TextArea } = Input;
 
 function Equipment() {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(false);
+  // const [data, setData] = useState([]); // store all posts
   const [currentPage, setCurrentPage] = useState(1);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
-  };
-
-  const handleButtonClick = () => {
-    const message = `Title: ${title}\nContent: ${content}`;
-    console.log(message);
-    // do something with the title and content values
-  };
-
-  const [data] = useState([
+  const [Userdata, setData] = useState([
     {
       id: 1,
       title: "Topic 1",
@@ -373,15 +361,40 @@ function Equipment() {
       image: "https://picsum.photos/50?random=1",
     },
   ]);
+
   const pageSize = 10;
+  const start = (currentPage - 1) * pageSize;
+  const end = start + pageSize;
+  const currentData = Userdata.slice(start, end); // display only the current page of posts
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
 
   const handleChangePage = (page) => {
     setCurrentPage(page);
   };
 
-  const startIdx = (currentPage - 1) * pageSize;
-  const endIdx = startIdx + pageSize;
-  const currentData = data.slice(startIdx, endIdx);
+  const handleButtonClick = () => {
+    setLoading(true);
+    // Create a new post object with the current date as the ID
+    const newPost = {
+      id: new Date().getTime(),
+      title: title,
+      description: content,
+      image: "https://picsum.photos/50?random=2",
+    };
+    // Add the new post to the data array
+    setData([newPost, ...Userdata]);
+    // Reset the form
+    setTitle('');
+    setContent('');
+    setLoading(false);
+  };
 
   return (
     <div className="equipment-wrapper">
@@ -402,11 +415,12 @@ function Equipment() {
       <Pagination
         current={currentPage}
         pageSize={pageSize}
-        total={data.length}
+        total={Userdata.length}
         onChange={handleChangePage}
       />
 
       <div style={{ paddingTop: '1rem' }}> {/* Add padding top */} </div>
+
 
       <Collapse size="large">
         <Panel header="Create a post" key="1">
@@ -429,25 +443,22 @@ function Equipment() {
               <Upload
                 action=""
                 listType="picture"
-                // defaultFileList={[...fileList]}
+              // defaultFileList={[...fileList]}
               >
                 <Button icon={<PictureOutlined />}>Upload</Button>
               </Upload>
             </div>
           </div>
 
-
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button type="primary" onClick={handleButtonClick}>
-              Post
-            </Button>
+            <Space>
+              <Button type="primary" onClick={handleButtonClick} htmlType="submit" loading={loading}>
+                Post
+              </Button>
+            </Space>
           </div>
         </Panel>
-
       </Collapse>
-
-
-
     </div>
   );
 }
