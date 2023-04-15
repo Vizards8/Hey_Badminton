@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Avatar, Form, Input, Button, List } from "antd";
+import MyBreadcrumb from "@/common/MyBreadcrumb";
 import "./Post.css";
 
 const { Meta } = Card;
@@ -64,15 +65,14 @@ const Post = () => {
 
   return (
     <div className="post-wrapper">
-      {post && (
-        <Card style={{ marginBottom: "20px" }}>
-          <Meta
-            avatar={<Avatar src={post.author.avatarUrl} />}
-            title={post.title}
-          />
-          <p style={{ marginTop: "20px" }}>{post.content}</p>
-        </Card>
-      )}
+      <MyBreadcrumb paths={["post"]} />
+      <Card style={{ marginBottom: "20px" }}>
+        <Meta
+          avatar={<Avatar src={post.author.avatarUrl} />}
+          title={post.title}
+        />
+        <p style={{ marginTop: "20px" }}>{post.content}</p>
+      </Card>
       <List
         className="comment-list"
         header={`${comments.length} replies`}

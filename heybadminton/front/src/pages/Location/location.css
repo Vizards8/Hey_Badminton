@@ -1,6 +1,11 @@
+.location-wrapper {
+  padding: 0px 50px;
+  width: 70%;
+  margin: auto;
+}
+
 .title {
   text-align: center;
-  margin-top: 24px;
 }
 
 .search-container {
@@ -12,14 +17,12 @@
 }
 
 .map-container {
-  height: 600px;
-  width: 85%;
-  margin: auto;
+  height: 500px;
+  margin-right: 20px;
 }
 
 .list-container {
-  height: 600px;
-  width: 85%;
-  margin: auto;
+  height: 500px;
+  margin-left: 20px;
   overflow: auto;
 }

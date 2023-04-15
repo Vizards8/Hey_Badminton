@@ -1,9 +1,7 @@
 import React from "react";
-import { Layout, Breadcrumb, Card, List } from "antd";
-import { HomeOutlined } from "@ant-design/icons";
+import { Card, List } from "antd";
+import MyBreadcrumb from "@/common/MyBreadcrumb";
 import "./Tournament.css";
-
-const { Content } = Layout;
 
 const data = [
   {
@@ -38,27 +36,7 @@ const data = [
 const Tournament = () => {
   return (
     <div className="tournament-wrapper">
-      <Layout className="layout">
-        <Content>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "2px",
-              }}
-            >
-              <HomeOutlined
-                style={{ marginRight: "10px", marginLeft: "20px" }}
-              />
-            </div>
-            <Breadcrumb.Item>
-              <a href={"/"}>Home</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>Tournament</Breadcrumb.Item>
-          </Breadcrumb>
-        </Content>
-      </Layout>
+      <MyBreadcrumb paths={["Tournament"]} />
       <List
         grid={{ gutter: 16, column: 1 }}
         dataSource={data}

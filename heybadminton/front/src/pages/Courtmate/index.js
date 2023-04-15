@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Layout,
   Form,
   Input,
   Select,
@@ -8,46 +7,53 @@ import {
   Card,
   Button,
   Modal,
+  Typography,
 } from "antd";
-import { floatButtonPrefixCls } from "antd/es/float-button/FloatButton";
+import MyBreadcrumb from "@/common/MyBreadcrumb";
+import CreateMatchForm from "./CreateMatchForm";
+import "./Courtmate.css";
 
-const { Content } = Layout;
 const { Option } = Select;
+const { Title, Paragraph, Text, Link } = Typography;
 
 const data = [
   {
     id: 1,
     title: "Friendly Match 1",
     time: "9:00am",
-    date: "NA",
+    date: "2023-04-05",
     location: "Location 1",
     participants: "6",
     maxParticipants: "8",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
     closed: false,
   },
   {
     id: 2,
     title: "Friendly Match 2",
     time: "10:00am",
-    date: "NA",
+    date: "2023-04-12",
     location: "Location 2",
     participants: "4",
     maxParticipants: "6",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
     closed: false,
   },
   {
     id: 3,
     title: "Friendly Match 3",
     time: "11:00am",
-    date: "NA",
+    date: "2023-04-23",
     location: "Location 3",
     participants: "2",
     maxParticipants: "4",
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
     closed: false,
   },
 ];
 
 const defaultFilter = {
+  date: null,
   time: "all",
   location: "all",
   participants: "all",
@@ -56,13 +62,21 @@ const defaultFilter = {
 
 const Courtmate = () => {
   const [visible, setVisible] = useState(false);
+  const [detailVisible, setDetailVisvible] = useState(false);
   const [matches, setMatches] = useState(data);
   const [filteredMatches, setFilteredMatches] = useState(matches);
   const [filter, setFilter] = useState(defaultFilter);
+  const [selectedMatch, setSelectedMatch] = useState(null);
+  const [isCreate, setIsCreate] = useState(false);
 
   useEffect(() => {
     let currMatches = [...matches];
-    console.log(filter);
+    if (filter.date) {
+      const formatted_date = filter.date.toISOString().slice(0, 10);
+      currMatches = currMatches.filter(
+        (match) => match.date === formatted_date
+      );
+    }
     if (filter.time && filter.time !== "all") {
       currMatches = currMatches.filter((match) => match.time === filter.time);
     }
@@ -84,17 +98,35 @@ const Courtmate = () => {
     setFilteredMatches(currMatches);
   }, [filter]);
 
+  const handleBack = () => {
+    setIsCreate(false);
+  };
+
   const handleJoin = (values) => {
     // TODO: Submit form data to server-side API
     setVisible(false);
   };
 
+  const handleShowDetails = (match) => {
+    setSelectedMatch(match);
+    setDetailVisvible(true);
+  };
+
   return (
-    <Layout>
-      <Content style={{ padding: "50px" }}>
+    <div className="courtmate-wrapper">
+      <MyBreadcrumb paths={["Courtmate"]} />
+      {!isCreate && (
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
+            <Title level={2}>Filters</Title>
             <Form layout="vertical">
+              <Form.Item label="Date">
+                <DatePicker
+                  style={{ width: "100%" }}
+                  value={filter.date}
+                  onChange={(value) => setFilter({ ...filter, date: value })}
+                />
+              </Form.Item>
               <Form.Item label="Time">
                 <Select
                   value={filter.time}
@@ -143,12 +175,30 @@ const Courtmate = () => {
                 </Select>
               </Form.Item>
             </Form>
+            <Button
+              style={{ width: "100%" }}
+              onClick={() => setFilter(defaultFilter)}
+            >
+              Reset
+            </Button>
+            <div style={{ textAlign: "center", margin: "16px 0" }}>
+              <p>Can't find a suitable match? Create one!</p>
+            </div>
+            <Button
+              style={{ width: "100%" }}
+              type="primary"
+              onClick={() => {
+                setIsCreate(true);
+              }}
+            >
+              Create
+            </Button>
           </div>
           <div style={{ flex: 2, marginLeft: "50px" }}>
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
                 gap: "50px",
               }}
             >
@@ -156,50 +206,58 @@ const Courtmate = () => {
                 <Card
                   key={match.id}
                   title={match.title}
-                  extra={<Button onClick={() => setVisible(true)}>Join</Button>}
+                  extra={
+                    <Button type="primary" onClick={() => setVisible(true)}>
+                      Join
+                    </Button>
+                  }
+                  onClick={handleShowDetails}
+                  hoverable
                 >
-                  <p>Location: {match.location}</p>
                   <p>Date: {match.date}</p>
                   <p>Time: {match.time}</p>
+                  <p>Location: {match.location}</p>
                   <p>
                     Participants: {match.participants}/{match.maxParticipants}
                   </p>
+                  <p>Note: {match.note}</p>
                 </Card>
               ))}
             </div>
           </div>
         </div>
-        <Modal
-          title="Join Match"
-          open={visible}
-          onCancel={() => setVisible(false)}
-          onOk={handleJoin}
-        >
-          <Form layout="vertical">
-            <Form.Item
-              label="Name"
-              name="name"
-              rules={[{ required: true, message: "Please input your name!" }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  type: "email",
-                  message: "Please input your email!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Form>
-        </Modal>
-      </Content>
-    </Layout>
+      )}
+      {isCreate && <CreateMatchForm handleBack={handleBack} />}
+      <Modal
+        title="Join Match"
+        open={visible}
+        onCancel={() => setVisible(false)}
+        onOk={handleJoin}
+      >
+        <Form layout="vertical">
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Please input your name!" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                type: "email",
+                message: "Please input your email!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
+    </div>
   );
 };
 
