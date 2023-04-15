@@ -20,3 +20,4 @@ CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9.
 - [x] add POST button on Equipment
 - [ ] add POST button on Courtmate
 - [x] add example picture on Post
+- [ ] add equipment link on home page(In progress)
