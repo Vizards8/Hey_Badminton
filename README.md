@@ -24,3 +24,4 @@ CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9.
 - [ ] a very simple admin page
 - [ ] show picture on Home/post
 - [ ] bug: click "Create a post" on Home/Equipment, can see "copyright" in the back
+- [ ] add some MEANINGFUL data
