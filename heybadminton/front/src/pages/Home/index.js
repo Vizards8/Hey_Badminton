@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Breadcrumb, Carousel, Card, Avatar, Divider } from 'antd';
+import { Layout, Carousel, Card, Avatar, Divider } from 'antd';
 
 import "./Home.css";
 
@@ -16,7 +16,7 @@ const HomePage = () => {
   const CourtmateList = ({ courtmates }) => (
     <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
       {courtmates.map((courtmate) => (
-        <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={courtmate.title}>
+        <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={courtmate.id}>
           <Meta
             avatar={<Avatar src={courtmate.image} />}
             title={courtmate.title}
@@ -35,6 +35,63 @@ const HomePage = () => {
       ))}
     </div>
   );
+
+  const EquipmentList = ({ Equipments }) => (
+    <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
+      {Equipments.map((Equipment) => (
+        <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={Equipment.title}>
+          <Meta
+            avatar={<Avatar src={Equipment.image} />}
+            title={Equipment.title}
+            description={
+              Equipment.description.slice(0, 50) + (Equipment.description.length > 50 ? '...' : '')
+            }
+          />
+        </Card>
+      ))}
+    </div>
+  );
+
+
+
+  const Equipments = [
+    {
+      id: 1,
+      avatar: "https://picsum.photos/50?random=1",
+      title: "Equipment Match 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur."
+    },
+    {
+      id: 2,
+      avatar: "https://picsum.photos/50?random=2",
+      title: "Equipment May 2",
+      description: "The BWF World Championships is the most prestigious tournament in badminton, featuring the world's best players competing for the title of world champion in five disciplines."
+    },
+    {
+      id: 3,
+      avatar: "https://picsum.photos/50?random=3",
+      title: "Equipment Oct 3",
+      description: "The YONEX All England Open is one of the oldest and most prestigious badminton tournaments in the world, part of the BWF World Tour, and considered one of the five most prestigious events in the tour."
+    },
+    {
+      id: 4,
+      avatar: "https://picsum.photos/50?random=4",
+      title: "Equipment Dec 12",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur."
+    },
+    {
+      id: 5,
+      avatar: "https://picsum.photos/50?random=5",
+      title: "Equipment Nov 17",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur."
+    },
+    {
+      id: 6,
+      avatar: "https://picsum.photos/50?random=6",
+      title: "Equipment Match 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur."
+    },
+  ];
 
   const Courtmates = [
     {
@@ -71,7 +128,7 @@ const HomePage = () => {
       closed: false,
     },
     {
-      id: 1,
+      id: 4,
       avatar: "https://picsum.photos/50?random=1",
       title: "Friendly Match 1",
       time: "9:00am",
@@ -82,7 +139,7 @@ const HomePage = () => {
       closed: false,
     },
     {
-      id: 2,
+      id: 5,
       avatar: "https://picsum.photos/50?random=2",
       title: "Friendly Match 2",
       time: "10:00am",
@@ -93,40 +150,7 @@ const HomePage = () => {
       closed: false,
     },
     {
-      id: 3,
-      avatar: "https://picsum.photos/50?random=3",
-      title: "Friendly Match 3",
-      time: "11:00am",
-      date: "NA",
-      location: "Location 3",
-      participants: "2",
-      maxParticipants: "4",
-      closed: false,
-    },
-    {
-      id: 1,
-      avatar: "https://picsum.photos/50?random=1",
-      title: "Friendly Match 1",
-      time: "9:00am",
-      date: "NA",
-      location: "Location 1",
-      participants: "6",
-      maxParticipants: "8",
-      closed: false,
-    },
-    {
-      id: 2,
-      avatar: "https://picsum.photos/50?random=2",
-      title: "Friendly Match 2",
-      time: "10:00am",
-      date: "NA",
-      location: "Location 2",
-      participants: "4",
-      maxParticipants: "6",
-      closed: false,
-    },
-    {
-      id: 3,
+      id: 6,
       avatar: "https://picsum.photos/50?random=3",
       title: "Friendly Match 3",
       time: "11:00am",
@@ -149,10 +173,11 @@ const HomePage = () => {
           <Carousel autoplay>
             {carouselImages.map((image) => (
               <div key={image.id}>
-                <img src={image.src} alt={`Image ${image.id}`} style={{ width: '800px', height: '350.5px', margin: 'auto' }} />
+                <img src={image.src} alt={`Slide ${image.id}`} style={{ width: '960px', height: '420px', margin: 'auto' }} />
               </div>
             ))}
           </Carousel>
+
 
 
           <Divider orientation="left" style={{ borderColor: 'black' }}>
@@ -160,7 +185,7 @@ const HomePage = () => {
           </Divider>
 
           <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-            <CourtmateList courtmates={Courtmates} />
+            <EquipmentList Equipments={Equipments} />
           </div>
 
           <Divider orientation="left" style={{ borderColor: 'black' }}><h2>Courtmate</h2></Divider>
