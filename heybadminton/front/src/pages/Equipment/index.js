@@ -42,11 +42,11 @@ function Equipment() {
     const newPost = {
       id: new Date().getTime(),
       title: title,
-      description: content,
-      image: "https://picsum.photos/50?random=2",
+      content: content,
+      pictures: [{"imageUrl":"https://picsum.photos/400?random=1"}],
     };
     // Add the new post to the data array
-    setData([newPost, ...Userdata]);
+    setData([newPost, ...data]);
     // Reset the form
     setTitle('');
     setContent('');
