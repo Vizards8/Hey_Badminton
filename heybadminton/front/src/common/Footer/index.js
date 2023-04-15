@@ -1,12 +1,6 @@
-import './footer.less'
+import "./footer.less";
 const Footer = () => {
-  return (
-    <div className="footer">
-      <div className='official'>
-        Copyright  ©2023-Present  HeyBadminton
-      </div>
-    </div>
-  )
-}
+  return <div className="footer">Copyright ©2023-Present HeyBadminton</div>;
+};
 
-export default Footer
+export default Footer;
