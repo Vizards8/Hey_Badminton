@@ -1,7 +1,7 @@
-import { List, Avatar, Pagination, Collapse, Input, Button, Modal } from "antd";
+import { List, Avatar, Pagination, Collapse, Input, Button, Upload } from "antd";
 import React, { useState } from "react";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
-import { SmileOutlined, PictureOutlined } from "@ant-design/icons";
+import { PictureOutlined } from "@ant-design/icons";
 
 
 import "./Equipment.css";
@@ -13,8 +13,6 @@ function Equipment() {
   const [currentPage, setCurrentPage] = useState(1);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [showEmojiModal, setShowEmojiModal] = useState(false);
-  const [showPictureModal, setShowPictureModal] = useState(false);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -28,14 +26,6 @@ function Equipment() {
     const message = `Title: ${title}\nContent: ${content}`;
     console.log(message);
     // do something with the title and content values
-  };
-
-  const handleAddEmojiClick = () => {
-    setShowEmojiModal(true);
-  };
-
-  const handleAddPictureClick = () => {
-    setShowPictureModal(true);
   };
 
   const [data] = useState([
@@ -382,110 +372,8 @@ function Equipment() {
       author: "John Doe",
       image: "https://picsum.photos/50?random=1",
     },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
   ]);
-  const pageSize = 5;
-
-  const onChange = (e) => {
-    console.log('Change:', e.target.value);
-  };
+  const pageSize = 10;
 
   const handleChangePage = (page) => {
     setCurrentPage(page);
@@ -494,12 +382,6 @@ function Equipment() {
   const startIdx = (currentPage - 1) * pageSize;
   const endIdx = startIdx + pageSize;
   const currentData = data.slice(startIdx, endIdx);
-
-  const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found:a welcome guest in many households across the world.
-`;
 
   return (
     <div className="equipment-wrapper">
@@ -526,24 +408,6 @@ function Equipment() {
 
       <div style={{ paddingTop: '1rem' }}> {/* Add padding top */} </div>
 
-      {/* <Collapse size="large">
-        <Panel header="Create a post " key="1">
-          <TextArea
-            showCount
-            maxLength={100}
-            style={{
-              height: 120,
-              marginBottom: 24
-            }}
-            onChange={onChange}
-            placeholder="can resize"
-          />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button type="primary">Post</Button>
-          </div>
-        </Panel>
-      </Collapse> */}
-
       <Collapse size="large">
         <Panel header="Create a post" key="1">
           <Input placeholder="Title" value={title} onChange={handleTitleChange} />
@@ -562,12 +426,13 @@ function Equipment() {
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
-              <Button type="text" icon={<SmileOutlined />} onClick={handleAddEmojiClick}>
-                Add Emoji
-              </Button>
-              <Button type="text" icon={<PictureOutlined />} onClick={handleAddPictureClick}>
-                Add Picture
-              </Button>
+              <Upload
+                action=""
+                listType="picture"
+                // defaultFileList={[...fileList]}
+              >
+                <Button icon={<PictureOutlined />}>Upload</Button>
+              </Upload>
             </div>
           </div>
 
@@ -578,7 +443,7 @@ function Equipment() {
             </Button>
           </div>
         </Panel>
-        
+
       </Collapse>
 
 
