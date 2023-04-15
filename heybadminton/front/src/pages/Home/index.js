@@ -18,7 +18,7 @@ const HomePage = () => {
       {courtmates.map((courtmate) => (
         <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={courtmate.id}>
           <Meta
-            avatar={<Avatar src={courtmate.image} />}
+            avatar={<Avatar src={courtmate.avatar} />}
             title={courtmate.title}
             description={
               <div>
@@ -41,7 +41,7 @@ const HomePage = () => {
       {Equipments.map((Equipment) => (
         <Card style={{ width: '30%', margin: '0 1rem 1rem' }} key={Equipment.id}>
           <Meta
-            avatar={<Avatar src={Equipment.image} />}
+            avatar={<Avatar src={Equipment.avatar} />}
             title={Equipment.title}
             description={
               Equipment.description.slice(0, 50) + (Equipment.description.length > 50 ? '...' : '')
