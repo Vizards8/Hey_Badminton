@@ -1,7 +1,7 @@
-import { List, Avatar, Pagination, Collapse, Input, Button, Modal } from "antd";
+import { List, Avatar, Pagination, Collapse, Input, Button, Upload } from "antd";
 import React, { useState } from "react";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
-import { SmileOutlined, PictureOutlined } from "@ant-design/icons";
+import { PictureOutlined } from "@ant-design/icons";
 
 
 import "./Equipment.css";
@@ -13,8 +13,6 @@ function Equipment() {
   const [currentPage, setCurrentPage] = useState(1);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [showEmojiModal, setShowEmojiModal] = useState(false);
-  const [showPictureModal, setShowPictureModal] = useState(false);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -28,14 +26,6 @@ function Equipment() {
     const message = `Title: ${title}\nContent: ${content}`;
     console.log(message);
     // do something with the title and content values
-  };
-
-  const handleAddEmojiClick = () => {
-    setShowEmojiModal(true);
-  };
-
-  const handleAddPictureClick = () => {
-    setShowPictureModal(true);
   };
 
   const [data] = useState([
@@ -483,10 +473,6 @@ function Equipment() {
   ]);
   const pageSize = 5;
 
-  const onChange = (e) => {
-    console.log('Change:', e.target.value);
-  };
-
   const handleChangePage = (page) => {
     setCurrentPage(page);
   };
@@ -494,12 +480,6 @@ function Equipment() {
   const startIdx = (currentPage - 1) * pageSize;
   const endIdx = startIdx + pageSize;
   const currentData = data.slice(startIdx, endIdx);
-
-  const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found:a welcome guest in many households across the world.
-`;
 
   return (
     <div className="equipment-wrapper">
@@ -562,12 +542,13 @@ function Equipment() {
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
-              <Button type="text" icon={<SmileOutlined />} onClick={handleAddEmojiClick}>
-                Add Emoji
-              </Button>
-              <Button type="text" icon={<PictureOutlined />} onClick={handleAddPictureClick}>
-                Add Picture
-              </Button>
+              <Upload
+                action=""
+                listType="picture"
+                // defaultFileList={[...fileList]}
+              >
+                <Button icon={<PictureOutlined />}>Upload</Button>
+              </Upload>
             </div>
           </div>
 
@@ -578,7 +559,7 @@ function Equipment() {
             </Button>
           </div>
         </Panel>
-        
+
       </Collapse>
 
 
