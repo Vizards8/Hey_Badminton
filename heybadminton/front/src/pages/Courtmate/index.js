@@ -13,45 +13,10 @@ import {
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import CreateMatchForm from "./CreateMatchForm";
 import "./Courtmate.css";
+import dummy_matches from "@/assets/data/matches.json";
 
 const { Option } = Select;
 const { Title, Paragraph, Text, Link } = Typography;
-
-const data = [
-  {
-    id: 1,
-    title: "Friendly Match 1",
-    time: "9:00am",
-    date: "2023-04-05",
-    location: "Location 1",
-    participants: "6",
-    maxParticipants: "8",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
-    closed: false,
-  },
-  {
-    id: 2,
-    title: "Friendly Match 2",
-    time: "10:00am",
-    date: "2023-04-12",
-    location: "Location 2",
-    participants: "4",
-    maxParticipants: "6",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
-    closed: false,
-  },
-  {
-    id: 3,
-    title: "Friendly Match 3",
-    time: "11:00am",
-    date: "2023-04-23",
-    location: "Location 3",
-    participants: "2",
-    maxParticipants: "4",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
-    closed: false,
-  },
-];
 
 const defaultFilter = {
   date: null,
@@ -64,7 +29,7 @@ const defaultFilter = {
 const Courtmate = () => {
   const [visible, setVisible] = useState(false);
   const [detailVisible, setDetailVisvible] = useState(false);
-  const [matches, setMatches] = useState(data);
+  const [matches, setMatches] = useState(dummy_matches);
   const [filteredMatches, setFilteredMatches] = useState(matches);
   const [filter, setFilter] = useState(defaultFilter);
   const [selectedMatch, setSelectedMatch] = useState(null);

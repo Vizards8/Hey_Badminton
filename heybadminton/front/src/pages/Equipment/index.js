@@ -1,8 +1,17 @@
-import { List, Avatar, Pagination, Collapse, Input, Button, Upload } from "antd";
+import {
+  List,
+  Avatar,
+  Pagination,
+  Collapse,
+  Input,
+  Button,
+  Upload,
+} from "antd";
 import React, { useState } from "react";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import { PictureOutlined } from "@ant-design/icons";
-
+import dummy_posts from "@/assets/data/posts.json";
+import dummy_author from "@/assets/data/author.json";
 
 import "./Equipment.css";
 
@@ -28,351 +37,7 @@ function Equipment() {
     // do something with the title and content values
   };
 
-  const [data] = useState([
-    {
-      id: 1,
-      title: "Topic 1",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 2,
-      title: "Topic 2",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 3,
-      title: "Topic 3",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 1,
-      title: "Topic 1",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 2,
-      title: "Topic 2",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 3,
-      title: "Topic 3",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 1,
-      title: "Topic 1",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 2,
-      title: "Topic 2",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 3,
-      title: "Topic 3",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-  ]);
+  const [data, setData] = useState(dummy_posts);
   const pageSize = 10;
 
   const handleChangePage = (page) => {
@@ -392,9 +57,9 @@ function Equipment() {
         renderItem={(item) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<Avatar src={item.image} />}
+              avatar={<Avatar src={dummy_author.avatar} />}
               title={<a href={`/post/${item.id}`}>{item.title}</a>}
-              description={item.description}
+              description={item.content}
             />
           </List.Item>
         )}
@@ -406,11 +71,15 @@ function Equipment() {
         onChange={handleChangePage}
       />
 
-      <div style={{ paddingTop: '1rem' }}> {/* Add padding top */} </div>
+      <div style={{ paddingTop: "1rem" }}> {/* Add padding top */} </div>
 
       <Collapse size="large">
         <Panel header="Create a post" key="1">
-          <Input placeholder="Title" value={title} onChange={handleTitleChange} />
+          <Input
+            placeholder="Title"
+            value={title}
+            onChange={handleTitleChange}
+          />
           <TextArea
             showCount
             maxLength={100}
@@ -436,18 +105,13 @@ function Equipment() {
             </div>
           </div>
 
-
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button type="primary" onClick={handleButtonClick}>
               Post
             </Button>
           </div>
         </Panel>
-
       </Collapse>
-
-
-
     </div>
   );
 }
