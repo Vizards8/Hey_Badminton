@@ -92,7 +92,7 @@ const Post = () => {
         {post.pictures &&
           post.pictures.map((picture) => (
             <div key={picture.imageUrl} style={{ marginTop: "20px" }}>
-              <img src={picture.imageUrl} alt="picture" />
+              <img src={picture.imageUrl} alt="post_picture" />
             </div>
           ))}
       </Card>
