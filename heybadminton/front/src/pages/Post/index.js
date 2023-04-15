@@ -16,13 +16,30 @@ const data = {
       name: "Admin",
       avatarUrl: "https://picsum.photos/50?random=1",
     },
+    pictures: [
+      {
+        imageUrl: "https://picsum.photos/400?random=1",
+        caption: "Picture 1",
+      },
+      {
+        imageUrl: "https://picsum.photos/400?random=2",
+        caption: "Picture 2",
+      },
+    ],
   },
   comment: [
     {
       text: "Wonderful post!",
       author: {
-        name: "Admin",
+        name: "David",
         avatarUrl: "https://picsum.photos/50?random=2",
+      },
+    },
+    {
+      text: "Wonderful post!",
+      author: {
+        name: "Steve",
+        avatarUrl: "https://picsum.photos/50?random=3",
       },
     },
   ],
@@ -72,9 +89,14 @@ const Post = () => {
           title={post.title}
         />
         <p style={{ marginTop: "20px" }}>{post.content}</p>
+        {post.pictures &&
+          post.pictures.map((picture) => (
+            <div key={picture.imageUrl} style={{ marginTop: "20px" }}>
+              <img src={picture.imageUrl} alt="picture" />
+            </div>
+          ))}
       </Card>
       <List
-        className="comment-list"
         header={`${comments.length} replies`}
         itemLayout="horizontal"
         dataSource={comments}
