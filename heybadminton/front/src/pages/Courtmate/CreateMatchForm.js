@@ -7,6 +7,7 @@ import {
   DatePicker,
   Select,
   Space,
+  message,
 } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 
@@ -16,9 +17,32 @@ const CreateMatchForm = ({ handleBack }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {
-    console.log(values);
-    setLoading(false);
+  const onFinish = async (values) => {
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/create-match", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        message.success("Match created successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        message.error("Failed to create match");
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error creating match:", error.message);
+      message.error("An error occurred while creating the match");
+    }
   };
 
   return (
