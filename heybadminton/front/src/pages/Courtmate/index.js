@@ -10,6 +10,7 @@ import {
   Typography,
 } from "antd";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
+import CreateMatchForm from "./CreateMatchForm";
 import "./Courtmate.css";
 
 const { Option } = Select;
@@ -66,6 +67,7 @@ const Courtmate = () => {
   const [filteredMatches, setFilteredMatches] = useState(matches);
   const [filter, setFilter] = useState(defaultFilter);
   const [selectedMatch, setSelectedMatch] = useState(null);
+  const [isCreate, setIsCreate] = useState(false);
 
   useEffect(() => {
     let currMatches = [...matches];
@@ -96,6 +98,10 @@ const Courtmate = () => {
     setFilteredMatches(currMatches);
   }, [filter]);
 
+  const handleBack = () => {
+    setIsCreate(false);
+  };
+
   const handleJoin = (values) => {
     // TODO: Submit form data to server-side API
     setVisible(false);
@@ -109,101 +115,119 @@ const Courtmate = () => {
   return (
     <div className="courtmate-wrapper">
       <MyBreadcrumb paths={["Courtmate"]} />
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: 1 }}>
-          <Title level={2}>Filters</Title>
-          <Form layout="vertical">
-            <Form.Item label="Date">
-              <DatePicker
-                value={filter.date}
-                onChange={(value) => setFilter({ ...filter, date: value })}
-              />
-            </Form.Item>
-            <Form.Item label="Time">
-              <Select
-                value={filter.time}
-                onChange={(value) => setFilter({ ...filter, time: value })}
-              >
-                <Option value="all">All</Option>
-                <Option value="9:00am">9:00am</Option>
-                <Option value="10:00am">10:00am</Option>
-                <Option value="11:00am">11:00am</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Location">
-              <Select
-                value={filter.location}
-                onChange={(value) => setFilter({ ...filter, location: value })}
-              >
-                <Option value="all">All</Option>
-                <Option value="Location 1">Location 1</Option>
-                <Option value="Location 2">Location 2</Option>
-                <Option value="Location 3">Location 3</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Number of players">
-              <Select
-                value={filter.participants}
-                onChange={(value) =>
-                  setFilter({ ...filter, participants: value })
-                }
-              >
-                <Option value="all">All</Option>
-                <Option value="2">2</Option>
-                <Option value="4">4</Option>
-                <Option value="6">6</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Status">
-              <Select
-                value={filter.closed}
-                onChange={(value) => setFilter({ ...filter, closed: value })}
-              >
-                <Option value="all">All</Option>
-                <Option value={false}>Open</Option>
-                <Option value={true}>Close</Option>
-              </Select>
-            </Form.Item>
-          </Form>
-          <Button
-            style={{ width: "100%" }}
-            onClick={() => setFilter(defaultFilter)}
-          >
-            Reset
-          </Button>
-        </div>
-        <div style={{ flex: 2, marginLeft: "50px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-              gap: "50px",
-            }}
-          >
-            {filteredMatches.map((match) => (
-              <Card
-                key={match.id}
-                title={match.title}
-                extra={
-                  <Button type="primary" onClick={() => setVisible(true)}>
-                    Join
-                  </Button>
-                }
-                onClick={handleShowDetails}
-                hoverable
-              >
-                <p>Date: {match.date}</p>
-                <p>Time: {match.time}</p>
-                <p>Location: {match.location}</p>
-                <p>
-                  Participants: {match.participants}/{match.maxParticipants}
-                </p>
-                <p>Note: {match.note}</p>
-              </Card>
-            ))}
+      {!isCreate && (
+        <div style={{ display: "flex" }}>
+          <div style={{ flex: 1 }}>
+            <Title level={2}>Filters</Title>
+            <Form layout="vertical">
+              <Form.Item label="Date">
+                <DatePicker
+                  style={{ width: "100%" }}
+                  value={filter.date}
+                  onChange={(value) => setFilter({ ...filter, date: value })}
+                />
+              </Form.Item>
+              <Form.Item label="Time">
+                <Select
+                  value={filter.time}
+                  onChange={(value) => setFilter({ ...filter, time: value })}
+                >
+                  <Option value="all">All</Option>
+                  <Option value="9:00am">9:00am</Option>
+                  <Option value="10:00am">10:00am</Option>
+                  <Option value="11:00am">11:00am</Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="Location">
+                <Select
+                  value={filter.location}
+                  onChange={(value) =>
+                    setFilter({ ...filter, location: value })
+                  }
+                >
+                  <Option value="all">All</Option>
+                  <Option value="Location 1">Location 1</Option>
+                  <Option value="Location 2">Location 2</Option>
+                  <Option value="Location 3">Location 3</Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="Number of players">
+                <Select
+                  value={filter.participants}
+                  onChange={(value) =>
+                    setFilter({ ...filter, participants: value })
+                  }
+                >
+                  <Option value="all">All</Option>
+                  <Option value="2">2</Option>
+                  <Option value="4">4</Option>
+                  <Option value="6">6</Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="Status">
+                <Select
+                  value={filter.closed}
+                  onChange={(value) => setFilter({ ...filter, closed: value })}
+                >
+                  <Option value="all">All</Option>
+                  <Option value={false}>Open</Option>
+                  <Option value={true}>Close</Option>
+                </Select>
+              </Form.Item>
+            </Form>
+            <Button
+              style={{ width: "100%" }}
+              onClick={() => setFilter(defaultFilter)}
+            >
+              Reset
+            </Button>
+            <div style={{ textAlign: "center", margin: "16px 0" }}>
+              <p>Can't find a suitable match? Create one!</p>
+            </div>
+            <Button
+              style={{ width: "100%" }}
+              type="primary"
+              onClick={() => {
+                setIsCreate(true);
+              }}
+            >
+              Create
+            </Button>
+          </div>
+          <div style={{ flex: 2, marginLeft: "50px" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+                gap: "50px",
+              }}
+            >
+              {filteredMatches.map((match) => (
+                <Card
+                  key={match.id}
+                  title={match.title}
+                  extra={
+                    <Button type="primary" onClick={() => setVisible(true)}>
+                      Join
+                    </Button>
+                  }
+                  onClick={handleShowDetails}
+                  hoverable
+                >
+                  <p>Date: {match.date}</p>
+                  <p>Time: {match.time}</p>
+                  <p>Location: {match.location}</p>
+                  <p>
+                    Participants: {match.participants}/{match.maxParticipants}
+                  </p>
+                  <p>Note: {match.note}</p>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      {isCreate && <CreateMatchForm handleBack={handleBack} />}
       <Modal
         title="Join Match"
         open={visible}
