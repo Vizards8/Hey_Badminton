@@ -52,21 +52,21 @@ const Register = () => {
           <Form.Item
             name="email"
             label="Email"
-            rules={[{ required: true, message: '请输入邮箱' }]}
+            rules={[{ required: true, message: 'Email' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="username"
             label="username"
-            rules={[{ required: true, message: '请输入用户名' }]}
+            rules={[{ required: true, message: 'Username' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="password"
             label="password"
-            rules={[{ required: true, message: '请输入密码' }]}
+            rules={[{ required: true, message: 'Password' }]}
           >
             <Input.Password />
           </Form.Item>
@@ -75,13 +75,13 @@ const Register = () => {
             label="confirm Password"
             dependencies={['password']}
             rules={[
-              { required: true, message: '请确认密码' },
+              { required: true, message: 'Conformed Password' },
               ({ getFieldValue }) => ({
                 validator (_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve()
                   }
-                  return Promise.reject(new Error('两次密码不一致'))
+                  return Promise.reject(new Error('Input the same password!'))
                 },
               }),
             ]}
@@ -93,7 +93,7 @@ const Register = () => {
           </Form.Item>
           <div className='button-submit'>
             <Button type="primary" htmlType="submit">
-              Submit
+              Register
             </Button>
           </div>
 
