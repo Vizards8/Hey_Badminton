@@ -7,4 +7,10 @@
         from sys_user;
     </select>
 
+    <select id="getUserByUserName" parameterType="java.lang.String" resultType="com.heybadminton.entity.User">
+        select id, username, email, password, is_admin as isAdmin
+        from sys_user
+        where username = #{username};
+    </select>
+
 </mapper>
