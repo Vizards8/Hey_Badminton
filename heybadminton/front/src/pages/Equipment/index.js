@@ -372,106 +372,8 @@ function Equipment() {
       author: "John Doe",
       image: "https://picsum.photos/50?random=1",
     },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
-    {
-      id: 4,
-      title: "Topic 4",
-      description: "This is the first topic",
-      author: "John Doe",
-      image: "https://picsum.photos/50?random=1",
-    },
-    {
-      id: 5,
-      title: "Topic 5",
-      description: "This is the second topic",
-      author: "Jane Smith",
-      image: "https://picsum.photos/50?random=2",
-    },
-    {
-      id: 6,
-      title: "Topic 6",
-      description: "This is the third topic",
-      author: "Bob Johnson",
-      image: "https://picsum.photos/50?random=3",
-    },
   ]);
-  const pageSize = 5;
+  const pageSize = 10;
 
   const handleChangePage = (page) => {
     setCurrentPage(page);
@@ -505,24 +407,6 @@ function Equipment() {
       />
 
       <div style={{ paddingTop: '1rem' }}> {/* Add padding top */} </div>
-
-      {/* <Collapse size="large">
-        <Panel header="Create a post " key="1">
-          <TextArea
-            showCount
-            maxLength={100}
-            style={{
-              height: 120,
-              marginBottom: 24
-            }}
-            onChange={onChange}
-            placeholder="can resize"
-          />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button type="primary">Post</Button>
-          </div>
-        </Panel>
-      </Collapse> */}
 
       <Collapse size="large">
         <Panel header="Create a post" key="1">
