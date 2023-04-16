@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Amateur Badminton Tournament",
-    "time": "1:00pm",
+    "time": "10:00am",
     "date": "2023-04-21",
     "location": "Boston Badminton, Westborough, MA",
     "participants": "14",
@@ -13,7 +13,7 @@
     {
     "id": 2,
     "title": "Weekend Badminton Social",
-    "time": "10:00am",
+    "time": "1:00pm",
     "date": "2023-05-13",
     "location": "Atlanta Badminton Club, Norcross, GA",
     "participants": "8",
