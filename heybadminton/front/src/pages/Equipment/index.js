@@ -56,10 +56,7 @@ function Equipment() {
       id: new Date().getTime(),
       title: title,
       content: content,
-      author: {
-        name: "Bill",
-        avatar: cat,
-      },
+      avatarURL: cat,
     };
     // Add the new post to the data array
     setData([newPost, ...data]);
@@ -78,7 +75,13 @@ function Equipment() {
         renderItem={(item) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<Avatar src={"https://picsum.photos/50?random=" + item.id} />}
+              avatar={
+                item.avatarURL ? (
+                  <Avatar src={item.avatarURL} />
+                ) : (
+                  <Avatar src={"https://picsum.photos/50?random=" + item.id} />
+                )
+              }
               title={<a href={`/post/${item.id}`}>{item.title}</a>}
               description={item.content}
             />
