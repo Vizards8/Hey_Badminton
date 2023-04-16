@@ -23,6 +23,14 @@ const items = [
       </a>
     ),
   },
+  {
+    key: 'admin',
+    label: (
+      <a href="/admin">
+        Admin
+      </a>
+    ),
+  },
 ]
 
 const NavigateBar = () => {

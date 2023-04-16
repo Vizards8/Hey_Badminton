@@ -10,6 +10,7 @@ import Courtmate from '@/pages/Courtmate'
 import Location from '@/pages/Location'
 import Post from '@/pages/Post'
 import Profile from '@/pages/Profile'
+import Admin from '@/pages/Admin'
 
 import '@/App.css'
 
@@ -28,6 +29,7 @@ function App () {
             <Route path="/locations" element={<Location />} />
             <Route path="/post/:id" element={<Post />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/admin" element={<Admin />} />
           </Route>
           {/* <Route path="/search" element={<Login />}></Route> */}
           <Route path="/login" element={<Login />} />
