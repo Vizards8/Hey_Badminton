@@ -1,6 +1,8 @@
 body {
   background: #f2f5f7;
   font-family: microsoft yahei;
+  position: relative;
+  min-height: 100vh;
 }
 
 body,

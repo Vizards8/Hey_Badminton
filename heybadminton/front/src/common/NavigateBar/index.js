@@ -1,12 +1,33 @@
 import React from 'react'
 import './header.less'
 import logo from '@/assets/images/logo.png'
-import profile from '@/assets/images/profile.png'
+import avar from '@/assets/images/avar.png'
 import { Input, Dropdown, Avatar, Space, message } from 'antd'
+
+import { getToken } from '@/utils'
 
 const { Search } = Input
 
-const items = [
+const beforeItems = [
+  {
+    key: 'register',
+    label: (
+      <a href="/register">
+        Register
+      </a>
+    ),
+  },
+  {
+    key: 'log in',
+    label: (
+      <a href="/login">
+        Login
+      </a>
+    ),
+  },
+]
+
+const afterItems = [
   {
     key: 'profile',
     label: (
@@ -32,9 +53,12 @@ const NavigateBar = () => {
     console.log(value)
     messageApi.open({
       type: 'warning',
-      content: 'This is a warning message',
+      content: 'Still in working!',
     })
   }
+
+  const items = (getToken() == null) ? beforeItems : afterItems
+  // const avar_src = (getToken() == null) ? beforeItems : afterItems
 
   return (
     <div className="header">
@@ -65,7 +89,7 @@ const NavigateBar = () => {
           >
             <span onClick={(e) => e.preventDefault()}>
               <Space>
-                <Avatar src={profile} />
+                <Avatar src={avar} />
               </Space>
             </span>
           </Dropdown>
