@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.heybadminton.dao.EquipmentMapper">
+
+    <select id="getAllEquipment" resultType="com.heybadminton.entity.Equipment">
+        SELECT * FROM equipment
+    </select>
+
+    <select id="getEquipmentById" parameterType="java.lang.Long" resultType="com.heybadminton.entity.Equipment">
+        SELECT * FROM equipment WHERE id = #{id}
+    </select>
+
+    <insert id="insertEquipment" parameterType="com.heybadminton.entity.Equipment">
+        INSERT INTO equipment (id, post_user_id, title, content, pictures_urls, is_delete, create_time, update_time)
+        VALUES (#{id}, #{post_user_id}, #{title}, #{content}, #{pictures_urls}, #{is_delete}, #{create_time}, #{update_time})
+    </insert>
+
+    <update id="updateEquipment" parameterType="com.heybadminton.entity.Equipment">
+        UPDATE equipment SET post_user_id = #{post_user_id}, title = #{title}, content = #{content},
+        pictures_urls = #{pictures_urls}, is_delete = #{is_delete}, update_time = #{update_time} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteEquipmentById" parameterType="java.lang.Long">
+        UPDATE equipment SET is_delete = true WHERE id = #{id}
+    </delete>
+
+</mapper>
