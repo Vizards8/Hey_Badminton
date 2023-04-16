@@ -36,6 +36,9 @@ const Courtmate = () => {
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [isCreate, setIsCreate] = useState(false);
 
+  const matchTimes = [...new Set(matches.map((match) => match.time))];
+  const matchLocations = [...new Set(matches.map((match) => match.location))];
+
   useEffect(() => {
     let currMatches = [...matches];
     if (filter.date) {
@@ -123,9 +126,9 @@ const Courtmate = () => {
                   onChange={(value) => setFilter({ ...filter, time: value })}
                 >
                   <Option value="all">All</Option>
-                  <Option value="9:00am">9:00am</Option>
-                  <Option value="10:00am">10:00am</Option>
-                  <Option value="11:00am">11:00am</Option>
+                  {matchTimes.map((e) => (
+                    <Option value={e}>{e}</Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item label="Location">
@@ -136,9 +139,9 @@ const Courtmate = () => {
                   }
                 >
                   <Option value="all">All</Option>
-                  <Option value="Location 1">Location 1</Option>
-                  <Option value="Location 2">Location 2</Option>
-                  <Option value="Location 3">Location 3</Option>
+                  {matchLocations.map((e) => (
+                    <Option value={e}>{e}</Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item label="Number of players">
@@ -210,7 +213,7 @@ const Courtmate = () => {
                   <p>
                     Participants: {match.participants}/{match.maxParticipants}
                   </p>
-                    <p>Note: {match.note}</p>
+                  <p>Note: {match.note}</p>
                 </Card>
               ))}
             </div>
