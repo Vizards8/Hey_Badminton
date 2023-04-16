@@ -17,21 +17,33 @@ function Admin() {
   const [matches, setMatches] = useState(dummy_matches);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
+  const [matchToDelete, setMatchToDelete] = useState(null);
   const [currentTab, setCurrentTab] = useState("posts");
 
-  const handleDeleteClick = (post) => {
+  const handlePostDeleteClick = (post) => {
     setPostToDelete(post);
     setDeleteModalVisible(true);
   };
 
+  const handleMatchDeleteClick = (match) => {
+    setMatchToDelete(match);
+    setDeleteModalVisible(true);
+  };
+
   const handleDeleteConfirm = () => {
-    setPosts(posts.filter((p) => p.id !== postToDelete.id));
-    setPostToDelete(null);
+    if (postToDelete !== null) {
+      setPosts(posts.filter((p) => p.id !== postToDelete.id));
+      setPostToDelete(null);
+    } else {
+      setMatches(matches.filter((m) => m.id !== matchToDelete.id));
+      setMatchToDelete(null);
+    }
     setDeleteModalVisible(false);
   };
 
   const handleDeleteCancel = () => {
     setPostToDelete(null);
+    setMatchToDelete(null);
     setDeleteModalVisible(false);
   };
 
@@ -52,7 +64,7 @@ function Admin() {
                     type="text"
                     danger
                     icon={<DeleteOutlined />}
-                    onClick={() => handleDeleteClick(item)}
+                    onClick={() => handlePostDeleteClick(item)}
                   >
                     Delete
                   </Button>,
@@ -79,7 +91,7 @@ function Admin() {
                     type="text"
                     danger
                     icon={<DeleteOutlined />}
-                    onClick={() => handleDeleteClick(item)}
+                    onClick={() => handleMatchDeleteClick(item)}
                   >
                     Delete
                   </Button>,
@@ -97,7 +109,7 @@ function Admin() {
         onOk={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
       >
-        <p>Are you sure you want to delete the post "{postToDelete?.title}"?</p>
+        <p>Are you sure you want to delete "{postToDelete?.title}"?</p>
       </Modal>
     </div>
   );
