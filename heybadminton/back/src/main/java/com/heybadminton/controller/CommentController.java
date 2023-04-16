@@ -29,17 +29,17 @@ public class CommentController {
         return commentService.getByCommentUserId(commentUserId);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Comment> getAllComments() {
         return commentService.getAll();
     }
 
-    @PostMapping("/")
+    @PostMapping
     public int addComment(@RequestBody Comment comment) {
         return commentService.addComment(comment);
     }
 
-    @PutMapping("/")
+    @PutMapping
     public int updateComment(@RequestBody Comment comment) {
         return commentService.updateComment(comment);
     }

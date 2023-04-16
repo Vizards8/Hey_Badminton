@@ -14,7 +14,7 @@ public class MatchController {
     @Autowired
     private MatchService matchService;
 
-    @PostMapping("/")
+    @PostMapping
     public int addMatch(@RequestBody Match match) {
         return matchService.addMatch(match);
     }
@@ -24,12 +24,12 @@ public class MatchController {
         return matchService.getMatchById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Match> getAllMatches() {
         return matchService.getAllMatches();
     }
 
-    @PutMapping("/")
+    @PutMapping
     public int updateMatch(@RequestBody Match match) {
         return matchService.updateMatch(match);
     }
