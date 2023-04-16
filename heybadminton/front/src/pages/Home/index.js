@@ -38,7 +38,11 @@ const HomePage = () => {
         >
           <a href="/courtmate">
             <Meta
-              avatar={<Avatar src={author.avatar} />}
+              avatar={
+                <Avatar
+                  src={"https://picsum.photos/400?random=" + courtmate.id}
+                />
+              }
               title={courtmate.title}
               description={
                 <div>
@@ -75,7 +79,11 @@ const HomePage = () => {
         >
           <a href={`/post/${Equipment.id}`}>
             <Meta
-              avatar={<Avatar src={author.avatar} />}
+              avatar={
+                <Avatar
+                  src={"https://picsum.photos/400?random=" + Equipment.id}
+                />
+              }
               title={Equipment.title}
               description={
                 Equipment.content.slice(0, 50) +
@@ -114,12 +122,20 @@ const HomePage = () => {
       </Carousel>
 
       <Divider orientation="left" style={{ borderColor: "black" }}>
-        <h2><a href="/equip" style={{ color: "black" }}>Equipment</a></h2>
+        <h2>
+          <a href="/equip" style={{ color: "black" }}>
+            Equipment
+          </a>
+        </h2>
       </Divider>
       <EquipmentList Equipments={posts} />
 
       <Divider orientation="left" style={{ borderColor: "black" }}>
-        <h2><a href="/courtmate" style={{ color: "black" }}>Courtmate</a></h2>
+        <h2>
+          <a href="/courtmate" style={{ color: "black" }}>
+            Courtmate
+          </a>
+        </h2>
       </Divider>
       <CourtmateList courtmates={matches} />
     </div>

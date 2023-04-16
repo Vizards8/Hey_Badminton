@@ -29,6 +29,7 @@ const data = {
   },
   comment: [
     {
+      id: 200,
       text: "Wonderful post!",
       author: {
         name: "David",
@@ -36,6 +37,7 @@ const data = {
       },
     },
     {
+      id: 23,
       text: "Wonderful post!",
       author: {
         name: "Steve",
@@ -85,7 +87,7 @@ const Post = () => {
       <MyBreadcrumb paths={["post"]} />
       <Card style={{ marginBottom: "20px" }}>
         <Meta
-          avatar={<Avatar src={post.author.avatarUrl} />}
+          avatar={<Avatar src={"https://picsum.photos/50?random=" + id} />}
           title={post.title}
         />
         <p style={{ marginTop: "20px" }}>{post.content}</p>
@@ -103,7 +105,9 @@ const Post = () => {
         renderItem={(item) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<Avatar src={item.author.avatarUrl} />}
+              avatar={
+                <Avatar src={"https://picsum.photos/50?random=" + item.id} />
+              }
               title={item.author.name}
               description={item.text}
             />
