@@ -25,4 +25,4 @@ CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9.
 - [x] a very simple admin page
 - [x] show picture on Home/post
 - [ ] generate some MEANINGFUL data
-- [ ] add equipment link on home page
+- [x] add equipment link on home page
