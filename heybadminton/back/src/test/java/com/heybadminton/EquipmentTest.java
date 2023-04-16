@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
-public class TestCode {
+public class EquipmentTest {
 
     @Autowired
     private EquipmentMapper equipmentMapper;
@@ -30,8 +30,7 @@ public class TestCode {
     @Test
     public void testGetEquipmentById() {
         Long id = 12L;
-        Equipment expectedEquipment = new Equipment();
-        expectedEquipment = equipmentMapper.getEquipmentById(id);
+        Equipment expectedEquipment = equipmentMapper.getEquipmentById(id);
         System.out.println(expectedEquipment.toString());
 
     }
@@ -93,7 +92,6 @@ public class TestCode {
         equipmentMapper.insertEquipment(equipment);
 
         // Retrieve the equipment object by its ID and confirm its is_delete attribute is false
-        Equipment retrievedEquipment = equipmentMapper.getEquipmentById(4L);
         equipmentMapper.getEquipmentById(4L).setIs_delete(false);
 
         // Call the deleteEquipmentById method to "soft delete" the equipment object
