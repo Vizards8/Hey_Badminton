@@ -32,6 +32,7 @@ const HomePage = () => {
     >
       {courtmates.map((courtmate) => (
         <Card
+          hoverable
           style={{ width: "30%", margin: "0 1rem 1rem" }}
           key={courtmate.id}
         >
@@ -68,6 +69,7 @@ const HomePage = () => {
     >
       {Equipments.map((Equipment) => (
         <Card
+          hoverable
           style={{ width: "30%", margin: "0 1rem 1rem" }}
           key={Equipment.id}
         >
