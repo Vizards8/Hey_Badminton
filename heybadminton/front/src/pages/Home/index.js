@@ -1,6 +1,5 @@
 import React from "react";
-import { Layout, Carousel, Card, Avatar, Divider, Button } from "antd";
-import { StarOutlined } from "@ant-design/icons";
+import { Carousel, Card, Avatar, Divider } from "antd";
 
 import "./Home.css";
 import dummy_author from "@/assets/data/author.json";
@@ -8,7 +7,6 @@ import dummy_posts from "@/assets/data/posts.json";
 import dummy_matches from "@/assets/data/matches.json";
 
 const { Meta } = Card;
-const { Content } = Layout;
 
 const HomePage = () => {
   const carouselImages = [
@@ -37,21 +35,23 @@ const HomePage = () => {
           style={{ width: "30%", margin: "0 1rem 1rem" }}
           key={courtmate.id}
         >
-          <Meta
-            avatar={<Avatar src={author.avatar} />}
-            title={courtmate.title}
-            description={
-              <div>
-                <p>Location: {courtmate.location}</p>
-                <p>Date: {courtmate.date}</p>
-                <p>Time: {courtmate.time}</p>
-                <p>
-                  Participants: {courtmate.participants}/
-                  {courtmate.maxParticipants}
-                </p>
-              </div>
-            }
-          />
+          <a href="/courtmate">
+            <Meta
+              avatar={<Avatar src={author.avatar} />}
+              title={courtmate.title}
+              description={
+                <div>
+                  <p>Location: {courtmate.location}</p>
+                  <p>Date: {courtmate.date}</p>
+                  <p>Time: {courtmate.time}</p>
+                  <p>
+                    Participants: {courtmate.participants}/
+                    {courtmate.maxParticipants}
+                  </p>
+                </div>
+              }
+            />
+          </a>
         </Card>
       ))}
     </div>
@@ -71,14 +71,16 @@ const HomePage = () => {
           style={{ width: "30%", margin: "0 1rem 1rem" }}
           key={Equipment.id}
         >
-          <Meta
-            avatar={<Avatar src={author.avatar} />}
-            title={Equipment.title}
-            description={
-              Equipment.content.slice(0, 50) +
-              (Equipment.content.length > 50 ? "..." : "")
-            }
-          />
+          <a href={`/post/${Equipment.id}`}>
+            <Meta
+              avatar={<Avatar src={author.avatar} />}
+              title={Equipment.title}
+              description={
+                Equipment.content.slice(0, 50) +
+                (Equipment.content.length > 50 ? "..." : "")
+              }
+            />
+          </a>
         </Card>
       ))}
     </div>
@@ -110,12 +112,12 @@ const HomePage = () => {
       </Carousel>
 
       <Divider orientation="left" style={{ borderColor: "black" }}>
-        <h2>Equipment</h2>
+        <h2><a href="/equip" style={{ color: "black" }}>Equipment</a></h2>
       </Divider>
       <EquipmentList Equipments={posts} />
 
       <Divider orientation="left" style={{ borderColor: "black" }}>
-        <h2>Courtmate</h2>
+        <h2><a href="/courtmate" style={{ color: "black" }}>Courtmate</a></h2>
       </Divider>
       <CourtmateList courtmates={matches} />
     </div>
