@@ -16,13 +16,32 @@ const data = {
       name: "Admin",
       avatarUrl: "https://picsum.photos/50?random=1",
     },
+    pictures: [
+      {
+        imageUrl: "https://picsum.photos/400?random=1",
+        caption: "Picture 1",
+      },
+      {
+        imageUrl: "https://picsum.photos/400?random=2",
+        caption: "Picture 2",
+      },
+    ],
   },
   comment: [
     {
+      id: 200,
       text: "Wonderful post!",
       author: {
-        name: "Admin",
+        name: "David",
         avatarUrl: "https://picsum.photos/50?random=2",
+      },
+    },
+    {
+      id: 23,
+      text: "Wonderful post!",
+      author: {
+        name: "Steve",
+        avatarUrl: "https://picsum.photos/50?random=3",
       },
     },
   ],
@@ -68,20 +87,27 @@ const Post = () => {
       <MyBreadcrumb paths={["post"]} />
       <Card style={{ marginBottom: "20px" }}>
         <Meta
-          avatar={<Avatar src={post.author.avatarUrl} />}
+          avatar={<Avatar src={"https://picsum.photos/50?random=" + id} />}
           title={post.title}
         />
         <p style={{ marginTop: "20px" }}>{post.content}</p>
+        {post.pictures &&
+          post.pictures.map((picture) => (
+            <div key={picture.imageUrl} style={{ marginTop: "20px" }}>
+              <img src={picture.imageUrl} alt="post_picture" />
+            </div>
+          ))}
       </Card>
       <List
-        className="comment-list"
         header={`${comments.length} replies`}
         itemLayout="horizontal"
         dataSource={comments}
         renderItem={(item) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<Avatar src={item.author.avatarUrl} />}
+              avatar={
+                <Avatar src={"https://picsum.photos/50?random=" + item.id} />
+              }
               title={item.author.name}
               description={item.text}
             />

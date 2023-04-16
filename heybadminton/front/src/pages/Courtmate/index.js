@@ -8,49 +8,16 @@ import {
   Button,
   Modal,
   Typography,
+  message,
 } from "antd";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import CreateMatchForm from "./CreateMatchForm";
+import dummy_matches from "@/assets/data/matches.json";
+
 import "./Courtmate.css";
 
 const { Option } = Select;
-const { Title, Paragraph, Text, Link } = Typography;
-
-const data = [
-  {
-    id: 1,
-    title: "Friendly Match 1",
-    time: "9:00am",
-    date: "2023-04-05",
-    location: "Location 1",
-    participants: "6",
-    maxParticipants: "8",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
-    closed: false,
-  },
-  {
-    id: 2,
-    title: "Friendly Match 2",
-    time: "10:00am",
-    date: "2023-04-12",
-    location: "Location 2",
-    participants: "4",
-    maxParticipants: "6",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
-    closed: false,
-  },
-  {
-    id: 3,
-    title: "Friendly Match 3",
-    time: "11:00am",
-    date: "2023-04-23",
-    location: "Location 3",
-    participants: "2",
-    maxParticipants: "4",
-    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
-    closed: false,
-  },
-];
+const { Title } = Typography;
 
 const defaultFilter = {
   date: null,
@@ -63,11 +30,14 @@ const defaultFilter = {
 const Courtmate = () => {
   const [visible, setVisible] = useState(false);
   const [detailVisible, setDetailVisvible] = useState(false);
-  const [matches, setMatches] = useState(data);
+  const [matches, setMatches] = useState(dummy_matches);
   const [filteredMatches, setFilteredMatches] = useState(matches);
   const [filter, setFilter] = useState(defaultFilter);
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [isCreate, setIsCreate] = useState(false);
+
+  const matchTimes = [...new Set(matches.map((match) => match.time))];
+  const matchLocations = [...new Set(matches.map((match) => match.location))];
 
   useEffect(() => {
     let currMatches = [...matches];
@@ -102,8 +72,31 @@ const Courtmate = () => {
     setIsCreate(false);
   };
 
-  const handleJoin = (values) => {
-    // TODO: Submit form data to server-side API
+  const handleJoin = async (values) => {
+    console.log(values);
+
+    try {
+      const response = await fetch("/your-backend-url", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        message.success("Join successful!");
+        setVisible(false);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        message.error("Join failed!");
+      }
+    } catch (error) {
+      message.error("Join failed!");
+    }
+
     setVisible(false);
   };
 
@@ -133,9 +126,9 @@ const Courtmate = () => {
                   onChange={(value) => setFilter({ ...filter, time: value })}
                 >
                   <Option value="all">All</Option>
-                  <Option value="9:00am">9:00am</Option>
-                  <Option value="10:00am">10:00am</Option>
-                  <Option value="11:00am">11:00am</Option>
+                  {matchTimes.map((e) => (
+                    <Option value={e}>{e}</Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item label="Location">
@@ -146,9 +139,9 @@ const Courtmate = () => {
                   }
                 >
                   <Option value="all">All</Option>
-                  <Option value="Location 1">Location 1</Option>
-                  <Option value="Location 2">Location 2</Option>
-                  <Option value="Location 3">Location 3</Option>
+                  {matchLocations.map((e) => (
+                    <Option value={e}>{e}</Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item label="Number of players">
@@ -231,10 +224,16 @@ const Courtmate = () => {
       <Modal
         title="Join Match"
         open={visible}
-        onCancel={() => setVisible(false)}
-        onOk={handleJoin}
+        footer={[
+          <Button key="cancel" onClick={() => setVisible(false)}>
+            Cancel
+          </Button>,
+          <Button key="join" type="primary" htmlType="submit" form="join-form">
+            Join
+          </Button>,
+        ]}
       >
-        <Form layout="vertical">
+        <Form id="join-form" layout="vertical" onFinish={handleJoin}>
           <Form.Item
             label="Name"
             name="name"
