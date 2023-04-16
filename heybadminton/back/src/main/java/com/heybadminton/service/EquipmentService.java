@@ -1,8 +1,8 @@
 package com.heybadminton.service;
 
-import java.util.List;
-
 import com.heybadminton.entity.Equipment;
+
+import java.util.List;
 
 public interface EquipmentService {
 
@@ -10,7 +10,7 @@ public interface EquipmentService {
 
     Equipment getEquipmentById(Long id);
 
-    int insertEquipment(Equipment equipment);
+    int addEquipment(Equipment equipment);
 
     int updateEquipment(Equipment equipment);
 

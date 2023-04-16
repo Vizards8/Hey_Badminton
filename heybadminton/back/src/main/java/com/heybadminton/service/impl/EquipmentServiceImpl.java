@@ -25,7 +25,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public int insertEquipment(Equipment equipment) {
+    public int addEquipment(Equipment equipment) {
         return equipmentMapper.insertEquipment(equipment);
     }
 
