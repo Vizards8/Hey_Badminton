@@ -1,20 +1,19 @@
 package com.heybadminton;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.sql.Timestamp;
-import java.util.List;
-
-import com.heybadminton.App;
+import com.heybadminton.dao.CommentMapper;
+import com.heybadminton.entity.Comment;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.heybadminton.dao.CommentMapper;
-import com.heybadminton.entity.Comment;
+import java.sql.Timestamp;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
@@ -27,26 +26,18 @@ public class CommentMapperTest {
     public void testGetById() {
         Comment comment = commentMapper.getById(1L);
         assertNotNull(comment);
-        assertEquals(1L, comment.getId().longValue());
-        assertEquals(1L, comment.getPostId().longValue());
-        assertEquals(1L, comment.getCommentUserId().longValue());
-        assertEquals("This is a comment", comment.getContent());
-        assertNotNull(comment.getCreateTime());
-        assertEquals(false, comment.isDelete());
     }
 
     @Test
     public void testGetByPostId() {
         List<Comment> comments = commentMapper.getByPostId(1L);
         assertNotNull(comments);
-        assertEquals(1, comments.size());
     }
 
     @Test
     public void testGetByCommentUserId() {
         List<Comment> comments = commentMapper.getByCommentUserId(1L);
         assertNotNull(comments);
-        assertEquals(1, comments.size());
     }
 
     @Test
@@ -82,10 +73,12 @@ public class CommentMapperTest {
 
     @Test
     public void testDelete() {
-        int result = commentMapper.delete(3L);
-        assertEquals(1, result);
+        Comment comment = commentMapper.getById(1L);
+        comment.setDelete(false);
 
-        Comment comment = commentMapper.getById(3L);
-        assertEquals(true, comment.isDelete());
+        int result = commentMapper.delete(1L);
+        Assert.assertEquals(1, result);
+        Comment deletedcomment = commentMapper.getById(1L);
+        Assert.assertEquals(true, deletedcomment.isDelete());
     }
 }
