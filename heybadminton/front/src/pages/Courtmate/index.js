@@ -17,7 +17,7 @@ import dummy_matches from "@/assets/data/matches.json";
 import "./Courtmate.css";
 
 const { Option } = Select;
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title } = Typography;
 
 const defaultFilter = {
   date: null,
@@ -210,7 +210,7 @@ const Courtmate = () => {
                   <p>
                     Participants: {match.participants}/{match.maxParticipants}
                   </p>
-                  <p>Note: {match.note}</p>
+                    <p>Note: {match.note}</p>
                 </Card>
               ))}
             </div>

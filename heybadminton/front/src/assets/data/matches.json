@@ -4,32 +4,32 @@
     "title": "Friendly Match 1",
     "time": "9:00am",
     "date": "2023-04-05",
-    "location": "Location 1",
+    "location": "Boston Badminton, Westborough, MA",
     "participants": "6",
     "maxParticipants": "8",
-    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
+    "note": "Get ready to sweat and have fun with us at Boston Badminton in Westborough, MA on April 5th at 9:00am. Come prepared to work on your footwork, strategy, and power. All skill levels are welcome!",
     "closed": false
-  },
-  {
+    },
+    {
     "id": 2,
     "title": "Friendly Match 2",
-    "time": "10:00am",
-    "date": "2023-04-12",
-    "location": "Location 2",
+    "time": "6:00pm",
+    "date": "2023-05-02",
+    "location": "Bay Badminton Center, South San Francisco, CA",
     "participants": "4",
     "maxParticipants": "6",
-    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
+    "note": "Come join our badminton community at the Bay Badminton Center in South San Francisco, CA on May 2nd at 6:00pm. Meet new people, play new opponents, and enjoy the game you love. No pressure, just fun!",
     "closed": false
-  },
-  {
+    },
+    {
     "id": 3,
     "title": "Friendly Match 3",
-    "time": "11:00am",
-    "date": "2023-04-23",
-    "location": "Location 3",
+    "time": "10:00am",
+    "date": "2023-05-14",
+    "location": "Seattle Badminton Club, Lynnwood, WA",
     "participants": "2",
     "maxParticipants": "4",
-    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
+    "note": "Bring your A-game and your competitive spirit to the Seattle Badminton Club in Lynnwood, WA on May 14th at 10:00am. We'll be playing doubles matches with the goal of improving our skills and pushing each other to be our best. Intermediate to advanced players preferred.",
     "closed": false
-  }
+    }
 ]
