@@ -8,95 +8,94 @@ import {
   Upload,
   Space,
   message,
-} from "antd"
-import React, { useState, useEffect } from "react"
-import MyBreadcrumb from "@/common/MyBreadcrumb"
-import { PictureOutlined } from "@ant-design/icons"
-import dummy_posts from "@/assets/data/posts.json"
-import cat from "@/assets/images/profile.png"
+} from "antd";
+import React, { useState, useEffect } from "react";
+import MyBreadcrumb from "@/common/MyBreadcrumb";
+import { PictureOutlined } from "@ant-design/icons";
+import dummy_posts from "@/assets/data/posts.json";
+import cat from "@/assets/images/profile.png";
 
-import { useUser } from "@/pages/DashBoard"
-import { http } from '@/utils'
+import { useUser } from "@/pages/DashBoard";
+import { http } from "@/utils";
 
-import "./Equipment.css"
+import "./Equipment.css";
 
-const { Panel } = Collapse
-const { TextArea } = Input
+const { Panel } = Collapse;
+const { TextArea } = Input;
 
-function Equipment () {
-  const { user } = useUser()
-  console.log(user)
-  const [fileList, setFileList] = useState([])
+function Equipment() {
+  const { user } = useUser();
+  console.log(user);
+  const [fileList, setFileList] = useState([]);
   const handleChange = (info) => {
-    setFileList(info.fileList)
-  }
+    setFileList(info.fileList);
+  };
 
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [loading, setLoading] = useState(false)
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
   // const [data, setData] = useState([]); // store all posts
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    async function getAll () {
-      const result = await http.get("/equipments/getAll")
+    async function getAll() {
+      const result = await http.get("/equipments/getAll");
       //console.log(result.data.data)
-      setData(result.data.data)
+      setData(result.data.data);
     }
-    getAll()
-  }, [])
+    getAll();
+  }, []);
 
-
-  const pageSize = 10
-  const start = (currentPage - 1) * pageSize
-  const end = start + pageSize
-  const currentData = data.slice(start, end) // display only the current page of posts
+  const pageSize = 10;
+  const start = (currentPage - 1) * pageSize;
+  const end = start + pageSize;
+  const currentData = data.slice(start, end); // display only the current page of posts
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value)
-  }
+    setTitle(e.target.value);
+  };
 
   const handleContentChange = (e) => {
-    setContent(e.target.value)
-  }
+    setContent(e.target.value);
+  };
 
   const handleChangePage = (page) => {
-    setCurrentPage(page)
-  }
+    setCurrentPage(page);
+  };
 
   const handlePost = async () => {
-    setLoading(true)
+    setLoading(true);
 
-
-    const pictureUrls = fileList.map(item => item.response.data.url)
+    const pictureUrls = fileList.map((item) => item.response.data.url);
     const newPost = {
       id: new Date().getTime(),
       postUserId: user.id,
       title: title,
       content: content,
-      avatarURL: user.profile,
-      picturesUrls: pictureUrls.join(";")
-    }
+      avatarUrl: user.profile,
+      picturesUrls: pictureUrls.join(";"),
+    };
     // 提交请求
-    const res = await http.post('/equipments/add', newPost)
-    if (res.code === 200) {
-      message.success("Post created successfully")
-    }
+    const res = await http.post("/equipments/add", newPost);
+    if (res.status === 200) {
+      message.success("Post created successfully");
+      // Reset the form
+      setTitle("");
+      setContent("");
+      setFileList([]);
+      setLoading(false);
 
-    // Add the new post to the data array
-    setData([newPost, ...data])
-    // Reset the form
-    setTitle("")
-    setContent("")
-    setFileList([])
-    setLoading(false)
-  }
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    }
+  };
 
   return (
     <div className="equipment-wrapper">
-      <MyBreadcrumb paths={["Equipment"]} />
+      <MyBreadcrumb paths={["Post"]} />
       <List
         itemLayout="horizontal"
         dataSource={currentData}
@@ -104,8 +103,8 @@ function Equipment () {
           <List.Item>
             <List.Item.Meta
               avatar={
-                item.avatarURL ? (
-                  <Avatar src={item.avatarURL} />
+                item.avatarUrl ? (
+                  <Avatar src={item.avatarUrl} />
                 ) : (
                   <Avatar src={"https://picsum.photos/50?random=" + item.id} />
                 )
@@ -132,7 +131,8 @@ function Equipment () {
             value={title}
             onChange={handleTitleChange}
           />
-          <TextArea id="comment-area"
+          <TextArea
+            id="comment-area"
             showCount
             maxLength={100}
             style={{
@@ -174,7 +174,7 @@ function Equipment () {
         </Panel>
       </Collapse>
     </div>
-  )
+  );
 }
 
-export default Equipment
+export default Equipment;

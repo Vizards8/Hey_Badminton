@@ -81,7 +81,7 @@ function NavigateBar ({ profile, isAdmin }) {
         <div className='nav-item'>
           <ul>
             <li><a href='/game' className='selected'>Tournament</a></li>
-            <li><a href='/equip'>Equipment</a></li>
+            <li><a href='/equip'>Post</a></li>
             <li><a href='/courtmate'>Courtmate</a></li>
             <li><a href='/locations'>Court Locations</a></li>
           </ul>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Card, Avatar, Form, Input, Button, List } from "antd";
+import { Card, Avatar, Form, Input, Button, List, message } from "antd";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
+import { http } from "@/utils";
+import { useUser } from "@/pages/DashBoard";
 import "./Post.css";
 
 const { Meta } = Card;
@@ -47,73 +49,106 @@ const data = {
   ],
 };
 
+const names = ["David", "Steve", "Mike", "Mary"];
+
 const Post = () => {
   const { id } = useParams();
-  const [post, setPost] = useState(data.post);
-  const [comments, setComments] = useState(data.comment);
+  const { user } = useUser();
+  console.log(user);
+  const [post, setPost] = useState();
+  const [comments, setComments] = useState();
   const [commentText, setCommentText] = useState("");
+
+  const getPostDetail = async () => {
+    const res = await http.get(`/equipments/${id}`);
+    setPost(res.data);
+  };
+
+  const getAllComments = async () => {
+    const res = await http.get(`/api/comments/post/${id}`);
+    setComments(res.data);
+  };
 
   useEffect(() => {
     // Fetch the post data from your backend API
-    fetch(`/api/posts/${id}`)
-      .then((response) => response.json())
-      .then((data) => setPost(data))
-      .catch((error) => console.log(error));
+    getPostDetail();
 
     // Fetch the comments for this post from your backend API
-    fetch(`/api/posts/${id}/comments`)
-      .then((response) => response.json())
-      .then((data) => setComments(data))
-      .catch((error) => console.log(error));
+    getAllComments();
   }, [id]);
 
-  const handleCommentSubmit = () => {
+  const handleCommentSubmit = async () => {
     // Submit the new comment to your backend API
-    fetch(`/api/posts/${id}/comments`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: commentText }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setComments([...comments, data]);
-        setCommentText("");
-      })
-      .catch((error) => console.log(error));
+    const newComment = {
+      id: new Date().getTime(),
+      postId: id,
+      commentUserId: 1,
+      content: commentText,
+      postUserProfile: user.profile,
+    };
+    // send POST
+    const res = await http.post("/api/comments", newComment);
+    console.log(res);
+    if (res.status === 200) {
+      message.success("Comment created successfully");
+      setCommentText("");
+      setTimeout(() => {
+        setComments([...comments, newComment]);
+      }, 1000);
+    }
   };
 
   return (
     <div className="post-wrapper">
       <MyBreadcrumb paths={["post"]} />
-      <Card style={{ marginBottom: "20px" }}>
-        <Meta
-          avatar={<Avatar src={"https://picsum.photos/50?random=" + id} />}
-          title={post.title}
-        />
-        <p style={{ marginTop: "20px" }}>{post.content}</p>
-        {post.pictures &&
-          post.pictures.map((picture) => (
-            <div key={picture.imageUrl} style={{ marginTop: "20px" }}>
-              <img src={picture.imageUrl} alt="post_picture" />
+      {post && (
+        <Card style={{ marginBottom: "20px" }}>
+          <Meta
+            avatar={
+              post.avatarUrl ? (
+                <Avatar src={post.avatarUrl} />
+              ) : (
+                <Avatar src={"https://picsum.photos/50?random=" + post.id} />
+              )
+            }
+            title={post.title}
+          />
+          <p style={{ marginTop: "20px" }}>{post.content}</p>
+          {post.picturesUrls && (
+            <div key={post.id} style={{ marginTop: "20px" }}>
+              <img
+                style={{ maxWidth: "100%" }}
+                src={post.picturesUrls}
+                alt="post_picture"
+              />
             </div>
-          ))}
-      </Card>
-      <List
-        header={`${comments.length} replies`}
-        itemLayout="horizontal"
-        dataSource={comments}
-        renderItem={(item) => (
-          <List.Item>
-            <List.Item.Meta
-              avatar={
-                <Avatar src={"https://picsum.photos/50?random=" + item.id} />
-              }
-              title={item.author.name}
-              description={item.text}
-            />
-          </List.Item>
-        )}
-      />
+          )}
+        </Card>
+      )}
+      {comments && (
+        <List
+          header={`${comments.length} replies`}
+          itemLayout="horizontal"
+          dataSource={comments}
+          renderItem={(item) => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={
+                  item.postUserProfile ? (
+                    <Avatar src={item.postUserProfile} />
+                  ) : (
+                    <Avatar
+                      src={"https://picsum.photos/50?random=" + post.id}
+                    />
+                  )
+                }
+                title={names[comments.id]}
+                description={item.content}
+              />
+            </List.Item>
+          )}
+        />
+      )}
       <Form>
         <Form.Item>
           <TextArea

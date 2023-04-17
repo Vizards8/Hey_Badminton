@@ -156,7 +156,7 @@ const HomePage = () => {
       <Divider orientation="left" style={{ borderColor: "black" }}>
         <h2>
           <a href="/equip" style={{ color: "black" }}>
-            Equipment
+            Post
           </a>
         </h2>
       </Divider>
