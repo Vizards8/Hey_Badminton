@@ -8,63 +8,91 @@ import {
   Upload,
   Space,
   message,
-} from "antd";
-import React, { useState } from "react";
-import MyBreadcrumb from "@/common/MyBreadcrumb";
-import { PictureOutlined } from "@ant-design/icons";
-import dummy_posts from "@/assets/data/posts.json";
-import cat from "@/assets/images/profile.png";
+} from "antd"
+import React, { useState, useEffect } from "react"
+import MyBreadcrumb from "@/common/MyBreadcrumb"
+import { PictureOutlined } from "@ant-design/icons"
+import dummy_posts from "@/assets/data/posts.json"
+import cat from "@/assets/images/profile.png"
 
-import "./Equipment.css";
+import { useUser } from "@/pages/DashBoard"
+import { http } from '@/utils'
 
-const { Panel } = Collapse;
-const { TextArea } = Input;
+import "./Equipment.css"
 
-function Equipment() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [loading, setLoading] = useState(false);
+const { Panel } = Collapse
+const { TextArea } = Input
+
+function Equipment () {
+  const { user } = useUser()
+  console.log(user)
+  const [fileList, setFileList] = useState([])
+  const handleChange = (info) => {
+    setFileList(info.fileList)
+  }
+
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
+  const [loading, setLoading] = useState(false)
   // const [data, setData] = useState([]); // store all posts
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const [data, setData] = useState(dummy_posts);
+  const [data, setData] = useState([])
 
-  const pageSize = 10;
-  const start = (currentPage - 1) * pageSize;
-  const end = start + pageSize;
-  const currentData = data.slice(start, end); // display only the current page of posts
+  useEffect(() => {
+    async function getAll () {
+      const result = await http.get("/equipments/getAll")
+      //console.log(result.data.data)
+      setData(result.data.data)
+    }
+    getAll()
+  }, [])
+
+
+  const pageSize = 10
+  const start = (currentPage - 1) * pageSize
+  const end = start + pageSize
+  const currentData = data.slice(start, end) // display only the current page of posts
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
+    setTitle(e.target.value)
+  }
 
   const handleContentChange = (e) => {
-    setContent(e.target.value);
-  };
+    setContent(e.target.value)
+  }
 
   const handleChangePage = (page) => {
-    setCurrentPage(page);
-  };
+    setCurrentPage(page)
+  }
 
-  const handleButtonClick = () => {
-    setLoading(true);
-    // Create a new post object with the current date as the ID
-    setTimeout(() => {
-      message.success("Post created successfully");
-    }, 1000);
+  const handlePost = async () => {
+    setLoading(true)
+
+
+    const pictureUrls = fileList.map(item => item.response.data.url)
     const newPost = {
       id: new Date().getTime(),
+      postUserId: user.id,
       title: title,
       content: content,
-      avatarURL: cat,
-    };
+      avatarURL: user.profile,
+      picturesUrls: pictureUrls.join(";")
+    }
+    // 提交请求
+    const res = await http.post('/equipments/add', newPost)
+    if (res.code === 200) {
+      message.success("Post created successfully")
+    }
+
     // Add the new post to the data array
-    setData([newPost, ...data]);
+    setData([newPost, ...data])
     // Reset the form
-    setTitle("");
-    setContent("");
-    setLoading(false);
-  };
+    setTitle("")
+    setContent("")
+    setFileList([])
+    setLoading(false)
+  }
 
   return (
     <div className="equipment-wrapper">
@@ -97,14 +125,14 @@ function Equipment() {
 
       <div style={{ paddingTop: "1rem" }}> {/* Add padding top */} </div>
 
-      <Collapse size="large">
+      <Collapse size="large" collapsible={user.id === 0 ? "disabled" : ""}>
         <Panel header="Create a post" key="1">
           <Input
             placeholder="Title"
             value={title}
             onChange={handleTitleChange}
           />
-          <TextArea
+          <TextArea id="comment-area"
             showCount
             maxLength={100}
             style={{
@@ -120,9 +148,11 @@ function Equipment() {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <Upload
-                action=""
+                action="/v1_0/upload/image"
+                maxCount={5}
                 listType="picture"
-                // defaultFileList={[...fileList]}
+                FileList={fileList}
+                onChange={handleChange}
               >
                 <Button icon={<PictureOutlined />}>Upload</Button>
               </Upload>
@@ -133,7 +163,7 @@ function Equipment() {
             <Space>
               <Button
                 type="primary"
-                onClick={handleButtonClick}
+                onClick={handlePost}
                 htmlType="submit"
                 loading={loading}
               >
@@ -144,7 +174,7 @@ function Equipment() {
         </Panel>
       </Collapse>
     </div>
-  );
+  )
 }
 
-export default Equipment;
+export default Equipment

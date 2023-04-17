@@ -1,6 +1,7 @@
 package com.heybadminton.controller;
 
 import com.heybadminton.entity.Equipment;
+import com.heybadminton.pojo.ResponseResult;
 import com.heybadminton.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,15 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/equipments")
+@RequestMapping("/equipments")
 public class EquipmentController {
 
     @Autowired
     private EquipmentService equipmentService;
 
-    @GetMapping
-    public List<Equipment> getAllEquipment() {
-        return equipmentService.getAllEquipment();
+    @GetMapping("/getAll")
+    public ResponseResult getAllEquipmentByPage() {
+        return ResponseResult.success(equipmentService.getAllEquipment());
+    }
+
+    @GetMapping("/getAllEquipmentPostByPage")
+    public ResponseResult getAllEquipmentByPage(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+        return ResponseResult.success(equipmentService.getAllEquipmentByPage(pageNum, pageSize));
     }
 
     @GetMapping("/{id}")
@@ -24,7 +30,7 @@ public class EquipmentController {
         return equipmentService.getEquipmentById(id);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public int addEquipment(@RequestBody Equipment equipment) {
         return equipmentService.addEquipment(equipment);
     }

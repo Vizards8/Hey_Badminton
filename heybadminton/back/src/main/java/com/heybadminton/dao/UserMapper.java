@@ -12,10 +12,10 @@ public interface UserMapper {
 
     int insertUser(User user);
 
-    User searchUserByEmail(String email);
-
     User searchUserByUserNameAndPassword(String username, String password);
 
     User getUserByUserName(@Param("username") String username);
+
+    User searchUserById(@Param("userId") long userId);
 }
 

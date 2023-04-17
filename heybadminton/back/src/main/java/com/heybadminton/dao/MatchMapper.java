@@ -12,6 +12,7 @@ public interface MatchMapper {
     Match findById(long id);
 
     List<Match> findAll();
+    List<Match> getNewestMatchPost();
 
     int update(Match match);
 

@@ -16,4 +16,5 @@ public interface EquipmentService {
 
     int deleteEquipmentById(Long id);
 
+    List<Equipment> getAllEquipmentByPage(int pageNum, int pageSize);
 }

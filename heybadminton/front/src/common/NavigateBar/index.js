@@ -1,61 +1,16 @@
 import React from 'react'
 import './header.less'
 import logo from '@/assets/images/logo.png'
-import avar from '@/assets/images/avar.png'
+// import avar from '@/assets/images/avar.png'
 import { Input, Dropdown, Avatar, Space, message } from 'antd'
 
-import { getToken } from '@/utils'
+import { getToken, clearToken } from '@/utils'
+import { useNavigate } from 'react-router-dom'
 
 const { Search } = Input
 
-const beforeItems = [
-  {
-    key: 'register',
-    label: (
-      <a href="/register">
-        Register
-      </a>
-    ),
-  },
-  {
-    key: 'log in',
-    label: (
-      <a href="/login">
-        Login
-      </a>
-    ),
-  },
-]
-
-const afterItems = [
-  {
-    key: 'profile',
-    label: (
-      <a href="/profile">
-        profile
-      </a>
-    ),
-  },
-  {
-    key: 'logout',
-    label: (
-      <a href="/logout">
-        Logout
-      </a>
-    ),
-  },
-  {
-    key: 'admin',
-    label: (
-      <a href="/admin">
-        Admin
-      </a>
-    ),
-  },
-]
-
-const NavigateBar = () => {
-
+function NavigateBar ({ profile, isAdmin }) {
+  const navigate = useNavigate()
   const [messageApi, contextHolder] = message.useMessage()
   const onSearch = (value) => {
     console.log(value)
@@ -65,8 +20,55 @@ const NavigateBar = () => {
     })
   }
 
+  const beforeItems = [
+    {
+      key: 'register',
+      label: (
+        <a href="/register">
+          Register
+        </a>
+      ),
+    },
+    {
+      key: 'log in',
+      label: (
+        <a href="/login">
+          Login
+        </a>
+      ),
+    },
+  ]
+
+  const handleLogout = (event) => {
+    event.preventDefault()
+    clearToken()
+    navigate("/login")
+  }
+
+  const afterItems = isAdmin === "Y" ? [
+    {
+      key: 'logout',
+      label: (
+        <a href="/logout" onClick={handleLogout}>
+          Logout
+        </a>
+      ),
+    },
+    {
+      key: 'admin',
+      label: (
+        <a href="/admin">Admin</a>
+      )
+    },
+  ] : [{
+    key: 'logout',
+    label: (
+      <a href="/logout" onClick={handleLogout}>
+        Logout
+      </a>
+    ),
+  }]
   const items = (getToken() == null) ? beforeItems : afterItems
-  // const avar_src = (getToken() == null) ? beforeItems : afterItems
 
   return (
     <div className="header">
@@ -97,7 +99,7 @@ const NavigateBar = () => {
           >
             <span onClick={(e) => e.preventDefault()}>
               <Space>
-                <Avatar src={avar} />
+                <Avatar src={profile} />
               </Space>
             </span>
           </Dropdown>

@@ -14,7 +14,7 @@ public class JwtTest {
         Long id = 1L;
         String tk = JWTUtils.createToekn(id, "will99");
         System.out.println(tk);
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODExMTA2MjAsInVzZXJJZCI6MSwiaWF0IjoxNjgxMDI0MjIwLCJ1c2VybmFtZSI6IndpbGw5OSJ9.Jgye-7Y0zuP-LHvkQHDNs19Oji-z-8uh9ZNGajO20ic";
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODE3MDg1MDAsInVzZXJJZCI6MiwiaWF0IjoxNjgxNzA2NzAwLCJ1c2VybmFtZSI6InVzZXIxIn0.4RY_S59uqgyLzQm5gL_PfXzLzns87bUdLMct5xATPnk";
         Map<String, Object> map = JWTUtils.checkToken(token);
         Iterator iter = map.entrySet().iterator();
         while (iter.hasNext()) {

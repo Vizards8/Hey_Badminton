@@ -18,5 +18,11 @@ class LoginStore {
     // 还有这里哦！！
     setToken(res.data.data)
   }
+
+  getUserInfo = async () => {
+    const res = await http.get('/auth/getUserInfo', { headers: { 'Authorization': 'Bearer ' + getToken() } })
+    console.log(res.data)
+    return res.data
+  }
 }
 export default LoginStore

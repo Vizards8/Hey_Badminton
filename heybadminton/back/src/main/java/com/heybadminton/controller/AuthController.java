@@ -2,13 +2,13 @@ package com.heybadminton.controller;
 
 import com.heybadminton.entity.User;
 import com.heybadminton.pojo.ResponseResult;
+import com.heybadminton.pojo.UserFormData;
 import com.heybadminton.pojo.UserVO;
 import com.heybadminton.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/auth")
@@ -43,9 +43,24 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseResult register(UserVO user) {
+    public ResponseResult register(@RequestBody UserFormData userFormData) {
+        //todo： 1. 先查找用户是否存在了
 
-        return null;
+        int res = userService.register(userFormData);
+
+        if(res > 0) {
+            return ResponseResult.success("OK!");
+        }
+
+        return ResponseResult.fail(400003, "Unknown Error");
+    }
+
+    @GetMapping("/getUserInfo")
+    public ResponseResult getUserInfo(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+
+        //todo：检验一下token是否过期
+        return userService.findUserInfoByToken(token);
     }
 
 

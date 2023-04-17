@@ -46,8 +46,7 @@ public class JWTUtils {
     public static boolean validateToeknExpOrNot(String token) {
         try {
             Jwt parse = Jwts.parser().setSigningKey(jwtToken).parse(token);
-            Map<String, Object> body = (Map<String, Object>) parse.getBody();
-            return !(System.currentTimeMillis() >= (long)body.get("exp"));
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }

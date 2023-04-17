@@ -8,5 +8,7 @@ import lombok.ToString;
 public class UserVO {
 
     private long userId;
+    private String profile;
     private String username;
+    private String isAdmin;
 }

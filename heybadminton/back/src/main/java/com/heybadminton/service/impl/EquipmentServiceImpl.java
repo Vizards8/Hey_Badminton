@@ -39,5 +39,11 @@ public class EquipmentServiceImpl implements EquipmentService {
         return equipmentMapper.deleteEquipmentById(id);
     }
 
+    @Override
+    public List<Equipment> getAllEquipmentByPage(int pageNum, int pageSize) {
+        int offset = (pageNum - 1) * pageSize;
+        return equipmentMapper.getAllEquipmentByPage(offset, pageSize);
+    }
+
 }
 

@@ -7,8 +7,10 @@ import lombok.ToString;
 @ToString
 public class User {
     private Long id;
+    private String profile;
     private String username;
     private String email;
     private String password;
+    private String introduction;
     private String isAdmin;
 }

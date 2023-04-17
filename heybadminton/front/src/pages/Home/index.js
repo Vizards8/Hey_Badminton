@@ -1,25 +1,57 @@
-import React from "react";
-import { Carousel, Card, Avatar, Divider } from "antd";
+import React from "react"
+import { Carousel, Card, Avatar, Divider } from "antd"
 
-import "./Home.css";
-import dummy_author from "@/assets/data/author.json";
-import dummy_posts from "@/assets/data/posts.json";
-import dummy_matches from "@/assets/data/matches.json";
+import "./Home.css"
+// import dummy_author from "@/assets/data/author.json"
+// import dummy_posts from "@/assets/data/posts.json"
+// import dummy_matches from "@/assets/data/matches.json"
+import { useState, useEffect } from "react"
+import { useStore } from '@/store'
 
-const { Meta } = Card;
+const { Meta } = Card
 
 const HomePage = () => {
-  const carouselImages = [
-    {
-      id: 1,
-      src: "https://bwfworldchampionships.bwfbadminton.com/wp-content/uploads/sites/8/2022/09/WC2023_Digital_WC-Site_1024x481_3.jpg",
-    },
-    {
-      id: 2,
-      src: "https://bwfworldtour.bwfbadminton.com/wp-content/uploads/sites/11/2019/11/wt_banner_oct2019.jpg",
-    },
-    { id: 3, src: "https://via.placeholder.com/800x300?text=Image+3" },
-  ];
+  const { homeStore } = useStore()
+  const [carouselImages, setCarouselImages] = useState([])
+  const [Equipments, setEquipments] = useState([])
+  const [courtmates, setCourtmates] = useState([])
+
+  useEffect(() => {
+    async function getCarouselImages () {
+      const result = await homeStore.carouselImages()
+      console.log(result)
+      setCarouselImages(result.data)
+    }
+    getCarouselImages()
+  }, [])
+  useEffect(() => {
+    async function getEquipments () {
+      const result = await homeStore.equipments()
+      setEquipments(result.data)
+      console.log(result)
+    }
+    getEquipments()
+  }, [])
+  useEffect(() => {
+    async function getCourtmates () {
+      const result = await homeStore.courmates()
+      setCourtmates(result.data)
+      console.log(result)
+    }
+    getCourtmates()
+  }, [])
+
+  // const carouselImages = [
+  //   {
+  //     id: 1,
+  //     src: "https://bwfworldchampionships.bwfbadminton.com/wp-content/uploads/sites/8/2022/09/WC2023_Digital_WC-Site_1024x481_3.jpg",
+  //   },
+  //   {
+  //     id: 2,
+  //     src: "https://bwfworldtour.bwfbadminton.com/wp-content/uploads/sites/11/2019/11/wt_banner_oct2019.jpg",
+  //   },
+  //   { id: 3, src: "https://via.placeholder.com/800x300?text=Image+3" },
+  // ]
 
   const CourtmateList = ({ courtmates }) => (
     <div
@@ -60,7 +92,7 @@ const HomePage = () => {
         </Card>
       ))}
     </div>
-  );
+  )
 
   const EquipmentList = ({ Equipments }) => (
     <div
@@ -94,11 +126,11 @@ const HomePage = () => {
         </Card>
       ))}
     </div>
-  );
+  )
 
-  const author = dummy_author;
-  const posts = dummy_posts.slice(0, 6);
-  const matches = dummy_matches;
+  //const author = dummy_author
+  // const posts = dummy_posts.slice(0, 6)
+  // const matches = dummy_matches
 
   return (
     <div className="home-wrapper">
@@ -109,7 +141,7 @@ const HomePage = () => {
         {carouselImages.map((image) => (
           <div key={image.id}>
             <img
-              src={image.src}
+              src={image.carouseImageUrl}
               alt={`Slide ${image.id}`}
               style={{
                 width: "960px",
@@ -128,7 +160,7 @@ const HomePage = () => {
           </a>
         </h2>
       </Divider>
-      <EquipmentList Equipments={posts} />
+      <EquipmentList Equipments={Equipments} />
 
       <Divider orientation="left" style={{ borderColor: "black" }}>
         <h2>
@@ -137,9 +169,9 @@ const HomePage = () => {
           </a>
         </h2>
       </Divider>
-      <CourtmateList courtmates={matches} />
+      <CourtmateList courtmates={courtmates} />
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
