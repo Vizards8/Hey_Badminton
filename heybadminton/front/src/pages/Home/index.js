@@ -113,7 +113,7 @@ const HomePage = () => {
             <Meta
               avatar={
                 <Avatar
-                  src={"https://picsum.photos/400?random=" + Equipment.id}
+                  src={Equipment.avatarUrl}
                 />
               }
               title={Equipment.title}
