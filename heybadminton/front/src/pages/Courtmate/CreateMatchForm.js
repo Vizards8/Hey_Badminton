@@ -10,38 +10,41 @@ import {
   message,
 } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import { http } from "@/utils";
+import { useUser } from "@/pages/DashBoard";
 
 const { Option } = Select;
 
 const CreateMatchForm = ({ handleBack }) => {
+  const { user } = useUser();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
+    console.log(values);
     setLoading(true);
 
-    try {
-      const response = await fetch("/api/create-match", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+    const newMatch = {
+      id: new Date().getTime(),
+      title: values.title,
+      time: values.time,
+      date: values.date.toISOString().slice(0, 10),
+      location: values.location,
+      postUserId: user.id,
+      note: values.note,
+      participants: 1,
+      maxParticipants: values.maxParticipants,
+    };
 
-      if (response.ok) {
-        message.success("Match created successfully");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      } else {
-        message.error("Failed to create match");
-      }
+    const res = await http.post("/api/matches", newMatch);
+    if (res.status === 200) {
+      message.success("Match created successfully");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+
       setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error creating match:", error.message);
-      message.error("An error occurred while creating the match");
     }
   };
 

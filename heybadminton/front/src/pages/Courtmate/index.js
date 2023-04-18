@@ -13,6 +13,7 @@ import {
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import CreateMatchForm from "./CreateMatchForm";
 import dummy_matches from "@/assets/data/matches.json";
+import { http } from "@/utils";
 
 import "./Courtmate.css";
 
@@ -29,18 +30,23 @@ const defaultFilter = {
 
 const Courtmate = () => {
   const [visible, setVisible] = useState(false);
-  const [detailVisible, setDetailVisvible] = useState(false);
-  const [matches, setMatches] = useState(dummy_matches);
+  const [matches, setMatches] = useState(null);
   const [filteredMatches, setFilteredMatches] = useState(matches);
   const [filter, setFilter] = useState(defaultFilter);
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [isCreate, setIsCreate] = useState(false);
 
-  const matchTimes = [...new Set(matches.map((match) => match.time))];
-  const matchLocations = [...new Set(matches.map((match) => match.location))];
+  const matchTimes = [...new Set(matches?.map((match) => match.time))];
+  const matchLocations = [...new Set(matches?.map((match) => match.location))];
+  const matchParticipants = [
+    ...new Set(matches?.map((match) => match.participants)),
+  ];
 
   useEffect(() => {
-    let currMatches = [...matches];
+    let currMatches = [];
+    if (matches !== null) {
+      currMatches = [...matches];
+    }
     if (filter.date) {
       const formatted_date = filter.date.toISOString().slice(0, 10);
       currMatches = currMatches.filter(
@@ -66,7 +72,16 @@ const Courtmate = () => {
       );
     }
     setFilteredMatches(currMatches);
-  }, [filter]);
+  }, [filter, matches]);
+
+  const getAllMatches = async () => {
+    const res = await http.get("/api/matches");
+    setMatches(res.data);
+  };
+
+  useEffect(() => {
+    getAllMatches();
+  }, []);
 
   const handleBack = () => {
     setIsCreate(false);
@@ -74,35 +89,22 @@ const Courtmate = () => {
 
   const handleJoin = async (values) => {
     console.log(values);
+    const newMatch = {
+      ...selectedMatch,
+      participants: selectedMatch.participants + 1,
+    };
 
-    try {
-      const response = await fetch("/your-backend-url", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+    const res = await http.put("/api/matches", newMatch);
+    console.log(res);
 
-      if (response.ok) {
-        message.success("Join successful!");
-        setVisible(false);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      } else {
-        message.error("Join failed!");
-      }
-    } catch (error) {
-      message.error("Join failed!");
+    if (res.status === 200) {
+      message.success("Joined successfully");
+      setVisible(false);
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
-
-    setVisible(false);
-  };
-
-  const handleShowDetails = (match) => {
-    setSelectedMatch(match);
-    setDetailVisvible(true);
   };
 
   return (
@@ -127,7 +129,9 @@ const Courtmate = () => {
                 >
                   <Option value="all">All</Option>
                   {matchTimes.map((e) => (
-                    <Option value={e}>{e}</Option>
+                    <Option key={e} value={e}>
+                      {e}
+                    </Option>
                   ))}
                 </Select>
               </Form.Item>
@@ -140,7 +144,9 @@ const Courtmate = () => {
                 >
                   <Option value="all">All</Option>
                   {matchLocations.map((e) => (
-                    <Option value={e}>{e}</Option>
+                    <Option key={e} value={e}>
+                      {e}
+                    </Option>
                   ))}
                 </Select>
               </Form.Item>
@@ -152,9 +158,11 @@ const Courtmate = () => {
                   }
                 >
                   <Option value="all">All</Option>
-                  <Option value="2">2</Option>
-                  <Option value="4">4</Option>
-                  <Option value="6">6</Option>
+                  {matchParticipants.map((e) => (
+                    <Option key={e} value={e}>
+                      {e}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item label="Status">
@@ -195,27 +203,34 @@ const Courtmate = () => {
                 gap: "50px",
               }}
             >
-              {filteredMatches.map((match) => (
-                <Card
-                  key={match.id}
-                  title={match.title}
-                  extra={
-                    <Button type="primary" onClick={() => setVisible(true)}>
-                      Join
-                    </Button>
-                  }
-                  onClick={handleShowDetails}
-                  hoverable
-                >
-                  <p>Date: {match.date}</p>
-                  <p>Time: {match.time}</p>
-                  <p>Location: {match.location}</p>
-                  <p>
-                    Participants: {match.participants}/{match.maxParticipants}
-                  </p>
-                  <p>Note: {match.note}</p>
-                </Card>
-              ))}
+              {filteredMatches &&
+                filteredMatches.map((match) => (
+                  <Card
+                    key={match.id}
+                    title={match.title}
+                    extra={
+                      <Button
+                        type="primary"
+                        disabled={match.participants === match.maxParticipants}
+                        onClick={() => {
+                          setVisible(true);
+                          setSelectedMatch(match);
+                        }}
+                      >
+                        Join
+                      </Button>
+                    }
+                    hoverable
+                  >
+                    <p>Date: {match.date}</p>
+                    <p>Time: {match.time}</p>
+                    <p>Location: {match.location}</p>
+                    <p>
+                      Participants: {match.participants}/{match.maxParticipants}
+                    </p>
+                    <p>Note: {match.note}</p>
+                  </Card>
+                ))}
             </div>
           </div>
         </div>

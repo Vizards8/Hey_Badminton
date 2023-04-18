@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs, List, Button, Modal, Typography, Avatar } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
+import { http } from "@/utils";
 
 import "./Admin.css";
 
@@ -13,12 +14,27 @@ const { Title, Paragraph, Text, Link } = Typography;
 const { TabPane } = Tabs;
 
 function Admin() {
-  const [posts, setPosts] = useState(dummy_posts);
-  const [matches, setMatches] = useState(dummy_matches);
+  const [posts, setPosts] = useState();
+  const [matches, setMatches] = useState();
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
   const [matchToDelete, setMatchToDelete] = useState(null);
   const [currentTab, setCurrentTab] = useState("posts");
+
+  const getAllPosts = async () => {
+    const result = await http.get("/equipments/getAll");
+    setPosts(result.data.data);
+  };
+
+  const getAllMatches = async () => {
+    const res = await http.get("/api/matches");
+    setMatches(res.data);
+  };
+
+  useEffect(() => {
+    getAllPosts();
+    getAllMatches();
+  }, []);
 
   const handlePostDeleteClick = (post) => {
     setPostToDelete(post);
@@ -53,54 +69,70 @@ function Admin() {
       <Title>Admin Page</Title>
       <Tabs activeKey={currentTab} onChange={(key) => setCurrentTab(key)}>
         <TabPane tab="Posts" key="posts">
-          <List
-            style={{ marginTop: "20px" }}
-            itemLayout="horizontal"
-            dataSource={posts}
-            renderItem={(item) => (
-              <List.Item
-                actions={[
-                  <Button
-                    type="text"
-                    danger
-                    icon={<DeleteOutlined />}
-                    onClick={() => handlePostDeleteClick(item)}
-                  >
-                    Delete
-                  </Button>,
-                ]}
-              >
-                <List.Item.Meta
-                  avatar={<Avatar src={dummy_author.avatar} />}
-                  title={item.title}
-                  description={item.content}
-                />
-              </List.Item>
-            )}
-          />
+          {posts && (
+            <List
+              style={{ marginTop: "20px" }}
+              itemLayout="horizontal"
+              dataSource={posts}
+              renderItem={(item) => (
+                <List.Item
+                  actions={[
+                    <Button
+                      type="text"
+                      danger
+                      icon={<DeleteOutlined />}
+                      onClick={() => handlePostDeleteClick(item)}
+                    >
+                      Delete
+                    </Button>,
+                  ]}
+                >
+                  <List.Item.Meta
+                    avatar={
+                      <Avatar
+                        src={
+                          item.avatarUrl ? (
+                            <Avatar src={item.avatarUrl} />
+                          ) : (
+                            <Avatar
+                              src={"https://picsum.photos/50?random=" + item.id}
+                            />
+                          )
+                        }
+                      />
+                    }
+                    title={item.title}
+                    description={item.content}
+                  />
+                </List.Item>
+              )}
+            />
+          )}
         </TabPane>
         <TabPane tab="Matches" key="matches">
-          <List
-            style={{ marginTop: "20px" }}
-            itemLayout="horizontal"
-            dataSource={matches}
-            renderItem={(item) => (
-              <List.Item
-                actions={[
-                  <Button
-                    type="text"
-                    danger
-                    icon={<DeleteOutlined />}
-                    onClick={() => handleMatchDeleteClick(item)}
-                  >
-                    Delete
-                  </Button>,
-                ]}
-              >
-                <List.Item.Meta title={item.title} description={item.note} />
-              </List.Item>
-            )}
-          />
+          {matches && (
+            <List
+              style={{ marginTop: "20px" }}
+              itemLayout="horizontal"
+              dataSource={matches}
+              renderItem={(item) => (
+                <List.Item
+                  actions={[
+                    <Button
+                      type="text"
+                      danger
+                      icon={<DeleteOutlined />}
+                      onClick={() => handleMatchDeleteClick(item)}
+                    >
+                      Delete
+                    </Button>,
+                  ]}
+                >
+                  <List.Item.Meta title={item.title} description={item.note} />
+                </List.Item>
+              )}
+            />
+          )}
         </TabPane>
       </Tabs>
       <Modal

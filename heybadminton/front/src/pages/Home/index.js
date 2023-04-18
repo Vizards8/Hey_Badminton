@@ -1,45 +1,45 @@
-import React from "react"
-import { Carousel, Card, Avatar, Divider } from "antd"
+import React from "react";
+import { Carousel, Card, Avatar, Divider } from "antd";
 
-import "./Home.css"
+import "./Home.css";
 // import dummy_author from "@/assets/data/author.json"
 // import dummy_posts from "@/assets/data/posts.json"
 // import dummy_matches from "@/assets/data/matches.json"
-import { useState, useEffect } from "react"
-import { useStore } from '@/store'
+import { useState, useEffect } from "react";
+import { useStore } from "@/store";
 
-const { Meta } = Card
+const { Meta } = Card;
 
 const HomePage = () => {
-  const { homeStore } = useStore()
-  const [carouselImages, setCarouselImages] = useState([])
-  const [Equipments, setEquipments] = useState([])
-  const [courtmates, setCourtmates] = useState([])
+  const { homeStore } = useStore();
+  const [carouselImages, setCarouselImages] = useState([]);
+  const [Equipments, setEquipments] = useState([]);
+  const [courtmates, setCourtmates] = useState([]);
 
   useEffect(() => {
-    async function getCarouselImages () {
-      const result = await homeStore.carouselImages()
-      console.log(result)
-      setCarouselImages(result.data)
+    async function getCarouselImages() {
+      const result = await homeStore.carouselImages();
+      console.log(result);
+      setCarouselImages(result.data);
     }
-    getCarouselImages()
-  }, [])
+    getCarouselImages();
+  }, []);
   useEffect(() => {
-    async function getEquipments () {
-      const result = await homeStore.equipments()
-      setEquipments(result.data)
-      console.log(result)
+    async function getEquipments() {
+      const result = await homeStore.equipments();
+      setEquipments(result.data);
+      console.log(result);
     }
-    getEquipments()
-  }, [])
+    getEquipments();
+  }, []);
   useEffect(() => {
-    async function getCourtmates () {
-      const result = await homeStore.courmates()
-      setCourtmates(result.data)
-      console.log(result)
+    async function getCourtmates() {
+      const result = await homeStore.courmates();
+      setCourtmates(result.data);
+      console.log(result);
     }
-    getCourtmates()
-  }, [])
+    getCourtmates();
+  }, []);
 
   // const carouselImages = [
   //   {
@@ -92,7 +92,7 @@ const HomePage = () => {
         </Card>
       ))}
     </div>
-  )
+  );
 
   const EquipmentList = ({ Equipments }) => (
     <div
@@ -113,7 +113,15 @@ const HomePage = () => {
             <Meta
               avatar={
                 <Avatar
-                  src={Equipment.avatarUrl}
+                  src={
+                    Equipment.avatarUrl ? (
+                      <Avatar src={Equipment.avatarUrl} />
+                    ) : (
+                      <Avatar
+                        src={"https://picsum.photos/50?random=" + Equipment.id}
+                      />
+                    )
+                  }
                 />
               }
               title={Equipment.title}
@@ -126,7 +134,7 @@ const HomePage = () => {
         </Card>
       ))}
     </div>
-  )
+  );
 
   //const author = dummy_author
   // const posts = dummy_posts.slice(0, 6)
@@ -171,7 +179,7 @@ const HomePage = () => {
       </Divider>
       <CourtmateList courtmates={courtmates} />
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
