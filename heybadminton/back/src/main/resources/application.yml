@@ -28,4 +28,4 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 upload_images:
-  path: C:\Users\will9\OneDrive\Desktop\CSCI_6234_Group_9\upload_images
+  path: D:\CSCI_6234_Group_9\heybadminton\front\public\upload_images
