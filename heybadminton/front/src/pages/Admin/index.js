@@ -141,7 +141,7 @@ function Admin() {
         onOk={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
       >
-        <p>Are you sure you want to delete "{postToDelete?.title}"?</p>
+        <p>Are you sure you want to delete ?</p>
       </Modal>
     </div>
   );
