@@ -20,8 +20,9 @@ java -jar .\back-1.0-SNAPSHOT.jar
 * Now the back-end server should be online
 
 ### JavaScript front-end
+* open a new terminal
 ```cmd
-cd ..\..\front\
+cd .\heybadminton\front\
 npm install
 npm start
 ```
