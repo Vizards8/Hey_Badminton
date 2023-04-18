@@ -3,12 +3,34 @@ CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9.
 
 ## Overview
 * Application: Website
-* Program language: Java
-* Framework: Spring, Spring boot2
+* Program language: Java (back-end) + JavaScript (front-end)
+* Framework: Spring boot2 (back-end) + React (front-end)
 
 
 ## Slides
 [Google Drive](https://docs.google.com/presentation/d/1lF3PdN1U0-0lVJ-0RPXKd3fob1CUjmEDquPwAA-aUbM/edit?usp=sharing)
+
+## How to run
+
+### Java Back-end:
+```cmd
+cd .\heybadminton\back\target\
+java -jar .\back-1.0-SNAPSHOT.jar
+```
+* Now the back-end server should be online
+
+### JavaScript front-end
+```cmd
+cd ..\..\front\
+npm install
+npm start
+```
+* Now the front-end should be online
+
+### Visit the website
+* You can now visit the website in the browser
+* Local: http://localhost:3000
+
 
 ## Tasks
 - [x] Equipment Page
