@@ -10,6 +10,9 @@ CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9.
 ## Slides
 [Google Drive](https://docs.google.com/presentation/d/1lF3PdN1U0-0lVJ-0RPXKd3fob1CUjmEDquPwAA-aUbM/edit?usp=sharing)
 
+## Movie Presentation
+[Google Drive](https://drive.google.com/file/d/1Vd2fskJJ3TEJAoqRwFjyIkS6xZvxlNbe/view?usp=share_link)
+
 ## How to run
 
 ### Java Back-end:
