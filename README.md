@@ -1,5 +1,5 @@
-# CSCI_6234_Group_9
-CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9. 
+# Hey Badminton!
+This is the final project for CSCI 6234 Object Oriented Design - Sping 2023 Group 9. 
 
 ## Overview
 * Application: Website
