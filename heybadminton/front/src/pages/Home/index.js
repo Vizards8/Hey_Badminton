@@ -53,7 +53,7 @@ const HomePage = () => {
   //       "https://bwfworldtour.bwfbadminton.com/wp-content/uploads/sites/11/2019/11/wt_banner_oct2019.jpg",
   //   },
   //   {
-  //     carouseImageUrl: 3,
+  //     id: 3,
   //     carouseImageUrl: "https://www.badmintoneurope.tv/image/800/450/bb063c4b-886e-4e98-8ded-eaa104b803d6.png",
   //   },
   // ];
