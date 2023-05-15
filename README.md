@@ -1,5 +1,5 @@
-# CSCI_6234_Group_9
-CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9. 
+# Hey Badminton!
+This is the final project for CSCI 6234 Object Oriented Design - Sping 2023 Group 9. 
 
 ## Overview
 * Application: Website
@@ -9,6 +9,9 @@ CSCI 6234 Object Oriented Design. Repository for Sping 2023 Group 9.
 
 ## Slides
 [Google Drive](https://docs.google.com/presentation/d/1lF3PdN1U0-0lVJ-0RPXKd3fob1CUjmEDquPwAA-aUbM/edit?usp=sharing)
+
+## Movie Presentation
+[Google Drive](https://drive.google.com/file/d/1Vd2fskJJ3TEJAoqRwFjyIkS6xZvxlNbe/view?usp=share_link)
 
 ## How to run
 
@@ -20,8 +23,9 @@ java -jar .\back-1.0-SNAPSHOT.jar
 * Now the back-end server should be online
 
 ### JavaScript front-end
+* open a new terminal
 ```cmd
-cd ..\..\front\
+cd .\heybadminton\front\
 npm install
 npm start
 ```
