@@ -15,16 +15,21 @@ This is the final project for CSCI 6234 Object Oriented Design - Sping 2023 Grou
 
 ## How to run
 
+### Init MySQL:
+```bash
+mysql -u root < init.sql
+```
+
 ### Java Back-end:
-```cmd
-cd .\heybadminton\back\target\
+```bash
+cd .\heybadminton\back\
 java -jar .\back-1.0-SNAPSHOT.jar
 ```
 * Now the back-end server should be online
 
-### JavaScript front-end
+### JavaScript Front-end
 * open a new terminal
-```cmd
+```bash
 cd .\heybadminton\front\
 npm install
 npm start
