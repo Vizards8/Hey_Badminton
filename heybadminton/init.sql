@@ -82,9 +82,9 @@ CREATE TABLE equipment (
 
 INSERT INTO equipment (title, content, avatar_url, pictures_urls)
 VALUES
-    ('Badminton Racket Selection Tips', 'Choosing the right badminton racket can make a big difference in your game. In this post, we''ll discuss some key factors to consider when selecting a racket, such as weight, balance, and string tension. We''ll also provide recommendations for rackets that are suitable for players of different levels and playing styles.', './upload_images/cat1-1681697583033.jpg', './upload_images/equip1.jpg'),
-    ('Mastering the Badminton Serve', 'The serve is one of the most important shots in badminton, as it sets the tone for the rest of the rally. In this post, we''ll provide tips and techniques for improving your serve, such as varying the placement and speed of your serves, and faking your opponent out with a deceptive serve. We''ll also share some drills to help you practice your serves.', './upload_images/cat2-1681726655723.jpg', './upload_images/equip2.jpg'),
-    ('Badminton Footwork Basics', 'Good footwork is essential for success in badminton, as it allows you to move quickly and efficiently around the court. In this post, we''ll cover some basic footwork patterns and techniques, such as the split-step, the side shuffle, and the lunge. We''ll also provide drills to help you improve your footwork.', './upload_images/cat3-1681695365623.jpg', './upload_images/equip3.jpg'),
+    ('Badminton Racket Selection Tips', 'Choosing the right badminton racket can make a big difference in your game. In this post, we''ll discuss some key factors to consider when selecting a racket, such as weight, balance, and string tension. We''ll also provide recommendations for rackets that are suitable for players of different levels and playing styles.', '/upload_images/cat1-1681697583033.jpg', '/upload_images/equip1.jpg'),
+    ('Mastering the Badminton Serve', 'The serve is one of the most important shots in badminton, as it sets the tone for the rest of the rally. In this post, we''ll provide tips and techniques for improving your serve, such as varying the placement and speed of your serves, and faking your opponent out with a deceptive serve. We''ll also share some drills to help you practice your serves.', '/upload_images/cat2-1681726655723.jpg', '/upload_images/equip2.jpg'),
+    ('Badminton Footwork Basics', 'Good footwork is essential for success in badminton, as it allows you to move quickly and efficiently around the court. In this post, we''ll cover some basic footwork patterns and techniques, such as the split-step, the side shuffle, and the lunge. We''ll also provide drills to help you improve your footwork.', '/upload_images/cat3-1681695365623.jpg', '/upload_images/equip3.jpg'),
     ('The Mental Game of Badminton', 'While physical ability is important in badminton, the mental game is equally crucial. In this post, we''ll discuss some strategies for staying focused and motivated on the court, such as setting goals, using positive self-talk, and visualizing success. We''ll also provide tips for dealing with nerves and pressure during matches.', NULL, NULL),
     ('Best Badminton Shoes for Beginners', 'If you''re new to badminton, choosing the right pair of shoes is essential to ensure you''re comfortable and safe on the court. When shopping for badminton shoes, look for ones that are lightweight, flexible, and offer good support. Some of the top options for beginners include Yonex SHB-01LX, Asics Gel-Rocket 9, and Adidas Performance Barricade Club. Make sure to try on a few pairs before making your final decision!', NULL, NULL),
     ('How to Improve Your Badminton Game', 'Improving your badminton game requires practice, dedication, and a solid understanding of the game. Start by perfecting your basic shots, such as the clear, drop shot, and smash. Work on your footwork and agility by practicing drills and exercises. Additionally, consider taking lessons or joining a badminton club to learn from more experienced players. Don''t forget to stay hydrated and warm up properly before playing to prevent injury.', NULL, NULL),
@@ -107,8 +107,8 @@ CREATE TABLE comment (
 
 INSERT INTO comment (post_id, content, post_user_profile)
 VALUES 
-  	(1, 'Wonderful Post!', './upload_images/cat1-1681697583033.jpg'),
-  	(1, 'Thank you for your advice.', './upload_images/cat2-1681726655723.jpg');
+  	(1, 'Wonderful Post!', '/upload_images/cat1-1681697583033.jpg'),
+  	(1, 'Thank you for your advice.', '/upload_images/cat2-1681726655723.jpg');
 
 -- Create table matches
 CREATE TABLE matches (
