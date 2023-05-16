@@ -45,7 +45,7 @@ function NavigateBar ({ profile, isAdmin }) {
     navigate("/login")
   }
 
-  const afterItems = isAdmin === "Y" ? [
+  const afterItems = isAdmin === true ? [
     {
       key: 'logout',
       label: (
