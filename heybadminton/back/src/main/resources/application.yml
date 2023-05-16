@@ -3,14 +3,14 @@ spring:
     location: \banner.txt
 
   datasource:
-    url: jdbc:mysql://54.157.203.10:3306/heybadminton?useUnicode=true&characterEncoding=UTF-8&serverTimezone=US/Eastern
+    url: jdbc:mysql://3.83.126.203:3306/heybadminton?useUnicode=true&characterEncoding=UTF-8&serverTimezone=US/Eastern
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: will99
-    password: Suces%2023
+    username: laphi
+    password: laphicet@2023
   redis:
-    host: 54.157.203.10
+    host: 3.83.126.203
     port: 6379
-    password: Suces%2023
+    password: laphicet@2023
     database: 0
     lettuce:
       pool:
