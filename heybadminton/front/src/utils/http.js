@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const http = axios.create({
-  baseURL: 'https://hey-badminton.vercel.app/api/proxy/v1_0',
+  baseURL: 'http://localhost:3000/v1_0',
   timeout: 5000
 })
 // 添加请求拦截器
