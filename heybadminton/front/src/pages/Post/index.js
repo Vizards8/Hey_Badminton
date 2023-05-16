@@ -100,7 +100,7 @@ const Post = () => {
 
   return (
     <div className="post-wrapper">
-      <MyBreadcrumb paths={["post"]} />
+      <MyBreadcrumb paths={["Post"]} />
       {post && (
         <Card style={{ marginBottom: "20px" }}>
           <Meta
