@@ -20,9 +20,9 @@ CREATE TABLE sys_user (
 
 INSERT INTO sys_user (profile, username, email, password, is_admin)
 VALUES
-	('./upload_images/cat1-1681697583033.jpg', 'root', 'root@gmail.com', 'root', true),
-	('./upload_images/cat2-1681726655723.jpg', 'user1', 'user1@gmail.com', 'user1', false),
-	('./upload_images/cat3-1681695365623.jpg', 'user2', 'user2@gmail.com', 'user2', false);
+	('/upload_images/cat1-1681697583033.jpg', 'root', 'root@gmail.com', 'root', true),
+	('/upload_images/cat2-1681726655723.jpg', 'user1', 'user1@gmail.com', 'user1', false),
+	('/upload_images/cat3-1681695365623.jpg', 'user2', 'user2@gmail.com', 'user2', false);
 
 -- Create table tournament
 CREATE TABLE tournament (
