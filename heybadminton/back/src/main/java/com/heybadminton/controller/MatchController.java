@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/matches")
-@CrossOrigin
 public class MatchController {
 
     @Autowired
