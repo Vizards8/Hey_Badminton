@@ -110,8 +110,8 @@ VALUES
   	(1, 'Wonderful Post!', '/upload_images/cat1-1681697583033.jpg'),
   	(1, 'Thank you for your advice.', '/upload_images/cat2-1681726655723.jpg');
 
--- Create table matches
-CREATE TABLE matches (
+-- Create table match
+CREATE TABLE match (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
     time VARCHAR(255),
@@ -126,7 +126,7 @@ CREATE TABLE matches (
     is_delete BOOLEAN DEFAULT false
 );
 
-INSERT INTO matches (title, time, date, location, participants, max_participants, note)
+INSERT INTO match (title, time, date, location, participants, max_participants, note)
 VALUES
     ('Amateur Badminton Tournament', '10:00am', '2023-04-21', 'Boston Badminton, Westborough, MA', 14, 16, 'Come join us for our first amateur badminton tournament at The Courtside Club in Westborough, MA on April 21st at 1:00pm. Put your skills to the test, meet new players, and have a chance to win prizes!'),
     ('Weekend Badminton Social', '1:00pm', '2023-05-13', 'Atlanta Badminton Club, Norcross, GA', 8, 10, 'Join us for a fun and social badminton morning at the Atlanta Badminton Club in Norcross, GA on May 13th at 10:00am. We\'ll be playing doubles matches and enjoying some snacks and refreshments afterwards. All skill levels welcome!'),
