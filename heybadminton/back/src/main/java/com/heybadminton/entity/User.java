@@ -12,5 +12,5 @@ public class User {
     private String email;
     private String password;
     private String introduction;
-    private String isAdmin;
+    private Boolean isAdmin;
 }
