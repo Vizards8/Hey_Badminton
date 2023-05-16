@@ -64,7 +64,7 @@ const HomePage = () => {
         flexWrap: "wrap",
       }}
     >
-      {courtmates.map((courtmate) => (
+      {courtmates?.map((courtmate) => (
         <Card
           hoverable
           style={{ width: "30%", margin: "0 1rem 1rem" }}
@@ -105,7 +105,7 @@ const HomePage = () => {
         flexWrap: "wrap",
       }}
     >
-      {Equipments.map((Equipment) => (
+      {Equipments?.map((Equipment) => (
         <Card
           hoverable
           style={{ width: "30%", margin: "0 1rem 1rem" }}
@@ -148,7 +148,7 @@ const HomePage = () => {
         <h2>Smash your way to greatness - Play Badminton!</h2>
       </Divider>
       <Carousel autoplay>
-        {carouselImages.map((image) => (
+        {carouselImages?.map((image) => (
           <div key={image.id}>
             <img
               src={image.carouseImageUrl}
