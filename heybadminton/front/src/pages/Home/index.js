@@ -19,7 +19,6 @@ const HomePage = () => {
   useEffect(() => {
     async function getCarouselImages() {
       const result = await homeStore.carouselImages();
-      console.log(result);
       setCarouselImages(result.data);
     }
     getCarouselImages();
@@ -28,7 +27,6 @@ const HomePage = () => {
     async function getEquipments() {
       const result = await homeStore.equipments();
       setEquipments(result.data);
-      console.log(result);
     }
     getEquipments();
   }, []);
@@ -36,7 +34,6 @@ const HomePage = () => {
     async function getCourtmates() {
       const result = await homeStore.courmates();
       setCourtmates(result.data);
-      console.log(result);
     }
     getCourtmates();
   }, []);
