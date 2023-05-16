@@ -25,7 +25,6 @@ const { TextArea } = Input;
 
 function Equipment() {
   const { user } = useUser();
-  console.log(user);
   const [fileList, setFileList] = useState([]);
   const handleChange = (info) => {
     setFileList(info.fileList);
