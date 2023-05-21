@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/v1_0/:path*",
-      "destination": "http://3.83.126.203/:path*"
+      "destination": "http://54.86.1.97/:path*"
     }
   ]
 }
