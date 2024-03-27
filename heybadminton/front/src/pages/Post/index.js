@@ -5,49 +5,11 @@ import MyBreadcrumb from "@/common/MyBreadcrumb";
 import { http } from "@/utils";
 import { useUser } from "@/pages/DashBoard";
 import "./Post.css";
+import dummy_equipment from "@/assets/data/equipment.json";
+import dummy_comment from "@/assets/data/comment.json";
 
 const { Meta } = Card;
 const { TextArea } = Input;
-
-const data = {
-  post: {
-    title: "Topic 1",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu turpis malesuada, semper elit sed, gravida leo. Sed ultrices magna in felis volutpat, ut finibus tellus egestas. Donec pulvinar magna id libero egestas convallis. Integer in quam ac magna accumsan consectetur.",
-    author: {
-      name: "Admin",
-      avatarUrl: "https://picsum.photos/50?random=1",
-    },
-    pictures: [
-      {
-        imageUrl: "https://picsum.photos/400?random=1",
-        caption: "Picture 1",
-      },
-      {
-        imageUrl: "https://picsum.photos/400?random=2",
-        caption: "Picture 2",
-      },
-    ],
-  },
-  comment: [
-    {
-      id: 200,
-      text: "Wonderful post!",
-      author: {
-        name: "David",
-        avatarUrl: "https://picsum.photos/50?random=2",
-      },
-    },
-    {
-      id: 23,
-      text: "Wonderful post!",
-      author: {
-        name: "Steve",
-        avatarUrl: "https://picsum.photos/50?random=3",
-      },
-    },
-  ],
-};
 
 const names = ["David", "Steve", "Mike", "Mary"];
 
@@ -59,26 +21,30 @@ const Post = () => {
   const [comments, setComments] = useState();
   const [commentText, setCommentText] = useState("");
 
-  const getPostDetail = async () => {
-    const res = await http.get(`/equipments/${id}`);
-    setPost(res.data);
-  };
+  // const getPostDetail = async () => {
+  //   const res = await http.get(`/equipments/${id}`);
+  //   setPost(res.data);
+  // };
 
-  const getAllComments = async () => {
-    const res = await http.get(`/api/comments/post/${id}`);
-    setComments(res.data);
-  };
+  // const getAllComments = async () => {
+  //   const res = await http.get(`/api/comments/post/${id}`);
+  //   setComments(res.data);
+  // };
 
   useEffect(() => {
-    // Fetch the post data from your backend API
-    getPostDetail();
+    // // Fetch the post data from backend API
+    // getPostDetail();
 
-    // Fetch the comments for this post from your backend API
-    getAllComments();
+    // // Fetch the comments for this post from backend API
+    // getAllComments();
+
+    setPost(dummy_equipment[id]);
+    dummy_comment = dummy_comment.filter((a) => a.postId == id);
+    setComments(dummy_comment);
   }, [id]);
 
   const handleCommentSubmit = async () => {
-    // Submit the new comment to your backend API
+    // Submit the new comment to backend API
     const newComment = {
       id: new Date().getTime(),
       postId: id,

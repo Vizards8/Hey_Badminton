@@ -6,9 +6,8 @@ import { http } from "@/utils";
 
 import "./Admin.css";
 
-import dummy_author from "@/assets/data/author.json";
-import dummy_posts from "@/assets/data/posts.json";
-import dummy_matches from "@/assets/data/matches.json";
+import dummy_equipment from "@/assets/data/equipment.json";
+import dummy_match from "@/assets/data/match.json";
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { TabPane } = Tabs;
@@ -21,19 +20,21 @@ function Admin() {
   const [matchToDelete, setMatchToDelete] = useState(null);
   const [currentTab, setCurrentTab] = useState("posts");
 
-  const getAllPosts = async () => {
-    const result = await http.get("/equipments/getAll");
-    setPosts(result.data.data);
-  };
+  // const getAllPosts = async () => {
+  //   const result = await http.get("/equipments/getAll");
+  //   setPosts(result.data.data);
+  // };
 
-  const getAllMatches = async () => {
-    const res = await http.get("/api/matches");
-    setMatches(res.data);
-  };
+  // const getAllMatches = async () => {
+  //   const res = await http.get("/api/matches");
+  //   setMatches(res.data);
+  // };
 
   useEffect(() => {
-    getAllPosts();
-    getAllMatches();
+    // getAllPosts();
+    // getAllMatches();
+    setPosts(dummy_equipment);
+    setMatches(dummy_match);
   }, []);
 
   const handlePostDeleteClick = (post) => {

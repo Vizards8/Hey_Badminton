@@ -12,8 +12,7 @@ import {
 import React, { useState, useEffect } from "react";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import { PictureOutlined } from "@ant-design/icons";
-import dummy_posts from "@/assets/data/posts.json";
-import cat from "@/assets/images/profile.png";
+import dummy_equipment from "@/assets/data/equipment.json";
 
 import { useUser } from "@/pages/DashBoard";
 import { http } from "@/utils";
@@ -39,12 +38,13 @@ function Equipment() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    async function getAll() {
-      const result = await http.get("/equipments/getAll");
-      //console.log(result.data.data)
-      setData(result.data.data);
-    }
-    getAll();
+    // async function getAll() {
+    //   const result = await http.get("/equipments/getAll");
+    //   //console.log(result.data.data)
+    //   setData(result.data.data);
+    // }
+    // getAll();
+    setData(dummy_equipment);
   }, []);
 
   const pageSize = 10;

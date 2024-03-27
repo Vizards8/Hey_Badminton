@@ -2,9 +2,9 @@ import React from "react";
 import { Carousel, Card, Avatar, Divider } from "antd";
 
 import "./Home.css";
-// import dummy_author from "@/assets/data/author.json"
-// import dummy_posts from "@/assets/data/posts.json"
-// import dummy_matches from "@/assets/data/matches.json"
+import dummy_tornament from "@/assets/data/tornament.json";
+import dummy_equipment from "@/assets/data/equipment.json";
+import dummy_match from "@/assets/data/match.json";
 import { useState, useEffect } from "react";
 import { useStore } from "@/store";
 
@@ -17,43 +17,29 @@ const HomePage = () => {
   const [courtmates, setCourtmates] = useState([]);
 
   useEffect(() => {
-    async function getCarouselImages() {
-      const result = await homeStore.carouselImages();
-      setCarouselImages(result.data);
-    }
-    getCarouselImages();
+    // async function getCarouselImages() {
+    //   const result = await homeStore.carouselImages();
+    //   setCarouselImages(result.data);
+    // }
+    // getCarouselImages();
+    setCarouselImages(dummy_tornament);
   }, []);
   useEffect(() => {
-    async function getEquipments() {
-      const result = await homeStore.equipments();
-      setEquipments(result.data);
-    }
-    getEquipments();
+    // async function getEquipments() {
+    //   const result = await homeStore.equipments();
+    //   setEquipments(result.data);
+    // }
+    // getEquipments();
+    setEquipments(dummy_equipment);
   }, []);
   useEffect(() => {
-    async function getCourtmates() {
-      const result = await homeStore.courmates();
-      setCourtmates(result.data);
-    }
-    getCourtmates();
+    // async function getCourtmates() {
+    //   const result = await homeStore.courmates();
+    //   setCourtmates(result.data);
+    // }
+    // getCourtmates();
+    setCourtmates(dummy_match);
   }, []);
-
-  // const carouselImages = [
-  //   {
-  //     id: 1,
-  //     carouseImageUrl:
-  //       "https://bwfworldchampionships.bwfbadminton.com/wp-content/uploads/sites/8/2022/09/WC2023_Digital_WC-Site_1024x481_3.jpg",
-  //   },
-  //   {
-  //     id: 2,
-  //     carouseImageUrl:
-  //       "https://bwfworldtour.bwfbadminton.com/wp-content/uploads/sites/11/2019/11/wt_banner_oct2019.jpg",
-  //   },
-  //   {
-  //     id: 3,
-  //     carouseImageUrl: "https://www.badmintoneurope.tv/image/800/450/bb063c4b-886e-4e98-8ded-eaa104b803d6.png",
-  //   },
-  // ];
 
   const CourtmateList = ({ courtmates }) => (
     <div

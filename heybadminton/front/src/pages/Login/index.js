@@ -1,25 +1,27 @@
-import { Card, Form, Input, Button, Checkbox, message } from 'antd'
-import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import logo from '@/assets/images/logo.png'
-import './login.less'
+import { Card, Form, Input, Button, Checkbox, message } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import logo from "@/assets/images/logo.png";
+import "./login.less";
 
-import { useNavigate } from 'react-router-dom'
-import { useStore } from '@/store'
+import { useNavigate } from "react-router-dom";
+import { useStore } from "@/store";
 
 const Login = () => {
   // 获取跳转实例对象
-  const navigate = useNavigate()
-  const { loginStore } = useStore()
+  const navigate = useNavigate();
+  const { loginStore } = useStore();
 
   const onFinish = async (values) => {
-    const { username, password, remember } = values
+    const { username, password, remember } = values;
     try {
-      await loginStore.login({ username, password, remember })
-      navigate('/')
+      await loginStore.login({ username, password, remember });
+      navigate("/");
     } catch (e) {
-      message.error(e.response?.data?.message || '登录失败')
+      message.error(
+        e.response?.data?.message || "Incorrect username or password"
+      );
     }
-  }
+  };
 
   return (
     <div className="login">
@@ -38,18 +40,21 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your Username!',
+                message: "Please input your Username!",
               },
             ]}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Username"
+            />
           </Form.Item>
           <Form.Item
             name="password"
             rules={[
               {
                 required: true,
-                message: 'Please input your Password!',
+                message: "Please input your Password!",
               },
             ]}
           >
@@ -69,7 +74,12 @@ const Login = () => {
             </a> */}
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+              style={{ marginRight: "5px" }}
+            >
               Log in
             </Button>
             Or <a href="/register">register now!</a>
@@ -77,6 +87,6 @@ const Login = () => {
         </Form>
       </Card>
     </div>
-  )
-}
-export default Login
+  );
+};
+export default Login;

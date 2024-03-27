@@ -12,7 +12,7 @@ import {
 } from "antd";
 import MyBreadcrumb from "@/common/MyBreadcrumb";
 import CreateMatchForm from "./CreateMatchForm";
-import dummy_matches from "@/assets/data/matches.json";
+import dummy_match from "@/assets/data/match.json";
 import { http } from "@/utils";
 
 import "./Courtmate.css";
@@ -74,13 +74,14 @@ const Courtmate = () => {
     setFilteredMatches(currMatches);
   }, [filter, matches]);
 
-  const getAllMatches = async () => {
-    const res = await http.get("/api/matches");
-    setMatches(res.data);
-  };
+  // const getAllMatches = async () => {
+  //   const res = await http.get("/api/matches");
+  //   setMatches(res.data);
+  // };
 
   useEffect(() => {
-    getAllMatches();
+    // getAllMatches();
+    setMatches(dummy_match);
   }, []);
 
   const handleBack = () => {
