@@ -7,7 +7,7 @@ This is the final project for CSCI 6234 Object Oriented Design - Sping 2023 Grou
 * Framework: Spring boot2 (back-end) + React (front-end)
 
 ## Demo
-* Explore our website demo at: https://hey-badminton.vercel.app/
+* Explore our website demo at: [https://hey-badminton-vizards8.vercel.app/](https://hey-badminton-vizards8.vercel.app/)
 * We provide two pre-existing accounts for your convenience:
   * admin_user: root@root
   * normal_user: user1@user1, user2@user2
